@@ -1497,7 +1497,7 @@ const API_BASE   = 'https://shem-solar-production.up.railway.app/api/v1';
 // For local dev: const API_BASE = 'http://localhost:3000/api/v1';
 const ADMIN_KEY  = localStorage.getItem('shem_admin_key') || '';
 
- {
+ async function api(path, opts = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
     ...opts,
     headers: {
