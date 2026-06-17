@@ -42,7 +42,7 @@ function orderConfirmation({ name, orderNumber, product, amount, phone }) {
       `Product: ${product}. ` +
       `Amount paid: KES ${Number(amount).toLocaleString()}. ` +
       `Our team will contact you within 24hrs to schedule installation. ` +
-      `Questions? Call 0700 123 456. ShemSolar`,
+      `Questions? Call 0. ShemSolar`,
   });
 }
 
@@ -52,7 +52,7 @@ function installationReminder({ name, phone, date, time }) {
     message:
       `Hi ${name}, your Shem Solar installation is scheduled for ` +
       `${date} at ${time}. Our technician will call 1hr before arrival. ` +
-      `Ensure access to your main switchboard. ShemSolar 0700 123 456`,
+      `Ensure access to your main switchboard. ShemSolar 0717644520`,
   });
 }
 
@@ -62,7 +62,7 @@ function paymentLinkNotification({ name, phone, orderNumber, amount, productName
     message:
       `Hi ${name}, your Shem Solar quote is ready! ` +
       `${productName} — KES ${Number(amount).toLocaleString()}. ` +
-      `Reply YES or call 0700 123 456 to receive your M-Pesa payment link. ` +
+      `Reply YES or call 0717644520 to receive your M-Pesa payment link. ` +
       `Ref: ${orderNumber}. ShemSolar`,
   });
 }
@@ -72,7 +72,7 @@ function paymentFailed({ name, phone, orderNumber }) {
     to: phone,
     message:
       `Hi ${name}, your M-Pesa payment for order ${orderNumber} was not completed. ` +
-      `Please try again or call us on 0700 123 456. ShemSolar`,
+      `Please try again or call us on 0717644520. ShemSolar`,
   });
 }
 
