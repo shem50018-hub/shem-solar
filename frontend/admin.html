@@ -1233,7 +1233,8 @@ function buildPipeline(containerId, compact) {
 }
 
 // ── INVENTORY ──
-() {
+// ── INVENTORY ──
+function buildInventory() {
   const el = document.getElementById('inv-grid');
   if (!el) return;
   el.innerHTML = INVENTORY.map(item => {
