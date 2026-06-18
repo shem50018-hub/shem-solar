@@ -1640,6 +1640,10 @@ async function loadInventory() {
           ${low ? '<span class="pill pill-low">Low Stock</span>' : '<span class="pill pill-ok">In Stock</span>'}
         </div>
         ${low ? `<button class="send-btn" style="margin-top:0.8rem;padding:0.5rem;font-size:0.78rem" onclick="restockProduct(${item.id},'${item.name}')">📦 Reorder</button>` : ''}
+        <div style="display:flex;gap:0.5rem;margin-top:0.6rem;">
+  <button class="send-btn" style="flex:1;padding:0.5rem;font-size:0.78rem;background:var(--bg-3,#222);" onclick='openProductModal(${JSON.stringify(item).replace(/'/g, "&#39;")})'>✏️ Edit</button>
+  <button class="send-btn" style="flex:1;padding:0.5rem;font-size:0.78rem;background:#ef4444;" onclick="deleteProductConfirm(${item.id},'${item.name.replace(/'/g, "\\'")}')">🗑️ Delete</button>
+</div>
       </div>`;
     }).join('');
   } catch(e) { console.warn('Inventory load failed:', e.message); }
@@ -2003,6 +2007,17 @@ function parseSpecsText(text) {
     }
   });
   return specs;
+}
+
+async function deleteProductConfirm(id, name) {
+  if (!confirm(`Permanently delete "${name}"? This cannot be undone.`)) return;
+  try {
+    await api(`/products/${id}`, { method: 'DELETE' });
+    showToast('Product deleted ✓');
+    loadInventory();
+  } catch (e) {
+    showToast(e.message || 'Failed to delete product');
+  }
 }
 
 async function submitProduct(event) {

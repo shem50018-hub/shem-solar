@@ -120,3 +120,21 @@ exports.restockProduct = async (req, res, next) => {
     res.json({ success: true, ...product });
   } catch (err) { next(err); }
 };
+
+// -- DELETE /api/v1/products/:id (admin)
+// Permanently remove a product from the catalog
+exports.deleteProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { rowCount } = await pool.query(
+      `DELETE FROM products WHERE id = $1`,
+      [id]
+    );
+    if (rowCount === 0) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json({ success: true, deleted: id });
+  } catch (err) {
+    next(err);
+  }
+};

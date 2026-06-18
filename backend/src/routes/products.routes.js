@@ -13,5 +13,6 @@ router.get('/:slug',     ctrl.getProduct);
 router.post('/',                adminAuth, ctrl.createProduct);
 router.patch('/:id',            adminAuth, ctrl.updateProduct);
 router.patch('/:id/stock',      adminAuth, ctrl.restockProduct);
+router.delete('/:id',           adminAuth, ctrl.deactivateProduct);
 
 module.exports = router;
