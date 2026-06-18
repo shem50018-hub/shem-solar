@@ -1233,7 +1233,7 @@ function buildPipeline(containerId, compact) {
 }
 
 // ── INVENTORY ──
-function buildInventory() {
+() {
   const el = document.getElementById('inv-grid');
   if (!el) return;
   el.innerHTML = INVENTORY.map(item => {
@@ -1950,7 +1950,6 @@ checkAuth();
 renderDailyBars();
 buildPipeline('mini-pipeline', true);
 buildPipeline('full-pipeline', false);
-buildInventory();
 buildGeo();
 buildTopProducts();
 setTimeout(renderMonthlyBars, 100);
