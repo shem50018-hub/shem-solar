@@ -15,7 +15,7 @@ exports.listProducts = async (req, res, next) => {
     const { rows } = await pool.query(
       `SELECT id, sku, name, slug, description, category,
               price, stock_quantity, specifications
-       FROM products ${where}
+       FROM products p ${where}
        ORDER BY category, name`,
       params
     );
