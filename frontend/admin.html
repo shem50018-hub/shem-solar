@@ -881,22 +881,18 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
       </div>
 
       <!-- ══════════ PRODUCTS (config) ══════════ -->
-      <div class="view" id="view-products">
-        <div class="sec-head" style="margin-bottom:1rem"><div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--gold)"></span>Product Catalog Management</div><button class="tb-btn primary" onclick="showToast('Add product form opened')">+ Add Product</button></div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Product</th><th>Category</th><th>Price (KES)</th><th>Stock</th><th>Sold (mo)</th><th>Status</th><th>Actions</th></tr></thead>
-            <tbody>
-              <tr><td class="td-primary">☀️ MonoPerc 400W Panel</td><td>Panels</td><td class="td-amount">28,000</td><td>45</td><td>12</td><td><span class="pill pill-ok">Active</span></td><td><button class="sec-action" onclick="showToast('Edit form opened for MonoPerc 400W')">Edit</button></td></tr>
-              <tr><td class="td-primary">🔋 LiFePO4 100Ah Battery</td><td>Batteries</td><td class="td-amount">55,000</td><td>3</td><td>8</td><td><span class="pill pill-low">Low Stock</span></td><td><button class="sec-action" onclick="showToast('Edit form opened for LiFePO4')">Edit</button></td></tr>
-              <tr><td class="td-primary">⚡ Hybrid Inverter 5kW</td><td>Inverters</td><td class="td-amount">72,000</td><td>18</td><td>5</td><td><span class="pill pill-ok">Active</span></td><td><button class="sec-action" onclick="showToast('Edit form opened for Inverter')">Edit</button></td></tr>
-              <tr><td class="td-primary">🏠 Home Starter Kit 2kW</td><td>Packages</td><td class="td-amount">185,000</td><td>8</td><td>9</td><td><span class="pill pill-ok">Active</span></td><td><button class="sec-action" onclick="showToast('Edit form opened for Starter Kit')">Edit</button></td></tr>
-              <tr><td class="td-primary">🔌 Gel Lead-Acid 200Ah</td><td>Batteries</td><td class="td-amount">18,500</td><td>2</td><td>3</td><td><span class="pill pill-low">Low Stock</span></td><td><button class="sec-action" onclick="showToast('Edit form opened for Gel Battery')">Edit</button></td></tr>
-              <tr><td class="td-primary">🏢 Business Pro 10kW</td><td>Packages</td><td class="td-amount">580,000</td><td>4</td><td>4</td><td><span class="pill pill-ok">Active</span></td><td><button class="sec-action" onclick="showToast('Edit form opened for Business Pro')">Edit</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<div class="view" id="view-products">
+  <div class="sec-head" style="margin-bottom:1rem">
+    <div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--gold)"></span>Product Catalog Management</div>
+    <button class="tb-btn primary" onclick="openProductModal()">+ Add Product</button>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Product</th><th>Category</th><th>Price (KES)</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="products-table-body"></tbody>
+    </table>
+  </div>
+</div>
 
       <!-- ══════════ SETTINGS ══════════ -->
       <div class="view" id="view-settings">
@@ -1615,6 +1611,28 @@ async function openQuoteDetailById(id) {
     document.getElementById('detail-drawer').dataset.quoteId = id;
   } catch(e) { showToast('⚠️ Could not load quote'); }
 }
+async function loadProductsTable() {
+  try {
+    const data = await api('/products');
+    const tbody = document.getElementById('products-table-body');
+    if (!tbody) return;
+    const EMOJIS = {panel:'☀️',battery:'🔋',inverter:'⚡',charge_controller:'🔧',accessory:'📦'};
+    tbody.innerHTML = (data.data || []).map(item => {
+      const low = item.stock_quantity <= 3;
+      return `<tr>
+        <td class="td-primary">${EMOJIS[item.category] || '📦'} ${item.name}</td>
+        <td>${item.category}</td>
+        <td class="td-amount">${Number(item.price).toLocaleString()}</td>
+        <td>${item.stock_quantity}</td>
+        <td>${low ? '<span class="pill pill-low">Low Stock</span>' : '<span class="pill pill-ok">Active</span>'}</td>
+        <td>
+          <button class="sec-action" onclick='openProductModal(${JSON.stringify(item).replace(/'/g, "&#39;")})'>Edit</button>
+          <button class="sec-action" onclick="deleteProductConfirm(${item.id},'${item.name.replace(/'/g, "\\'")}')">Delete</button>
+        </td>
+      </tr>`;
+    }).join('');
+  } catch (e) { console.warn('Products table load failed:', e.message); }
+}
 
 async function loadInventory() {
   try {
@@ -1834,6 +1852,7 @@ window.switchView = function(id, btn) {
     quotes:    loadQuotes,
     inventory: loadInventory,
     analytics: loadAnalytics,
+    products:  loadProductsTable,
   };
   loaders[id]?.();
 };
