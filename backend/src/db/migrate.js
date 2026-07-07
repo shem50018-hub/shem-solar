@@ -177,7 +177,20 @@ async function migrate() {
           FOR EACH ROW EXECUTE FUNCTION update_updated_at();
       `);
     }
-
+// ── TABLE 7: admin_users ──────────────────────────────────────────────────
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS admin_users (
+        id            SERIAL PRIMARY KEY,
+        username      VARCHAR(100) NOT NULL UNIQUE,
+        email         VARCHAR(255) NOT NULL UNIQUE,
+        password_hash VARCHAR(255) NOT NULL,
+        name          VARCHAR(255) NOT NULL,
+        role          VARCHAR(50)  NOT NULL DEFAULT 'staff',
+        is_active     BOOLEAN NOT NULL DEFAULT true,
+        created_at    TIMESTAMPTZ DEFAULT NOW(),
+        updated_at    TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
     await client.query('COMMIT');
     console.log('✅  Migration complete — all tables created.');
   } catch (err) {

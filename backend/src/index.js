@@ -1,22 +1,23 @@
 // src/index.js
 require('dotenv').config();
 
-const express      = require('express');
-const cors         = require('cors');
-const helmet       = require('helmet');
-const morgan       = require('morgan');
-const rateLimit    = require('express-rate-limit');
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
 
 const errorHandler = require('./middleware/errorHandler');
 const { startWorker } = require('./services/queue.service');
 
 // ── Route imports ─────────────────────────────────────────────────────────────
-const mpesaRoutes     = require('./routes/mpesa.routes');
-const ordersRoutes    = require('./routes/orders.routes');
-const productsRoutes  = require('./routes/products.routes');
-const quotesRoutes    = require('./routes/quotes.routes');
+const mpesaRoutes = require('./routes/mpesa.routes');
+const ordersRoutes = require('./routes/orders.routes');
+const productsRoutes = require('./routes/products.routes');
+const quotesRoutes = require('./routes/quotes.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
-const portalRoutes    = require('./routes/portal.routes');
+const portalRoutes = require('./routes/portal.routes');
+const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
@@ -51,12 +52,13 @@ app.get('/health', (req, res) => {
 });
 
 // ── API Routes ────────────────────────────────────────────────────────────────
-app.use('/api/v1/mpesa',     mpesaRoutes);
-app.use('/api/v1/orders',    ordersRoutes);
-app.use('/api/v1/products',  productsRoutes);
-app.use('/api/v1/quotes',    quotesRoutes);
+app.use('/api/v1/mpesa', mpesaRoutes);
+app.use('/api/v1/orders', ordersRoutes);
+app.use('/api/v1/products', productsRoutes);
+app.use('/api/v1/quotes', quotesRoutes);
 app.use('/api/v1/analytics', analyticsRoutes);
-app.use('/api/v1/portal',    portalRoutes);
+app.use('/api/v1/portal', portalRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 // ── 404 handler ───────────────────────────────────────────────────────────────
 app.use((req, res) => {
