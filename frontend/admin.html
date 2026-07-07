@@ -2302,21 +2302,7 @@
       return data;
     }
 
-    // ── ADMIN ACCOUNTS ────────────────────────────────────────────────────────────
-    const ADMIN_ACCOUNTS = [
-      { username: 'shem.manager', password: 'Solar2026!', name: 'Shem Manager', role: 'Super Admin', initials: 'SM', apiKey: 'ShemsolarAdmin2024SecretKey' },
-      { username: 'grace.admin', password: 'Admin@2026', name: 'Grace Muthoni', role: 'Manager', initials: 'GM', apiKey: 'ShemsolarAdmin2024SecretKey' },
-      { username: 'james.sales', password: 'Sales#123', name: 'James Kariuki', role: 'Sales', initials: 'JK', apiKey: 'ShemsolarAdmin2024SecretKey' },
-      { username: 'amina.finance', password: 'Finance$99', name: 'Amina Hassan', role: 'Finance', initials: 'AH', apiKey: 'ShemsolarAdmin2024SecretKey' },
-      { username: 'peter.support', password: 'Support*7', name: 'Peter Ochieng', role: 'Support', initials: 'PO', apiKey: 'ShemsolarAdmin2024SecretKey' },
-    ];
-    let currentAdmin = null;
 
-    function fillLogin(u, p) {
-      document.getElementById('login-username').value = u;
-      document.getElementById('login-password').value = p;
-      document.getElementById('login-error').style.display = 'none';
-    }
 
     async function doAdminLogin() {
       const username = document.getElementById('login-username').value.trim();
