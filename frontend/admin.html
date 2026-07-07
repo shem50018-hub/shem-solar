@@ -8,45 +8,13 @@
 <meta name="googlebot" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy:       #0B1F3A;
-  --navy-mid:   #112540;
-  --navy-card:  #162E4D;
-  --navy-hover: #1C3860;
-  --gold:       #E8A020;
-  --gold-light: #F5B93C;
-  --gold-pale:  rgba(232,160,32,0.12);
-  --green:      #1E8C45;
-  --green-light:#27A855;
-  --green-pale: rgba(30,140,69,0.15);
-  --red:        #E84040;
-  --red-pale:   rgba(232,64,64,0.12);
-  --amber:      #E87820;
-  --amber-pale: rgba(232,120,32,0.12);
-  --blue:       #2080E8;
-  --blue-pale:  rgba(32,128,232,0.12);
-  --white:      #FFFFFF;
-  --text-1:     rgba(255,255,255,0.95);
-  --text-2:     rgba(255,255,255,0.6);
-  --text-3:     rgba(255,255,255,0.35);
-  --border:     rgba(255,255,255,0.07);
-  --border-2:   rgba(255,255,255,0.12);
-  --shadow:     0 4px 24px rgba(0,0,0,0.35);
-  --shadow-lg:  0 12px 48px rgba(0,0,0,0.45);
-  --radius:     10px;
-  --radius-lg:  16px;
-  --sidebar-w:  230px;
-}
+:root{--navy:#0B1F3A;--navy-mid:#112540;--navy-card:#162E4D;--navy-hover:#1C3860;--gold:#E8A020;--gold-light:#F5B93C;--gold-pale:rgba(232,160,32,0.12);--green:#1E8C45;--green-light:#27A855;--green-pale:rgba(30,140,69,0.15);--red:#E84040;--red-pale:rgba(232,64,64,0.12);--amber:#E87820;--amber-pale:rgba(232,120,32,0.12);--blue:#2080E8;--blue-pale:rgba(32,128,232,0.12);--white:#FFFFFF;--text-1:rgba(255,255,255,0.95);--text-2:rgba(255,255,255,0.6);--text-3:rgba(255,255,255,0.35);--border:rgba(255,255,255,0.07);--border-2:rgba(255,255,255,0.12);--shadow:0 4px 24px rgba(0,0,0,0.35);--shadow-lg:0 12px 48px rgba(0,0,0,0.45);--radius:10px;--radius-lg:16px;--sidebar-w:230px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-1);overflow:hidden}
 button{font-family:'DM Sans',sans-serif;cursor:pointer}
 a{text-decoration:none;color:inherit}
 input,select,textarea{font-family:'DM Sans',sans-serif}
-
-/* ── LAYOUT ── */
 .shell{display:flex;height:100vh;overflow:hidden}
-
-/* ── SIDEBAR ── */
 .sidebar{width:var(--sidebar-w);background:var(--navy-mid);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;z-index:10}
 .sb-logo{padding:1.4rem 1.4rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.65rem}
 .sb-logo-icon{width:34px;height:34px;background:var(--gold);border-radius:8px;display:grid;place-items:center;font-size:1rem;flex-shrink:0}
@@ -57,7 +25,6 @@ input,select,textarea{font-family:'DM Sans',sans-serif}
 .sb-item{display:flex;align-items:center;gap:0.7rem;padding:0.65rem 0.8rem;border-radius:var(--radius);font-size:0.88rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:all 0.18s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
 .sb-item:hover{background:rgba(255,255,255,0.05);color:var(--text-1)}
 .sb-item.active{background:var(--gold-pale);color:var(--gold-light);font-weight:600}
-.sb-item.active .sb-icon{color:var(--gold)}
 .sb-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
 .sb-badge{margin-left:auto;background:var(--red);color:#fff;font-size:0.65rem;font-weight:700;padding:0.15rem 0.45rem;border-radius:50px;min-width:18px;text-align:center}
 .sb-badge.gold{background:var(--gold);color:var(--navy)}
@@ -66,8 +33,6 @@ input,select,textarea{font-family:'DM Sans',sans-serif}
 .sb-avatar{width:30px;height:30px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:0.75rem;font-weight:700;color:var(--navy);flex-shrink:0}
 .sb-user-name{font-size:0.82rem;font-weight:600;color:var(--text-1)}
 .sb-user-role{font-size:0.72rem;color:var(--text-3)}
-
-/* ── MAIN ── */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .topbar{height:56px;background:var(--navy-mid);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.8rem;flex-shrink:0}
 .topbar-left{display:flex;align-items:center;gap:1rem}
@@ -80,13 +45,9 @@ input,select,textarea{font-family:'DM Sans',sans-serif}
 .tb-btn.primary:hover{background:var(--gold-light)}
 .notif-dot{position:relative}
 .notif-dot::after{content:'';position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--red);border:2px solid var(--navy-mid)}
-
-/* ── CONTENT AREA ── */
 .content{flex:1;overflow-y:auto;padding:1.6rem 1.8rem}
 .view{display:none}
 .view.active{display:block}
-
-/* ── STAT CARDS ── */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.4rem}
 .stat-card{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem 1.4rem;position:relative;overflow:hidden;transition:border-color 0.2s}
 .stat-card:hover{border-color:var(--border-2)}
@@ -97,23 +58,18 @@ input,select,textarea{font-family:'DM Sans',sans-serif}
 .sc-red::before{background:var(--red)}
 .stat-label{font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.6rem}
 .stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--text-1);line-height:1}
-.stat-meta{font-size:0.75rem;color:var(--text-3);margin-top:0.4rem;display:flex;align-items:center;gap:0.3rem}
+.stat-meta{font-size:0.75rem;color:var(--text-3);margin-top:0.4rem}
 .stat-up{color:var(--green-light)}
 .stat-down{color:var(--red)}
 .stat-icon{position:absolute;top:1.1rem;right:1.2rem;font-size:1.4rem;opacity:0.25}
-
-/* ── SECTION HEADERS ── */
 .sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
 .sec-title{font-size:0.9rem;font-weight:700;color:var(--text-1);display:flex;align-items:center;gap:0.5rem}
 .sec-title-dot{width:8px;height:8px;border-radius:50%}
 .sec-action{font-size:0.78rem;color:var(--text-3);cursor:pointer;transition:color 0.18s;background:none;border:none;padding:0.3rem 0.6rem;border-radius:6px}
 .sec-action:hover{color:var(--gold-light);background:var(--gold-pale)}
-
-/* ── TABLE ── */
 .table-wrap{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
 .tbl-toolbar{display:flex;align-items:center;gap:0.8rem;padding:0.9rem 1.2rem;border-bottom:1px solid var(--border)}
-.tbl-search{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:0.45rem 0.9rem;font-size:0.85rem;color:var(--text-1);outline:none;transition:border-color 0.18s}
-.tbl-search:focus{border-color:var(--border-2)}
+.tbl-search{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:0.45rem 0.9rem;font-size:0.85rem;color:var(--text-1);outline:none}
 .tbl-search::placeholder{color:var(--text-3)}
 .tbl-filter{background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:0.45rem 0.8rem;font-size:0.82rem;color:var(--text-2);outline:none;cursor:pointer}
 .tbl-filter option{background:var(--navy-card)}
@@ -127,49 +83,18 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .td-primary{color:var(--text-1);font-weight:500}
 .td-mono{font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--text-3)}
 .td-amount{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--text-1)}
-
-/* ── STATUS PILLS ── */
 .pill{display:inline-flex;align-items:center;gap:0.35rem;padding:0.25rem 0.7rem;border-radius:50px;font-size:0.72rem;font-weight:700;letter-spacing:0.03em;white-space:nowrap}
 .pill::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.pill-paid{background:var(--green-pale);color:#4ADE80}
-.pill-paid::before{background:#4ADE80}
-.pill-pending{background:var(--amber-pale);color:#FBA94C}
-.pill-pending::before{background:#FBA94C}
-.pill-new{background:var(--blue-pale);color:#60AEFF}
-.pill-new::before{background:#60AEFF}
-.pill-cancelled{background:var(--red-pale);color:#F87171}
-.pill-cancelled::before{background:#F87171}
-.pill-contacted{background:var(--gold-pale);color:var(--gold-light)}
-.pill-contacted::before{background:var(--gold-light)}
-.pill-converted{background:var(--green-pale);color:#4ADE80}
-.pill-converted::before{background:#4ADE80}
-.pill-installed{background:rgba(96,160,255,0.12);color:#60AEFF}
-.pill-installed::before{background:#60AEFF}
-.pill-low{background:var(--red-pale);color:#F87171}
-.pill-low::before{background:#F87171}
-.pill-ok{background:var(--green-pale);color:#4ADE80}
-.pill-ok::before{background:#4ADE80}
-
-/* ── TWO COL LAYOUT ── */
+.pill-paid{background:var(--green-pale);color:#4ADE80}.pill-paid::before{background:#4ADE80}
+.pill-pending{background:var(--amber-pale);color:#FBA94C}.pill-pending::before{background:#FBA94C}
+.pill-new{background:var(--blue-pale);color:#60AEFF}.pill-new::before{background:#60AEFF}
+.pill-cancelled{background:var(--red-pale);color:#F87171}.pill-cancelled::before{background:#F87171}
+.pill-contacted{background:var(--gold-pale);color:var(--gold-light)}.pill-contacted::before{background:var(--gold-light)}
+.pill-converted{background:var(--green-pale);color:#4ADE80}.pill-converted::before{background:#4ADE80}
+.pill-installed{background:rgba(96,160,255,0.12);color:#60AEFF}.pill-installed::before{background:#60AEFF}
+.pill-low{background:var(--red-pale);color:#F87171}.pill-low::before{background:#F87171}
+.pill-ok{background:var(--green-pale);color:#4ADE80}.pill-ok::before{background:#4ADE80}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
-.three-col{display:grid;grid-template-columns:2fr 1fr;gap:1rem;margin-top:1rem}
-
-/* ── MINI CHART (CSS bars) ── */
-.chart-wrap{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem 1.4rem}
-.chart-title{font-size:0.82rem;font-weight:700;color:var(--text-1);margin-bottom:0.3rem}
-.chart-sub{font-size:0.74rem;color:var(--text-3);margin-bottom:1.2rem}
-.bar-chart{display:flex;align-items:flex-end;gap:0.4rem;height:100px}
-.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:0.3rem}
-.bar-fill{width:100%;border-radius:4px 4px 0 0;min-height:4px;transition:height 0.5s ease}
-.bar-label{font-size:0.65rem;color:var(--text-3);white-space:nowrap}
-.bar-val{font-size:0.65rem;color:var(--text-2);font-weight:600}
-.donut-row{display:flex;align-items:center;gap:1.2rem;margin-top:0.8rem}
-.donut-svg{flex-shrink:0}
-.donut-legend{flex:1}
-.legend-item{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.45rem;font-size:0.78rem;color:var(--text-2)}
-.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-
-/* ── QUOTE PIPELINE ── */
 .pipeline-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;margin-top:0.5rem}
 .pipeline-col{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-lg);padding:0.9rem}
 .pipe-head{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:0.8rem;display:flex;justify-content:space-between;align-items:center}
@@ -185,8 +110,6 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .qct-hot{background:var(--red-pale);color:#F87171}
 .qct-warm{background:var(--amber-pale);color:#FBA94C}
 .qct-cold{background:var(--blue-pale);color:#60AEFF}
-
-/* ── SEND MPESA LINK FORM ── */
 .mpesa-form{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem}
 .mpf-title{font-size:0.88rem;font-weight:700;color:var(--text-1);margin-bottom:0.2rem}
 .mpf-sub{font-size:0.75rem;color:var(--text-3);margin-bottom:1rem}
@@ -199,8 +122,6 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .mpf-select option{background:var(--navy-card)}
 .send-btn{width:100%;background:var(--green);border:none;border-radius:var(--radius);padding:0.7rem;font-size:0.88rem;font-weight:700;color:#fff;transition:all 0.2s;margin-top:0.3rem}
 .send-btn:hover{background:var(--green-light);transform:translateY(-1px)}
-
-/* ── INVENTORY ── */
 .inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem}
 .inv-card{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem;transition:border-color 0.18s}
 .inv-card:hover{border-color:var(--border-2)}
@@ -215,8 +136,6 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .inv-footer{display:flex;justify-content:space-between;align-items:center}
 .inv-price{font-size:0.82rem;color:var(--text-3)}
 .inv-price strong{color:var(--gold-light)}
-
-/* ── ANALYTICS ── */
 .analytics-grid{display:grid;grid-template-columns:2fr 1fr;gap:1rem;margin-bottom:1rem}
 .revenue-chart{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem}
 .rc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem}
@@ -225,8 +144,11 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .rc-total{text-align:right}
 .rc-amount{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--text-1)}
 .rc-change{font-size:0.75rem;color:var(--green-light);margin-top:0.1rem}
-.line-chart{position:relative;height:120px;margin-top:0.5rem}
-.lc-svg{width:100%;height:100%}
+.bar-chart{display:flex;align-items:flex-end;gap:0.4rem;height:100px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:0.3rem}
+.bar-fill{width:100%;border-radius:4px 4px 0 0;min-height:4px;transition:height 0.5s ease}
+.bar-label{font-size:0.65rem;color:var(--text-3);white-space:nowrap}
+.bar-val{font-size:0.65rem;color:var(--text-2);font-weight:600}
 .top-products{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem}
 .tp-item{display:flex;align-items:center;gap:0.8rem;padding:0.6rem 0;border-bottom:1px solid var(--border)}
 .tp-item:last-child{border-bottom:none}
@@ -243,8 +165,6 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .geo-bar{height:4px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden}
 .geo-fill{height:100%;border-radius:4px;background:var(--blue)}
 .geo-amount{font-size:0.88rem;font-weight:700;color:var(--text-1);margin-top:0.4rem;font-family:'Playfair Display',serif}
-
-/* ── MODAL / DRAWER ── */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:100;opacity:0;pointer-events:none;transition:opacity 0.25s;backdrop-filter:blur(4px)}
 .overlay.open{opacity:1;pointer-events:all}
 .detail-drawer{position:fixed;top:0;right:-520px;width:480px;height:100%;background:var(--navy-mid);border-left:1px solid var(--border);z-index:101;transition:right 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;overflow:hidden}
@@ -265,9 +185,7 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .dd-btn-primary{background:var(--green);color:#fff}
 .dd-btn-primary:hover{background:var(--green-light)}
 .dd-btn-secondary{background:var(--gold-pale);color:var(--gold-light);border:1px solid rgba(232,160,32,0.3)}
-.dd-btn-secondary:hover{background:rgba(232,160,32,0.2)}
 .dd-btn-danger{background:var(--red-pale);color:#F87171;border:1px solid rgba(232,64,64,0.2)}
-.dd-btn-danger:hover{background:rgba(232,64,64,0.2)}
 .activity-item{display:flex;gap:0.8rem;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 .activity-item:last-child{border-bottom:none}
 .act-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
@@ -276,113 +194,18 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .log-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:0.55rem 0.85rem;font-size:0.82rem;color:var(--text-1);outline:none;margin-bottom:0.5rem;resize:none}
 .log-input:focus{border-color:var(--gold)}
 .log-input::placeholder{color:var(--text-3)}
-
-/* ── ORDER LIFECYCLE / STATE MACHINE ── */
-.lifecycle-wrap{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem;margin-bottom:1rem}
-.lifecycle-stages{display:flex;align-items:center;gap:0;margin:1.2rem 0 0.5rem;overflow-x:auto;padding-bottom:0.5rem}
-.lc-stage{flex:1;min-width:100px;text-align:center;position:relative}
-.lc-stage:not(:last-child)::after{content:'';position:absolute;top:18px;left:60%;width:80%;height:2px;background:var(--border-2);z-index:0}
-.lc-stage.done:not(:last-child)::after{background:var(--green)}
-.lc-stage.active-stage:not(:last-child)::after{background:linear-gradient(to right,var(--green),var(--border-2))}
-.lc-dot{width:36px;height:36px;border-radius:50%;margin:0 auto 0.5rem;display:grid;place-items:center;font-size:0.9rem;position:relative;z-index:1;border:2px solid var(--border);background:var(--navy)}
-.lc-stage.done .lc-dot{background:var(--green);border-color:var(--green);color:#fff}
-.lc-stage.active-stage .lc-dot{background:var(--gold);border-color:var(--gold);color:var(--navy);box-shadow:0 0 0 4px rgba(232,160,32,0.2)}
-.lc-stage.future .lc-dot{opacity:0.35}
-.lc-label{font-size:0.72rem;font-weight:600;color:var(--text-3);letter-spacing:0.04em}
-.lc-stage.done .lc-label{color:var(--green-light)}
-.lc-stage.active-stage .lc-label{color:var(--gold-light)}
-.lc-time{font-size:0.65rem;color:var(--text-3);margin-top:0.15rem}
-.stage-btns{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem}
-.stage-btn{padding:0.45rem 0.9rem;border-radius:var(--radius);font-size:0.78rem;font-weight:600;border:1px solid;cursor:pointer;transition:all 0.18s}
-
-/* ── STOCK DEDUCTION PANEL ── */
-.stock-panel{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-top:0.8rem}
-.stock-item-row{display:flex;align-items:center;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.8rem}
-.stock-item-row:last-child{border-bottom:none}
-.stock-deduct-label{color:var(--text-2)}
-.stock-deduct-val{display:flex;align-items:center;gap:0.5rem}
-.stock-num-before{color:var(--text-3);text-decoration:line-through}
-.stock-num-after{color:#4ADE80;font-weight:700}
-.stock-arrow{color:var(--text-3);font-size:0.7rem}
-.deduct-btn{background:var(--red-pale);border:1px solid rgba(232,64,64,0.25);border-radius:var(--radius);padding:0.5rem 1rem;font-size:0.78rem;font-weight:700;color:#F87171;width:100%;margin-top:0.7rem;transition:all 0.2s}
-.deduct-btn:hover{background:rgba(232,64,64,0.2)}
-.deduct-btn:disabled{opacity:0.4;cursor:not-allowed}
-.deduct-done{background:var(--green-pale);border:1px solid rgba(30,140,69,0.25);color:#4ADE80}
-
-/* ── MANUAL PAYMENT OVERRIDE ── */
-.manual-pay-box{background:rgba(232,160,32,0.07);border:1px solid rgba(232,160,32,0.2);border-radius:var(--radius);padding:1rem;margin-top:0.8rem}
-.mpb-title{font-size:0.8rem;font-weight:700;color:var(--gold-light);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.4rem}
-.mpb-desc{font-size:0.75rem;color:var(--text-3);margin-bottom:0.7rem;line-height:1.5}
-.mpb-row{display:flex;gap:0.5rem;margin-bottom:0.5rem}
-.mpb-select{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:0.45rem 0.7rem;font-size:0.8rem;color:var(--text-1);outline:none}
-.mpb-select option{background:var(--navy-card)}
-.mpb-ref{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);padding:0.45rem 0.7rem;font-size:0.8rem;color:var(--text-1);outline:none}
-.mpb-ref::placeholder{color:var(--text-3)}
-.mpb-confirm{background:var(--gold);border:none;border-radius:var(--radius);padding:0.5rem 1rem;font-size:0.78rem;font-weight:700;color:var(--navy);width:100%;transition:all 0.2s}
-.mpb-confirm:hover{background:var(--gold-light)}
-
-/* ── SMS QUICK-ACTIONS ── */
-.sms-quick{margin-top:0.8rem}
-.sms-quick-title{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);margin-bottom:0.5rem}
 .sms-action-btn{display:flex;align-items:center;gap:0.6rem;width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:0.6rem 0.8rem;font-size:0.8rem;color:var(--text-2);margin-bottom:0.4rem;transition:all 0.18s;text-align:left}
 .sms-action-btn:hover{background:rgba(255,255,255,0.07);color:var(--text-1);border-color:var(--border-2)}
-.sms-action-btn .sms-btn-icon{font-size:1rem;flex-shrink:0}
+.sms-btn-icon{font-size:1rem;flex-shrink:0}
 .sms-btn-text{flex:1}
 .sms-btn-label{font-weight:600;font-size:0.8rem;display:block}
 .sms-btn-preview{font-size:0.7rem;color:var(--text-3);margin-top:0.1rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
 .sms-send-arrow{color:var(--text-3);font-size:0.7rem}
-
-/* ── DB SCHEMA VIEW ── */
-.schema-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.schema-table{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
-.schema-table-head{padding:0.7rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem}
-.schema-table-icon{font-size:0.9rem}
-.schema-table-name{font-size:0.82rem;font-weight:700;color:var(--text-1);font-family:'DM Mono',monospace}
-.schema-col{display:flex;align-items:center;justify-content:space-between;padding:0.4rem 1rem;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.75rem}
-.schema-col:last-child{border-bottom:none}
-.col-name{color:var(--text-2);font-family:'DM Mono',monospace}
-.col-name.pk{color:var(--gold-light)}
-.col-name.fk{color:#60AEFF}
-.col-type{color:var(--text-3);font-size:0.7rem;font-family:'DM Mono',monospace}
-.col-badge{font-size:0.62rem;font-weight:700;padding:0.1rem 0.4rem;border-radius:4px;text-transform:uppercase}
-.cb-pk{background:rgba(232,160,32,0.15);color:var(--gold-light)}
-.cb-fk{background:rgba(32,128,232,0.15);color:#60AEFF}
-.cb-idx{background:rgba(255,255,255,0.07);color:var(--text-3)}
-.cb-enum{background:rgba(30,140,69,0.15);color:#4ADE80}
-.schema-note{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem;margin-top:1rem}
-.schema-note-title{font-size:0.82rem;font-weight:700;color:var(--text-1);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.4rem}
-.schema-note-item{display:flex;gap:0.7rem;margin-bottom:0.6rem;font-size:0.78rem;color:var(--text-2);line-height:1.5}
-.schema-note-item strong{color:var(--gold-light)}
-.relation-line{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;color:var(--text-3);font-family:'DM Mono',monospace;padding:0.3rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.relation-line:last-child{border-bottom:none}
-.rel-from{color:#60AEFF}
-.rel-to{color:var(--gold-light)}
-.rel-arrow{color:var(--text-3)}
-.rel-type{font-size:0.65rem;background:rgba(255,255,255,0.06);padding:0.1rem 0.4rem;border-radius:4px;margin-left:auto}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(60px);background:var(--navy-hover);border:1px solid var(--border-2);color:var(--text-1);padding:0.65rem 1.3rem;border-radius:50px;font-size:0.85rem;font-weight:500;z-index:200;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;box-shadow:var(--shadow);white-space:nowrap}
-.toast.show{transform:translateX(-50%) translateY(0)}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
-
-/* ── FADE IN ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.view.active > *{animation:fadeUp 0.3s ease both}
-.view.active > *:nth-child(2){animation-delay:0.05s}
-.view.active > *:nth-child(3){animation-delay:0.1s}
-.view.active > *:nth-child(4){animation-delay:0.15s}
-
-@media(max-width:1100px){
-  .stats-row{grid-template-columns:repeat(2,1fr)}
-  .pipeline-cols{grid-template-columns:repeat(2,1fr)}
-  .inv-grid{grid-template-columns:repeat(2,1fr)}
-  .analytics-grid{grid-template-columns:1fr}
-/* ── LOGIN SCREEN ── */
+/* Loading skeleton */
+.skeleton{background:linear-gradient(90deg,rgba(255,255,255,0.04) 25%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0.04) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius);height:1rem}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.loading-state{padding:2rem;text-align:center;color:var(--text-3);font-size:0.85rem}
+/* Login */
 .login-wrap{min-height:100vh;background:linear-gradient(150deg,var(--navy) 0%,var(--navy-mid) 55%,#0F2845 100%);display:flex;align-items:center;justify-content:center;padding:2rem;position:fixed;inset:0;z-index:9999}
 .login-box{background:var(--navy-card);border:1px solid var(--border-2);border-radius:var(--radius-lg);padding:2.5rem;max-width:400px;width:100%;box-shadow:var(--shadow-lg)}
 .login-logo{text-align:center;margin-bottom:2rem}
@@ -406,17 +229,22 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 .rb-support{background:rgba(232,64,64,0.12);color:#F87171}
 .login-hint{margin-top:1.2rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem}
 .lh-title{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);margin-bottom:0.6rem}
-.lh-row{display:flex;justify-content:space-between;align-items:center;padding:0.25rem 0;font-size:0.75rem;color:var(--text-2);cursor:pointer;border-radius:4px;padding:0.25rem 0.3rem;transition:background 0.15s}
+.lh-row{display:flex;justify-content:space-between;align-items:center;padding:0.25rem 0.3rem;font-size:0.75rem;color:var(--text-2);cursor:pointer;border-radius:4px;transition:background 0.15s}
 .lh-row:hover{background:rgba(255,255,255,0.05)}
 .lh-name{font-weight:600}
 .lh-cred{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--text-3)}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(60px);background:var(--navy-hover);border:1px solid var(--border-2);color:var(--text-1);padding:0.65rem 1.3rem;border-radius:50px;font-size:0.85rem;font-weight:500;z-index:200;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;box-shadow:var(--shadow);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:4px}
+.pf-label{display:block;font-size:0.8rem;color:var(--text-3);margin-bottom:0.3rem}
+@media(max-width:1100px){.stats-row{grid-template-columns:repeat(2,1fr)}.pipeline-cols{grid-template-columns:repeat(2,1fr)}.inv-grid{grid-template-columns:repeat(2,1fr)}.analytics-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="toast" id="toast"></div>
 
-<!-- ══════════ LOGIN SCREEN ══════════ -->
+<!-- LOGIN -->
 <div class="login-wrap" id="login-wrap">
   <div class="login-box">
     <div class="login-logo">
@@ -436,33 +264,17 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
     <button class="login-btn" id="login-btn" onclick="doAdminLogin()">Sign In →</button>
     <div class="login-hint">
       <div class="lh-title">Demo accounts — click any row to fill</div>
-      <div class="lh-row" onclick="fillLogin('shem.manager','Solar2026!')">
-        <span class="lh-name">Shem Manager <span class="login-role-badge rb-super">Super Admin</span></span>
-        <span class="lh-cred">shem.manager / Solar2026!</span>
-      </div>
-      <div class="lh-row" onclick="fillLogin('grace.admin','Admin@2026')">
-        <span class="lh-name">Grace Muthoni <span class="login-role-badge rb-manager">Manager</span></span>
-        <span class="lh-cred">grace.admin / Admin@2026</span>
-      </div>
-      <div class="lh-row" onclick="fillLogin('james.sales','Sales#123')">
-        <span class="lh-name">James Kariuki <span class="login-role-badge rb-sales">Sales</span></span>
-        <span class="lh-cred">james.sales / Sales#123</span>
-      </div>
-      <div class="lh-row" onclick="fillLogin('amina.finance','Finance$99')">
-        <span class="lh-name">Amina Hassan <span class="login-role-badge rb-finance">Finance</span></span>
-        <span class="lh-cred">amina.finance / Finance$99</span>
-      </div>
-      <div class="lh-row" onclick="fillLogin('peter.support','Support*7')">
-        <span class="lh-name">Peter Ochieng <span class="login-role-badge rb-support">Support</span></span>
-        <span class="lh-cred">peter.support / Support*7</span>
-      </div>
+      <div class="lh-row" onclick="fillLogin('shem.manager','Solar2026!')"><span class="lh-name">Shem Manager <span class="login-role-badge rb-super">Super Admin</span></span><span class="lh-cred">shem.manager / Solar2026!</span></div>
+      <div class="lh-row" onclick="fillLogin('grace.admin','Admin@2026')"><span class="lh-name">Grace Muthoni <span class="login-role-badge rb-manager">Manager</span></span><span class="lh-cred">grace.admin / Admin@2026</span></div>
+      <div class="lh-row" onclick="fillLogin('james.sales','Sales#123')"><span class="lh-name">James Kariuki <span class="login-role-badge rb-sales">Sales</span></span><span class="lh-cred">james.sales / Sales#123</span></div>
+      <div class="lh-row" onclick="fillLogin('amina.finance','Finance$99')"><span class="lh-name">Amina Hassan <span class="login-role-badge rb-finance">Finance</span></span><span class="lh-cred">amina.finance / Finance$99</span></div>
+      <div class="lh-row" onclick="fillLogin('peter.support','Support*7')"><span class="lh-name">Peter Ochieng <span class="login-role-badge rb-support">Support</span></span><span class="lh-cred">peter.support / Support*7</span></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ DASHBOARD SHELL (hidden until login) ══════════ -->
+<!-- DASHBOARD SHELL -->
 <div class="shell" id="dashboard-shell" style="display:none">
-  <!-- ── SIDEBAR ── -->
   <aside class="sidebar">
     <div class="sb-logo">
       <div class="sb-logo-icon">☀️</div>
@@ -471,8 +283,8 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
     <nav class="sb-nav">
       <div class="sb-section">Main</div>
       <button class="sb-item active" onclick="switchView('overview',this)"><span class="sb-icon">⊞</span>Overview</button>
-      <button class="sb-item" onclick="switchView('orders',this)"><span class="sb-icon">📦</span>Orders<span class="sb-badge">3</span></button>
-      <button class="sb-item" onclick="switchView('quotes',this)"><span class="sb-icon">💬</span>Quotes<span class="sb-badge gold">7</span></button>
+      <button class="sb-item" onclick="switchView('orders',this)"><span class="sb-icon">📦</span>Orders<span class="sb-badge" id="badge-orders">—</span></button>
+      <button class="sb-item" onclick="switchView('quotes',this)"><span class="sb-icon">💬</span>Quotes<span class="sb-badge gold" id="badge-quotes">—</span></button>
       <button class="sb-item" onclick="switchView('inventory',this)"><span class="sb-icon">🗄️</span>Inventory</button>
       <button class="sb-item" onclick="switchView('analytics',this)"><span class="sb-icon">📈</span>Analytics</button>
       <div class="sb-section">Tools</div>
@@ -480,72 +292,47 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
       <button class="sb-item" onclick="switchView('sms',this)"><span class="sb-icon">✉️</span>SMS Broadcast</button>
       <div class="sb-section">Config</div>
       <button class="sb-item" onclick="switchView('products',this)"><span class="sb-icon">🛒</span>Products</button>
-      <button class="sb-item" onclick="switchView('lifecycle',this)"><span class="sb-icon">🔄</span>Order Lifecycle</button>
-      <button class="sb-item" onclick="switchView('schema',this)"><span class="sb-icon">🗃️</span>DB Schema</button>
       <button class="sb-item" onclick="switchView('settings',this)"><span class="sb-icon">⚙️</span>Settings</button>
     </nav>
     <div class="sb-footer">
       <div class="sb-user">
         <div class="sb-avatar" id="sb-avatar">SM</div>
         <div style="flex:1;min-width:0">
-          <div class="sb-user-name" id="sb-user-name">Shem Manager</div>
-          <div class="sb-user-role" id="sb-user-role">Administrator</div>
+          <div class="sb-user-name" id="sb-user-name">—</div>
+          <div class="sb-user-role" id="sb-user-role">—</div>
         </div>
-        <button onclick="doAdminLogout()" title="Sign out" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:0.85rem;padding:0.2rem;transition:color 0.18s" onmouseover="this.style.color='var(--text-1)'" onmouseout="this.style.color='var(--text-3)'">⏻</button>
+        <button onclick="doAdminLogout()" title="Sign out" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:0.85rem;padding:0.2rem">⏻</button>
       </div>
     </div>
   </aside>
 
-  <!-- ── MAIN ── -->
   <div class="main">
     <header class="topbar">
       <div class="topbar-left">
         <div>
           <div class="page-title" id="page-title">Overview</div>
-          <div class="page-sub" id="page-sub">Thursday, 21 May 2026</div>
+          <div class="page-sub" id="page-sub">Loading…</div>
         </div>
       </div>
       <div class="topbar-right">
-        <button class="tb-btn notif-dot" onclick="showToast('3 new notifications')">🔔</button>
-        <button class="tb-btn" onclick="window.open('shem-solar.html','_blank')">↗ View Site</button>
-        <button class="tb-btn primary" onclick="switchView('mpesa', document.querySelector('.sb-item:nth-child(8)'))">+ Send Payment Link</button>
+        <button class="tb-btn notif-dot" onclick="showToast('Notifications coming soon')">🔔</button>
+        <button class="tb-btn" onclick="window.open('index.html','_blank')">↗ View Site</button>
+        <button class="tb-btn primary" onclick="switchView('mpesa',document.querySelectorAll('.sb-item')[5])">+ Send Payment Link</button>
         <button class="tb-btn" onclick="doAdminLogout()" style="color:#F87171;border-color:rgba(232,64,64,0.3)">⏻ Log Out</button>
       </div>
     </header>
 
     <div class="content">
 
-      <!-- ══════════ OVERVIEW ══════════ -->
+      <!-- OVERVIEW -->
       <div class="view active" id="view-overview">
         <div class="stats-row">
-          <div class="stat-card sc-gold">
-            <div class="stat-icon">💰</div>
-            <div class="stat-label">Revenue (May)</div>
-            <div class="stat-num">KES 2.4M</div>
-            <div class="stat-meta"><span class="stat-up">↑ 18%</span> vs last month</div>
-          </div>
-          <div class="stat-card sc-green">
-            <div class="stat-icon">📦</div>
-            <div class="stat-label">Orders</div>
-            <div class="stat-num">34</div>
-            <div class="stat-meta"><span class="stat-up">↑ 6</span> this week</div>
-          </div>
-          <div class="stat-card sc-blue">
-            <div class="stat-icon">💬</div>
-            <div class="stat-label">Active Quotes</div>
-            <div class="stat-num">7</div>
-            <div class="stat-meta"><span class="stat-up">3 hot leads</span></div>
-          </div>
-          <div class="stat-card sc-red">
-            <div class="stat-icon">⚠️</div>
-            <div class="stat-label">Low Stock Items</div>
-            <div class="stat-num">2</div>
-            <div class="stat-meta"><span class="stat-down">Reorder needed</span></div>
-          </div>
+          <div class="stat-card sc-gold"><div class="stat-icon">💰</div><div class="stat-label">Revenue (This Month)</div><div class="stat-num" id="ov-revenue">—</div><div class="stat-meta" id="ov-revenue-meta">Loading…</div></div>
+          <div class="stat-card sc-green"><div class="stat-icon">📦</div><div class="stat-label">Orders This Month</div><div class="stat-num" id="ov-orders">—</div><div class="stat-meta" id="ov-orders-meta">Loading…</div></div>
+          <div class="stat-card sc-blue"><div class="stat-icon">💬</div><div class="stat-label">Active Quotes</div><div class="stat-num" id="ov-quotes">—</div><div class="stat-meta" id="ov-quotes-meta">Loading…</div></div>
+          <div class="stat-card sc-red"><div class="stat-icon">⚠️</div><div class="stat-label">Low Stock Items</div><div class="stat-num" id="ov-lowstock">—</div><div class="stat-meta" id="ov-lowstock-meta">Loading…</div></div>
         </div>
-
         <div class="two-col">
-          <!-- Recent orders -->
           <div>
             <div class="sec-head">
               <div class="sec-title"><span class="sec-title-dot" style="background:var(--gold)"></span>Recent Orders</div>
@@ -554,249 +341,112 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th></tr></thead>
-                <tbody>
-                  <tr onclick="openOrderDetail('ORD-2847','Grace Muthoni','Business Pro System 10kW','580,000','paid','Westlands, Nairobi','0712 345 001','2026-05-18')">
-                    <td class="td-primary">Grace Muthoni</td>
-                    <td>Business Pro 10kW</td>
-                    <td class="td-amount">580,000</td>
-                    <td><span class="pill pill-paid">Paid</span></td>
-                  </tr>
-                  <tr onclick="openOrderDetail('ORD-2846','James Kariuki','Home Starter Kit 2kW','185,000','pending','Kiambu','0722 111 222','2026-05-17')">
-                    <td class="td-primary">James Kariuki</td>
-                    <td>Home Starter 2kW</td>
-                    <td class="td-amount">185,000</td>
-                    <td><span class="pill pill-pending">Pending</span></td>
-                  </tr>
-                  <tr onclick="openOrderDetail('ORD-2845','Amina Hassan','LiFePO4 100Ah Battery','55,000','paid','Mombasa','0733 444 555','2026-05-16')">
-                    <td class="td-primary">Amina Hassan</td>
-                    <td>LiFePO4 Battery ×2</td>
-                    <td class="td-amount">110,000</td>
-                    <td><span class="pill pill-paid">Paid</span></td>
-                  </tr>
-                  <tr onclick="openOrderDetail('ORD-2844','Peter Ochieng','MonoPerc 400W Panel','28,000','pending','Kisumu','0755 888 999','2026-05-15')">
-                    <td class="td-primary">Peter Ochieng</td>
-                    <td>MonoPerc Panel ×4</td>
-                    <td class="td-amount">112,000</td>
-                    <td><span class="pill pill-pending">Pending</span></td>
-                  </tr>
-                </tbody>
+                <tbody id="ov-orders-tbody"><tr><td colspan="4" class="loading-state">Loading orders…</td></tr></tbody>
               </table>
             </div>
           </div>
-
-          <!-- Revenue mini chart -->
           <div>
             <div class="sec-head">
               <div class="sec-title"><span class="sec-title-dot" style="background:var(--green)"></span>Revenue This Month</div>
               <span style="font-size:0.75rem;color:var(--text-3)">Daily (KES)</span>
             </div>
-            <div class="chart-wrap" style="height:calc(100% - 36px)">
-              <div class="chart-sub">May 2026 — KES 2,418,000 total</div>
+            <div style="background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem 1.4rem">
+              <div style="font-size:0.74rem;color:var(--text-3);margin-bottom:1.2rem" id="rev-subtitle">Loading…</div>
               <div class="bar-chart" id="rev-bars"></div>
-              <div style="margin-top:1rem">
-                <div class="sec-head" style="margin-bottom:0.5rem">
-                  <div class="sec-title" style="font-size:0.78rem">Sales by category</div>
-                </div>
-                <div class="donut-row">
-                  <svg class="donut-svg" width="72" height="72" viewBox="0 0 72 72">
-                    <circle cx="36" cy="36" r="28" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="12"/>
-                    <circle cx="36" cy="36" r="28" fill="none" stroke="var(--gold)" stroke-width="12" stroke-dasharray="70 106" stroke-dashoffset="0" stroke-linecap="round"/>
-                    <circle cx="36" cy="36" r="28" fill="none" stroke="var(--green)" stroke-width="12" stroke-dasharray="45 131" stroke-dashoffset="-70" stroke-linecap="round"/>
-                    <circle cx="36" cy="36" r="28" fill="none" stroke="var(--blue)" stroke-width="12" stroke-dasharray="30 146" stroke-dashoffset="-115" stroke-linecap="round"/>
-                    <circle cx="36" cy="36" r="28" fill="none" stroke="var(--amber)" stroke-width="12" stroke-dasharray="31 145" stroke-dashoffset="-145" stroke-linecap="round"/>
-                  </svg>
-                  <div class="donut-legend">
-                    <div class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span>Packages — 40%</div>
-                    <div class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Panels — 26%</div>
-                    <div class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Inverters — 17%</div>
-                    <div class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>Batteries — 17%</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-
-        <!-- Quote pipeline preview -->
         <div style="margin-top:1.2rem">
           <div class="sec-head">
             <div class="sec-title"><span class="sec-title-dot" style="background:var(--blue)"></span>Quote Pipeline</div>
             <button class="sec-action" onclick="switchView('quotes',document.querySelectorAll('.sb-item')[2])">Manage quotes →</button>
           </div>
-          <div class="pipeline-cols" id="mini-pipeline"></div>
+          <div class="pipeline-cols" id="mini-pipeline"><div class="loading-state" style="grid-column:1/-1">Loading pipeline…</div></div>
         </div>
       </div>
 
-      <!-- ══════════ ORDERS ══════════ -->
+      <!-- ORDERS -->
       <div class="view" id="view-orders">
         <div class="stats-row">
-          <div class="stat-card sc-green"><div class="stat-icon">✅</div><div class="stat-label">Paid</div><div class="stat-num">28</div><div class="stat-meta">KES 1.9M collected</div></div>
-          <div class="stat-card sc-gold"><div class="stat-icon">⏳</div><div class="stat-label">Pending M-Pesa</div><div class="stat-num">3</div><div class="stat-meta">KES 382K awaiting</div></div>
-          <div class="stat-card sc-blue"><div class="stat-icon">🔧</div><div class="stat-label">Installed</div><div class="stat-num">22</div><div class="stat-meta">This month</div></div>
-          <div class="stat-card sc-red"><div class="stat-icon">❌</div><div class="stat-label">Cancelled</div><div class="stat-num">3</div><div class="stat-meta">KES 145K lost</div></div>
+          <div class="stat-card sc-green"><div class="stat-icon">✅</div><div class="stat-label">Paid</div><div class="stat-num" id="ord-paid">—</div><div class="stat-meta" id="ord-paid-meta">Loading…</div></div>
+          <div class="stat-card sc-gold"><div class="stat-icon">⏳</div><div class="stat-label">Pending Payment</div><div class="stat-num" id="ord-pending">—</div><div class="stat-meta" id="ord-pending-meta">Loading…</div></div>
+          <div class="stat-card sc-blue"><div class="stat-icon">🔧</div><div class="stat-label">Processing</div><div class="stat-num" id="ord-processing">—</div><div class="stat-meta">This month</div></div>
+          <div class="stat-card sc-red"><div class="stat-icon">❌</div><div class="stat-label">Cancelled</div><div class="stat-num" id="ord-cancelled">—</div><div class="stat-meta" id="ord-cancelled-meta">Loading…</div></div>
         </div>
         <div class="table-wrap">
           <div class="tbl-toolbar">
             <input class="tbl-search" placeholder="🔍  Search by name, order ID, product…" oninput="filterTable(this,'orders-tbody')">
             <select class="tbl-filter" onchange="filterTableStatus(this,'orders-tbody')">
               <option value="">All statuses</option>
-              <option>Paid</option><option>Pending</option><option>Installed</option><option>Cancelled</option>
+              <option>paid</option><option>pending</option><option>processing</option><option>dispatched</option><option>completed</option><option>cancelled</option>
             </select>
-            <button class="tb-btn primary" onclick="showToast('Export CSV downloaded')">↓ Export</button>
+            <button class="tb-btn primary" onclick="exportOrders()">↓ Export</button>
           </div>
           <table>
-            <thead><tr><th>Order ID</th><th>Customer</th><th>County</th><th>Product</th><th>Amount (KES)</th><th>Date</th><th>Status</th><th></th></tr></thead>
-            <tbody id="orders-tbody">
-              <tr onclick="openOrderDetail('ORD-2847','Grace Muthoni','Business Pro System 10kW','580,000','paid','Westlands, Nairobi','0712 345 001','2026-05-18')"><td class="td-mono">ORD-2847</td><td class="td-primary">Grace Muthoni</td><td>Nairobi</td><td>Business Pro 10kW</td><td class="td-amount">580,000</td><td>18 May</td><td><span class="pill pill-paid">Paid</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-              <tr onclick="openOrderDetail('ORD-2846','James Kariuki','Home Starter Kit 2kW','185,000','pending','Kiambu','0722 111 222','2026-05-17')"><td class="td-mono">ORD-2846</td><td class="td-primary">James Kariuki</td><td>Kiambu</td><td>Home Starter 2kW</td><td class="td-amount">185,000</td><td>17 May</td><td><span class="pill pill-pending">Pending</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-              <tr onclick="openOrderDetail('ORD-2845','Amina Hassan','LiFePO4 Battery ×2','110,000','paid','Mombasa','0733 444 555','2026-05-16')"><td class="td-mono">ORD-2845</td><td class="td-primary">Amina Hassan</td><td>Mombasa</td><td>LiFePO4 Battery ×2</td><td class="td-amount">110,000</td><td>16 May</td><td><span class="pill pill-paid">Paid</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-              <tr onclick="openOrderDetail('ORD-2844','Peter Ochieng','MonoPerc Panel ×4','112,000','pending','Kisumu','0755 888 999','2026-05-15')"><td class="td-mono">ORD-2844</td><td class="td-primary">Peter Ochieng</td><td>Kisumu</td><td>MonoPerc Panel ×4</td><td class="td-amount">112,000</td><td>15 May</td><td><span class="pill pill-pending">Pending</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-              <tr onclick="openOrderDetail('ORD-2843','Faith Wambua','Hybrid Inverter 5kW','72,000','installed','Machakos','0766 321 654','2026-05-14')"><td class="td-mono">ORD-2843</td><td class="td-primary">Faith Wambua</td><td>Machakos</td><td>Hybrid Inverter 5kW</td><td class="td-amount">72,000</td><td>14 May</td><td><span class="pill pill-installed">Installed</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-              <tr onclick="openOrderDetail('ORD-2842','Samuel Njoroge','Home Premium 3kW','265,000','paid','Nakuru','0799 777 888','2026-05-13')"><td class="td-mono">ORD-2842</td><td class="td-primary">Samuel Njoroge</td><td>Nakuru</td><td>Home Premium 3kW</td><td class="td-amount">265,000</td><td>13 May</td><td><span class="pill pill-paid">Paid</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-              <tr onclick="openOrderDetail('ORD-2841','Zainab Yusuf','Gel Battery 200Ah ×4','74,000','cancelled','Mombasa','0711 000 111','2026-05-12')"><td class="td-mono">ORD-2841</td><td class="td-primary">Zainab Yusuf</td><td>Mombasa</td><td>Gel Battery ×4</td><td class="td-amount">74,000</td><td>12 May</td><td><span class="pill pill-cancelled">Cancelled</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-              <tr onclick="openOrderDetail('ORD-2840','David Kamau','Business Pro 10kW','580,000','installed','Eldoret','0722 555 444','2026-05-11')"><td class="td-mono">ORD-2840</td><td class="td-primary">David Kamau</td><td>Uasin Gishu</td><td>Business Pro 10kW</td><td class="td-amount">580,000</td><td>11 May</td><td><span class="pill pill-installed">Installed</span></td><td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td></tr>
-            </tbody>
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Location</th><th>Items</th><th>Amount (KES)</th><th>Date</th><th>Status</th><th></th></tr></thead>
+            <tbody id="orders-tbody"><tr><td colspan="8" class="loading-state">Loading orders…</td></tr></tbody>
           </table>
         </div>
       </div>
 
-      <!-- ══════════ QUOTES ══════════ -->
+      <!-- QUOTES -->
       <div class="view" id="view-quotes">
         <div class="sec-head" style="margin-bottom:0.5rem">
-          <div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--blue)"></span>Quote Pipeline — 7 Active</div>
-          <button class="tb-btn primary" onclick="showToast('New quote form opened')">+ New Quote</button>
+          <div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--blue)"></span>Quote Pipeline</div>
+          <button class="tb-btn primary" onclick="showToast('Use the main site contact form to add new quotes')">+ New Quote</button>
         </div>
-        <p style="font-size:0.8rem;color:var(--text-3);margin-bottom:1.2rem">Drag quotes across stages. Click any card to view details and send an M-Pesa payment link.</p>
-        <div class="pipeline-cols" id="full-pipeline"></div>
-
+        <p style="font-size:0.8rem;color:var(--text-3);margin-bottom:1.2rem">Click any card to view details, update stage, and send M-Pesa payment links.</p>
+        <div class="pipeline-cols" id="full-pipeline"><div class="loading-state" style="grid-column:1/-1">Loading pipeline…</div></div>
         <div style="margin-top:1.4rem">
           <div class="sec-head"><div class="sec-title"><span class="sec-title-dot" style="background:var(--gold)"></span>All Quote Requests</div></div>
           <div class="table-wrap">
             <div class="tbl-toolbar">
               <input class="tbl-search" placeholder="🔍  Search quotes…" oninput="filterTable(this,'quotes-tbody')">
-              <select class="tbl-filter"><option>All types</option><option>Homeowner</option><option>Business</option><option>School</option><option>Rural</option></select>
+              <select class="tbl-filter"><option>All types</option><option>home</option><option>business</option><option>school</option><option>rural</option></select>
             </div>
             <table>
-              <thead><tr><th>Name</th><th>Type</th><th>County</th><th>System Interest</th><th>Est. Value</th><th>Date</th><th>Stage</th><th></th></tr></thead>
-              <tbody id="quotes-tbody">
-                <tr onclick="openQuoteDetail('Mary Wanjiku','0733 222 111','Homeowner','Nairobi','Home Premium 3kW','265,000','contacted','2026-05-17','Wants system before June school holidays')"><td class="td-primary">Mary Wanjiku</td><td>Homeowner</td><td>Nairobi</td><td>Home Premium 3kW</td><td class="td-amount">265,000</td><td>17 May</td><td><span class="pill pill-contacted">Contacted</span></td><td style="color:var(--text-3);font-size:0.8rem">›</td></tr>
-                <tr onclick="openQuoteDetail('Baraka Enterprises','0722 900 800','Business','Nakuru','Business Pro 10kW','580,000','new','2026-05-18','Cold storage expansion')"><td class="td-primary">Baraka Enterprises</td><td>Business</td><td>Nakuru</td><td>Business Pro 10kW</td><td class="td-amount">580,000</td><td>18 May</td><td><span class="pill pill-new">New</span></td><td style="color:var(--text-3);font-size:0.8rem">›</td></tr>
-                <tr onclick="openQuoteDetail('St. Josephs School','0717644520','School / NGO','Turkana','Power Home 5kW','390,000','contacted','2026-05-15','Needs financing options')"><td class="td-primary">St. Josephs School</td><td>School</td><td>Turkana</td><td>Power Home 5kW</td><td class="td-amount">390,000</td><td>15 May</td><td><span class="pill pill-contacted">Contacted</span></td><td style="color:var(--text-3);font-size:0.8rem">›</td></tr>
-                <tr onclick="openQuoteDetail('Hassan Traders','0711 777 888','Business','Mombasa','Business Pro 10kW','580,000','converted','2026-05-10','Ready to pay — awaiting M-Pesa link')"><td class="td-primary">Hassan Traders</td><td>Business</td><td>Mombasa</td><td>Business Pro 10kW</td><td class="td-amount">580,000</td><td>10 May</td><td><span class="pill pill-converted">Converted</span></td><td style="color:var(--text-3);font-size:0.8rem">›</td></tr>
-                <tr onclick="openQuoteDetail('Njeri Wairimu','0799 333 444','Homeowner','Kiambu','Home Starter 2kW','185,000','new','2026-05-18','Called from calculator tool')"><td class="td-primary">Njeri Wairimu</td><td>Homeowner</td><td>Kiambu</td><td>Home Starter 2kW</td><td class="td-amount">185,000</td><td>18 May</td><td><span class="pill pill-new">New</span></td><td style="color:var(--text-3);font-size:0.8rem">›</td></tr>
-              </tbody>
+              <thead><tr><th>Name</th><th>Type</th><th>Location</th><th>System Interest</th><th>Est. Value</th><th>Date</th><th>Stage</th><th></th></tr></thead>
+              <tbody id="quotes-tbody"><tr><td colspan="8" class="loading-state">Loading quotes…</td></tr></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- ══════════ INVENTORY ══════════ -->
+      <!-- INVENTORY -->
       <div class="view" id="view-inventory">
         <div class="sec-head" style="margin-bottom:1rem">
-          <div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--amber)"></span>Product Inventory — 6 SKUs</div>
+          <div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--amber)"></span>Product Inventory</div>
           <button class="tb-btn primary" onclick="openProductModal()">+ Add Product</button>
         </div>
-        <div class="inv-grid" id="inv-grid"></div>
-<div id="product-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;">
-  <div style="background:var(--bg-2,#15181d);border-radius:12px;padding:1.5rem;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-      <h3 id="product-modal-title" style="margin:0;font-size:1.1rem;">Add Product</h3>
-      <button onclick="closeProductModal()" style="background:none;border:none;color:var(--text-3,#999);font-size:1.3rem;cursor:pointer;">&times;</button>
-    </div>
-
-    <form id="product-form" onsubmit="submitProduct(event)">
-      <input type="hidden" id="pf-id" />
-
-      <div style="margin-bottom:0.75rem;">
-        <label class="pf-label">SKU *</label>
-        <input class="tf-input" id="pf-sku" required placeholder="e.g. PANEL-450W" style="width:100%;">
+        <div class="inv-grid" id="inv-grid"><div class="loading-state" style="grid-column:1/-1">Loading inventory…</div></div>
       </div>
 
-      <div style="margin-bottom:0.75rem;">
-        <label class="pf-label">Product Name *</label>
-        <input class="tf-input" id="pf-name" required placeholder="e.g. 450W Monocrystalline Panel" oninput="autoSlug()" style="width:100%;">
-      </div>
-
-      <div style="margin-bottom:0.75rem;">
-        <label class="pf-label">Slug * (auto-filled, edit if needed)</label>
-        <input class="tf-input" id="pf-slug" required placeholder="e.g. panel-450w" style="width:100%;">
-      </div>
-
-      <div style="margin-bottom:0.75rem;">
-        <label class="pf-label">Category *</label>
-        <select class="tf-input" id="pf-category" required style="width:100%;">
-          <option value="panel">Panel</option>
-          <option value="battery">Battery</option>
-          <option value="inverter">Inverter</option>
-          <option value="charge_controller">Charge Controller</option>
-          <option value="accessory">Accessory</option>
-        </select>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
-        <div>
-          <label class="pf-label">Price (KES) *</label>
-          <input class="tf-input" id="pf-price" type="number" min="0" step="1" required style="width:100%;">
-        </div>
-        <div>
-          <label class="pf-label">Stock Quantity</label>
-          <input class="tf-input" id="pf-stock" type="number" min="0" step="1" value="0" style="width:100%;">
-        </div>
-      </div>
-
-      <div style="margin-bottom:0.75rem;">
-        <label class="pf-label">Description</label>
-        <textarea class="tf-input" id="pf-description" rows="3" style="width:100%;resize:vertical;"></textarea>
-      </div>
-
-      <div style="margin-bottom:1rem;">
-        <label class="pf-label">Specifications (optional, key:value per line)</label>
-        <textarea class="tf-input" id="pf-specs" rows="2" placeholder="wattage: 450W&#10;warranty: 25 years" style="width:100%;resize:vertical;"></textarea>
-      </div>
-
-      <div id="pf-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.75rem;"></div>
-
-      <div style="display:flex;gap:0.75rem;justify-content:flex-end;">
-        <button type="button" onclick="closeProductModal()" class="tb-btn" style="background:transparent;border:1px solid var(--border,#333);">Cancel</button>
-        <button type="submit" class="tb-btn primary" id="pf-submit-btn">Save Product</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<style>
-  .pf-label { display:block; font-size:0.8rem; color:var(--text-3,#999); margin-bottom:0.3rem; }
-</style>
-
-
-      </div>
-
-      <!-- ══════════ ANALYTICS ══════════ -->
+      <!-- ANALYTICS -->
       <div class="view" id="view-analytics">
         <div class="stats-row">
-          <div class="stat-card sc-gold"><div class="stat-icon">📊</div><div class="stat-label">Total Revenue YTD</div><div class="stat-num">KES 14.2M</div><div class="stat-meta"><span class="stat-up">↑ 34%</span> vs 2025</div></div>
-          <div class="stat-card sc-green"><div class="stat-icon">🏠</div><div class="stat-label">Systems Installed</div><div class="stat-num">187</div><div class="stat-meta"><span class="stat-up">↑ 22</span> this month</div></div>
-          <div class="stat-card sc-blue"><div class="stat-icon">🔄</div><div class="stat-label">Conversion Rate</div><div class="stat-num">38%</div><div class="stat-meta">Quote → Order</div></div>
-          <div class="stat-card sc-red"><div class="stat-icon">⚡</div><div class="stat-label">kW Deployed</div><div class="stat-num">624kW</div><div class="stat-meta">Since founding</div></div>
+          <div class="stat-card sc-gold"><div class="stat-icon">📊</div><div class="stat-label">Total Revenue YTD</div><div class="stat-num" id="an-revenue">—</div><div class="stat-meta">Loading…</div></div>
+          <div class="stat-card sc-green"><div class="stat-icon">📦</div><div class="stat-label">Orders This Month</div><div class="stat-num" id="an-orders">—</div><div class="stat-meta">Loading…</div></div>
+          <div class="stat-card sc-blue"><div class="stat-icon">🔄</div><div class="stat-label">Active Quotes</div><div class="stat-num" id="an-quotes">—</div><div class="stat-meta">Loading…</div></div>
+          <div class="stat-card sc-red"><div class="stat-icon">⚠️</div><div class="stat-label">Low Stock Items</div><div class="stat-num" id="an-lowstock">—</div><div class="stat-meta">Loading…</div></div>
         </div>
         <div class="analytics-grid">
           <div class="revenue-chart">
             <div class="rc-head">
-              <div><div class="rc-title">Monthly Revenue</div><div class="rc-sub">Jan – May 2026</div></div>
-              <div class="rc-total"><div class="rc-amount">KES 14.2M</div><div class="rc-change">↑ 34% YoY</div></div>
+              <div><div class="rc-title">Monthly Revenue</div><div class="rc-sub" id="an-rev-sub">Loading…</div></div>
+              <div class="rc-total"><div class="rc-amount" id="an-rev-total">—</div><div class="rc-change" id="an-rev-change"></div></div>
             </div>
-            <div class="bar-chart" id="monthly-bars" style="height:130px"></div>
+            <div class="bar-chart" id="monthly-bars" style="height:130px"><div class="loading-state" style="width:100%">Loading…</div></div>
           </div>
           <div class="top-products">
             <div class="sec-title" style="margin-bottom:0.8rem;font-size:0.85rem"><span class="sec-title-dot" style="background:var(--gold)"></span>Top Products by Revenue</div>
-            <div id="top-products-list"></div>
+            <div id="top-products-list"><div class="loading-state">Loading…</div></div>
           </div>
         </div>
         <div class="sec-head" style="margin-top:0.5rem"><div class="sec-title"><span class="sec-title-dot" style="background:var(--blue)"></span>Sales by County</div></div>
-        <div class="geo-grid" id="geo-grid"></div>
+        <div class="geo-grid" id="geo-grid"><div class="loading-state" style="grid-column:1/-1">County data will appear here once orders come in.</div></div>
       </div>
 
-      <!-- ══════════ MPESA TOOL ══════════ -->
+      <!-- MPESA TOOL -->
       <div class="view" id="view-mpesa">
         <div style="max-width:680px">
           <div style="margin-bottom:1.4rem">
@@ -805,7 +455,7 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
           </div>
           <div class="mpesa-form">
             <div class="mpf-title">📱 Customer Payment Request</div>
-            <div class="mpf-sub">Safaricom STK Push via Daraja API — customer receives PIN prompt on their phone</div>
+            <div class="mpf-sub">Safaricom STK Push via Daraja API</div>
             <div class="mpf-row">
               <div class="mpf-group"><label>Customer Name</label><input class="mpf-input" id="mpf-name" placeholder="Grace Muthoni"></div>
               <div class="mpf-group"><label>Safaricom Number</label><input class="mpf-input" id="mpf-phone" placeholder="0712 345 678" type="tel"></div>
@@ -826,42 +476,34 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
               </div>
               <div class="mpf-group"><label>Amount (KES)</label><input class="mpf-input" id="mpf-amount" placeholder="0" type="number"></div>
             </div>
-            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Payment Reference / Note</label><input class="mpf-input" id="mpf-ref" placeholder="e.g. Quote #QT-2045 — 3kW system Kiambu installation"></div>
+            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Payment Reference / Note</label><input class="mpf-input" id="mpf-ref" placeholder="e.g. Quote #QT-2045"></div>
             <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem;margin-bottom:0.9rem;font-size:0.8rem;color:var(--text-2)">
-              <strong style="color:var(--text-1)">⚠️ Important:</strong> In production, this triggers a real Daraja API STK Push. Payment confirmation is handled by the backend <code style="color:var(--gold-light);font-family:'DM Mono',monospace">POST /api/v1/mpesa/callback</code> route — not the frontend. The order status updates automatically once Safaricom confirms.
+              <strong style="color:var(--text-1)">⚠️ Important:</strong> This triggers a real Daraja API STK Push. Payment confirmation is handled by the backend <code style="color:var(--gold-light);font-family:'DM Mono',monospace">POST /api/v1/mpesa/callback</code> route.
             </div>
             <button class="send-btn" onclick="simulateMpesaSend()">📲 Send STK Push to Customer</button>
           </div>
-
           <div style="margin-top:1.2rem;background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem">
             <div class="mpf-title" style="margin-bottom:0.8rem">Recent Payment Requests</div>
-            <table style="width:100%;border-collapse:collapse">
-              <thead><tr><th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);text-align:left">Customer</th><th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);text-align:left">Amount</th><th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);text-align:left">Sent</th><th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);text-align:left">Status</th></tr></thead>
-              <tbody>
-                <tr><td style="padding:0.6rem 0.8rem;font-size:0.83rem;color:var(--text-1);border-bottom:1px solid rgba(255,255,255,0.04)">Hassan Traders</td><td style="padding:0.6rem 0.8rem;font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--text-1);border-bottom:1px solid rgba(255,255,255,0.04)">580,000</td><td style="padding:0.6rem 0.8rem;font-size:0.78rem;color:var(--text-3);border-bottom:1px solid rgba(255,255,255,0.04)">Today 09:14</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.04)"><span class="pill pill-pending">Awaiting PIN</span></td></tr>
-                <tr><td style="padding:0.6rem 0.8rem;font-size:0.83rem;color:var(--text-1);border-bottom:1px solid rgba(255,255,255,0.04)">Grace Muthoni</td><td style="padding:0.6rem 0.8rem;font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--text-1);border-bottom:1px solid rgba(255,255,255,0.04)">580,000</td><td style="padding:0.6rem 0.8rem;font-size:0.78rem;color:var(--text-3);border-bottom:1px solid rgba(255,255,255,0.04)">Yesterday 14:32</td><td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.04)"><span class="pill pill-paid">Confirmed</span></td></tr>
-                <tr><td style="padding:0.6rem 0.8rem;font-size:0.83rem;color:var(--text-1)">Mary Wanjiku</td><td style="padding:0.6rem 0.8rem;font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--text-1)">265,000</td><td style="padding:0.6rem 0.8rem;font-size:0.78rem;color:var(--text-3)">17 May 11:05</td><td style="padding:0.6rem 0.8rem"><span class="pill pill-pending">Awaiting PIN</span></td></tr>
-              </tbody>
-            </table>
+            <div id="recent-payments-list"><div class="loading-state">Loading recent payments…</div></div>
           </div>
         </div>
       </div>
 
-      <!-- ══════════ SMS ══════════ -->
+      <!-- SMS -->
       <div class="view" id="view-sms">
         <div style="max-width:680px">
-          <div style="margin-bottom:1.4rem"><div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:0.3rem">SMS Broadcast</div><div style="font-size:0.82rem;color:var(--text-3)">Send bulk SMS to customer segments via Africa's Talking. Personalised with customer name and system details.</div></div>
+          <div style="margin-bottom:1.4rem"><div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:0.3rem">SMS Broadcast</div><div style="font-size:0.82rem;color:var(--text-3)">Send bulk SMS to customer segments via Africa's Talking.</div></div>
           <div class="mpesa-form">
             <div class="mpf-title">✉️ Compose SMS</div>
             <div class="mpf-sub">Sent via Africa's Talking · ~KES 1.2 per SMS</div>
             <div class="mpf-group" style="margin-bottom:0.7rem"><label>Recipient Segment</label>
               <select class="mpf-select" onchange="updateSmsCount(this)">
                 <option value="0">Select segment…</option>
-                <option value="34">All customers (34 contacts)</option>
-                <option value="18">Paid orders — delivered (18)</option>
-                <option value="7">Active quotes (7 leads)</option>
-                <option value="5">Pending payment (5)</option>
-                <option value="12">Nairobi region (12)</option>
+                <option value="34">All customers</option>
+                <option value="18">Paid orders — delivered</option>
+                <option value="7">Active quotes</option>
+                <option value="5">Pending payment</option>
+                <option value="12">Nairobi region</option>
               </select>
             </div>
             <div class="mpf-group" style="margin-bottom:0.7rem"><label>Message Template</label>
@@ -880,21 +522,21 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
         </div>
       </div>
 
-      <!-- ══════════ PRODUCTS (config) ══════════ -->
-<div class="view" id="view-products">
-  <div class="sec-head" style="margin-bottom:1rem">
-    <div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--gold)"></span>Product Catalog Management</div>
-    <button class="tb-btn primary" onclick="openProductModal()">+ Add Product</button>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Product</th><th>Category</th><th>Price (KES)</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
-      <tbody id="products-table-body"></tbody>
-    </table>
-  </div>
-</div>
+      <!-- PRODUCTS -->
+      <div class="view" id="view-products">
+        <div class="sec-head" style="margin-bottom:1rem">
+          <div class="sec-title" style="font-size:1rem"><span class="sec-title-dot" style="background:var(--gold)"></span>Product Catalog Management</div>
+          <button class="tb-btn primary" onclick="openProductModal()">+ Add Product</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Product</th><th>Category</th><th>Price (KES)</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="products-table-body"><tr><td colspan="6" class="loading-state">Loading products…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
 
-      <!-- ══════════ SETTINGS ══════════ -->
+      <!-- SETTINGS -->
       <div class="view" id="view-settings">
         <div style="max-width:600px">
           <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:1.2rem">System Settings</div>
@@ -902,216 +544,26 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
             <div class="mpf-title">M-Pesa / Daraja API</div>
             <div class="mpf-sub">Safaricom Daraja API credentials for STK Push</div>
             <div class="mpf-row">
-              <div class="mpf-group"><label>Consumer Key</label><input class="mpf-input" type="password" value="sk_live_••••••••••" placeholder="Consumer key"></div>
-              <div class="mpf-group"><label>Consumer Secret</label><input class="mpf-input" type="password" value="sk_live_••••••••••" placeholder="Consumer secret"></div>
+              <div class="mpf-group"><label>Consumer Key</label><input class="mpf-input" type="password" placeholder="Consumer key"></div>
+              <div class="mpf-group"><label>Consumer Secret</label><input class="mpf-input" type="password" placeholder="Consumer secret"></div>
             </div>
-            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Callback URL</label><input class="mpf-input" value="https://api.shemsolar.co.ke/api/v1/mpesa/callback"></div>
-            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Paybill / Till Number</label><input class="mpf-input" value="522522" placeholder="Paybill number"></div>
+            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Callback URL</label><input class="mpf-input" id="setting-callback" placeholder="https://your-backend.railway.app/api/v1/mpesa/callback"></div>
+            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Paybill / Till Number</label><input class="mpf-input" placeholder="Paybill number"></div>
             <div class="mpf-row">
               <div class="mpf-group"><label>Environment</label><select class="mpf-select"><option>Production</option><option>Sandbox</option></select></div>
-              <div class="mpf-group"><label>Shortcode</label><input class="mpf-input" value="174379" placeholder="Shortcode"></div>
+              <div class="mpf-group"><label>Shortcode</label><input class="mpf-input" placeholder="Shortcode"></div>
             </div>
-            <button class="send-btn" onclick="showToast('M-Pesa settings saved ✓')">Save Daraja Settings</button>
+            <button class="send-btn" onclick="showToast('Settings are managed via .env on Railway — not saved here')">Save Daraja Settings</button>
           </div>
           <div class="mpesa-form">
             <div class="mpf-title">Africa's Talking SMS</div>
             <div class="mpf-sub">SMS Gateway credentials</div>
             <div class="mpf-row">
-              <div class="mpf-group"><label>API Key</label><input class="mpf-input" type="password" value="atsk_••••••••" placeholder="API Key"></div>
-              <div class="mpf-group"><label>Username</label><input class="mpf-input" value="shemsolar" placeholder="Username"></div>
+              <div class="mpf-group"><label>API Key</label><input class="mpf-input" type="password" placeholder="API Key"></div>
+              <div class="mpf-group"><label>Username</label><input class="mpf-input" placeholder="Username"></div>
             </div>
-            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Sender ID</label><input class="mpf-input" value="ShemSolar" placeholder="Sender name (max 11 chars)"></div>
-            <button class="send-btn" onclick="showToast('SMS settings saved ✓')">Save SMS Settings</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════ ORDER LIFECYCLE ══════════ -->
-      <div class="view" id="view-lifecycle">
-        <div style="margin-bottom:1rem">
-          <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:0.3rem">Order State Machine</div>
-          <div style="font-size:0.82rem;color:var(--text-3)">Every order follows this pipeline. Each transition triggers downstream actions: stock deduction, SMS, and M-Pesa events.</div>
-        </div>
-
-        <!-- State Machine Diagram -->
-        <div class="lifecycle-wrap">
-          <div style="font-size:0.82rem;font-weight:700;color:var(--text-1);margin-bottom:0.3rem">📋 Order State Machine</div>
-          <div style="font-size:0.75rem;color:var(--text-3);margin-bottom:0.5rem">Click any stage to see what it triggers</div>
-          <div class="lifecycle-stages" id="lc-demo-stages"></div>
-          <div id="lc-stage-detail" style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-top:0.8rem;font-size:0.82rem;color:var(--text-2);min-height:60px"></div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-
-          <!-- Stock Auto-Deduction -->
-          <div>
-            <div class="sec-head" style="margin-bottom:0.6rem">
-              <div class="sec-title"><span class="sec-title-dot" style="background:var(--amber)"></span>Stock Auto-Deduction</div>
-            </div>
-            <div style="background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem">
-              <div style="font-size:0.78rem;color:var(--text-3);margin-bottom:1rem;line-height:1.6">When an order transitions <strong style="color:var(--gold-light)">pending → paid</strong>, the backend runs a single DB transaction to decrement each component. For packages, it queries <code style="font-family:'DM Mono',monospace;color:var(--gold-light)">package_items</code> and deducts each sub-component individually.</div>
-
-              <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);margin-bottom:0.5rem">Simulate: Business Pro 10kW Order</div>
-              <div class="stock-panel" id="stock-simulation">
-                <div class="stock-item-row"><span class="stock-deduct-label">☀️ MonoPerc 400W Panel ×25</span><span class="stock-deduct-val"><span class="stock-num-before">45</span><span class="stock-arrow">→</span><span class="stock-num-after">20</span></span></div>
-                <div class="stock-item-row"><span class="stock-deduct-label">🔋 LiFePO4 100Ah Battery ×4</span><span class="stock-deduct-val"><span class="stock-num-before">3</span><span class="stock-arrow">→</span><span class="stock-num-after" style="color:#F87171">⚠️ 0</span></span></div>
-                <div class="stock-item-row"><span class="stock-deduct-label">⚡ 3-Phase Inverter 10kW ×1</span><span class="stock-deduct-val"><span class="stock-num-before">6</span><span class="stock-arrow">→</span><span class="stock-num-after">5</span></span></div>
-                <div class="stock-item-row"><span class="stock-deduct-label">🔧 Mounting Hardware ×1 set</span><span class="stock-deduct-val"><span class="stock-num-before">12</span><span class="stock-arrow">→</span><span class="stock-num-after">11</span></span></div>
-              </div>
-              <button class="deduct-btn" id="deduct-btn" onclick="simulateDeduction()">⚡ Run Stock Deduction Transaction</button>
-              <div style="font-size:0.7rem;color:var(--text-3);margin-top:0.6rem">Wrapped in <code style="font-family:'DM Mono',monospace">BEGIN ... COMMIT</code> — if any deduction fails, the entire transaction rolls back (ON DELETE RESTRICT).</div>
-            </div>
-          </div>
-
-          <!-- Manual Payment Override -->
-          <div>
-            <div class="sec-head" style="margin-bottom:0.6rem">
-              <div class="sec-title"><span class="sec-title-dot" style="background:var(--gold)"></span>Manual Payment Override</div>
-            </div>
-            <div style="background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem">
-              <div style="font-size:0.78rem;color:var(--text-3);margin-bottom:1rem;line-height:1.6">For corporate clients and schools paying via Paybill Bank Transfer, RTGS, or cheque. This bypasses the Daraja callback but triggers the <strong style="color:var(--gold-light)">same downstream logic</strong>: stock deduction + success SMS.</div>
-
-              <div class="manual-pay-box">
-                <div class="mpb-title">💳 Mark Order as Manually Paid</div>
-                <div class="mpb-desc">Select the payment method and enter the bank/cheque reference. This action is logged with your admin name and timestamp.</div>
-                <div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-3);margin-bottom:0.35rem">Order</div>
-                <select class="mpb-select" style="width:100%;margin-bottom:0.5rem">
-                  <option>ORD-2846 — James Kariuki — KES 185,000</option>
-                  <option>ORD-2844 — Peter Ochieng — KES 112,000</option>
-                </select>
-                <div class="mpb-row">
-                  <select class="mpb-select" id="mpb-method">
-                    <option value="">Payment method…</option>
-                    <option>Paybill Bank Transfer</option>
-                    <option>RTGS / Wire Transfer</option>
-                    <option>Cheque</option>
-                    <option>Cash in Office</option>
-                    <option>M-Pesa Paybill (manual)</option>
-                  </select>
-                  <input class="mpb-ref" id="mpb-ref" placeholder="Ref: e.g. TRF-2847ABC">
-                </div>
-                <button class="mpb-confirm" onclick="simulateManualPay()">✓ Confirm Manual Payment &amp; Trigger SMS</button>
-              </div>
-
-              <div style="margin-top:1rem;font-size:0.72rem;color:var(--text-3);background:rgba(255,255,255,0.03);border-radius:var(--radius);padding:0.7rem;line-height:1.6">
-                <strong style="color:var(--text-2)">What this triggers (same as Daraja callback):</strong><br>
-                1. <code style="font-family:'DM Mono',monospace;color:var(--gold-light)">orders.payment_status</code> → <span style="color:#4ADE80">completed</span><br>
-                2. <code style="font-family:'DM Mono',monospace;color:var(--gold-light)">orders.order_status</code> → <span style="color:#4ADE80">paid</span><br>
-                3. Stock deduction transaction fires<br>
-                4. Africa's Talking SMS queued via BullMQ
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- SMS Quick-Actions Reference -->
-        <div style="margin-top:1rem">
-          <div class="sec-head" style="margin-bottom:0.6rem">
-            <div class="sec-title"><span class="sec-title-dot" style="background:var(--green)"></span>Predefined SMS Quick-Actions</div>
-            <span style="font-size:0.75rem;color:var(--text-3)">These appear on every order detail drawer</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.2rem">
-            <div id="sms-quick-ref"></div>
-            <div id="sms-quick-ref-2"></div>
-            <div id="sms-quick-ref-3"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════ DB SCHEMA ══════════ -->
-      <div class="view" id="view-schema">
-        <div style="margin-bottom:1rem">
-          <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:0.3rem">PostgreSQL Database Schema</div>
-          <div style="font-size:0.82rem;color:var(--text-3)"> .6 tables with ACID-compliant relationships, M-Pesa reconciliation column, and JSONB specs.</div>
-        </div>
-        <div class="schema-grid">
-          <!-- products -->
-          <div class="schema-table">
-            <div class="schema-table-head"><span class="schema-table-icon">☀️</span><span class="schema-table-name">products</span></div>
-            <div class="schema-col"><span class="col-name pk">id</span><span class="col-type">SERIAL</span><span class="col-badge cb-pk">PK</span></div>
-            <div class="schema-col"><span class="col-name">sku</span><span class="col-type">VARCHAR(50)</span><span class="col-badge cb-idx">UNIQUE</span></div>
-            <div class="schema-col"><span class="col-name">name</span><span class="col-type">VARCHAR(255)</span></div>
-            <div class="schema-col"><span class="col-name">slug</span><span class="col-type">VARCHAR(255)</span><span class="col-badge cb-idx">UNIQUE</span></div>
-            <div class="schema-col"><span class="col-name">category</span><span class="col-type">product_category</span><span class="col-badge cb-enum">ENUM</span></div>
-            <div class="schema-col"><span class="col-name">price</span><span class="col-type">DECIMAL(12,2)</span></div>
-            <div class="schema-col"><span class="col-name">stock_quantity</span><span class="col-type">INT DEFAULT 0</span></div>
-            <div class="schema-col"><span class="col-name" style="color:var(--amber)">specifications</span><span class="col-type">JSONB</span><span class="col-badge" style="background:rgba(232,120,32,0.15);color:#FBA94C">FLEX</span></div>
-            <div class="schema-col"><span class="col-name">is_active</span><span class="col-type">BOOLEAN</span></div>
-          </div>
-          <!-- installation_packages -->
-          <div class="schema-table">
-            <div class="schema-table-head"><span class="schema-table-icon">🏠</span><span class="schema-table-name">installation_packages</span></div>
-            <div class="schema-col"><span class="col-name pk">id</span><span class="col-type">SERIAL</span><span class="col-badge cb-pk">PK</span></div>
-            <div class="schema-col"><span class="col-name">name</span><span class="col-type">VARCHAR(255)</span></div>
-            <div class="schema-col"><span class="col-name">slug</span><span class="col-type">VARCHAR(255)</span><span class="col-badge cb-idx">UNIQUE</span></div>
-            <div class="schema-col"><span class="col-name">base_installation_fee</span><span class="col-type">DECIMAL(10,2)</span></div>
-            <div class="schema-col"><span class="col-name">target_segment</span><span class="col-type">customer_segment</span><span class="col-badge cb-enum">ENUM</span></div>
-            <div class="schema-col"><span class="col-name">is_active</span><span class="col-type">BOOLEAN</span></div>
-          </div>
-          <!-- package_items -->
-          <div class="schema-table">
-            <div class="schema-table-head"><span class="schema-table-icon">🔗</span><span class="schema-table-name">package_items</span></div>
-            <div class="schema-col"><span class="col-name fk">package_id</span><span class="col-type">INT</span><span class="col-badge cb-fk">FK</span></div>
-            <div class="schema-col"><span class="col-name fk">product_id</span><span class="col-type">INT</span><span class="col-badge cb-fk">FK</span></div>
-            <div class="schema-col"><span class="col-name">quantity</span><span class="col-type">INT DEFAULT 1</span></div>
-            <div class="schema-col" style="padding:0.5rem 1rem"><span style="font-size:0.68rem;color:var(--text-3);font-family:'DM Mono',monospace">PRIMARY KEY (package_id, product_id)</span></div>
-            <div class="schema-col" style="padding:0.5rem 1rem"><span style="font-size:0.68rem;color:var(--amber);font-family:'DM Mono',monospace">ON DELETE RESTRICT</span></div>
-            <div style="padding:0.5rem 1rem;font-size:0.7rem;color:var(--text-3);font-style:italic;border-top:1px solid rgba(255,255,255,0.04)">Junction table — many-to-many between packages and their component products. Prevents deletion of products used in active packages.</div>
-          </div>
-          <!-- orders -->
-          <div class="schema-table">
-            <div class="schema-table-head"><span class="schema-table-icon">📦</span><span class="schema-table-name">orders</span></div>
-            <div class="schema-col"><span class="col-name pk">id</span><span class="col-type">SERIAL</span><span class="col-badge cb-pk">PK</span></div>
-            <div class="schema-col"><span class="col-name">order_number</span><span class="col-type">VARCHAR(100)</span><span class="col-badge cb-idx">UNIQUE</span></div>
-            <div class="schema-col"><span class="col-name">customer_phone</span><span class="col-type">VARCHAR(15)</span></div>
-            <div class="schema-col"><span class="col-name">total_amount</span><span class="col-type">DECIMAL(12,2)</span></div>
-            <div class="schema-col"><span class="col-name">order_status</span><span class="col-type">order_status</span><span class="col-badge cb-enum">ENUM</span></div>
-            <div class="schema-col"><span class="col-name">payment_status</span><span class="col-type">payment_status</span><span class="col-badge cb-enum">ENUM</span></div>
-            <div class="schema-col"><span class="col-name" style="color:var(--green-light)">mpesa_checkout_id</span><span class="col-type">VARCHAR(100)</span><span class="col-badge cb-idx">UNIQUE</span></div>
-            <div style="padding:0.5rem 1rem;font-size:0.7rem;color:var(--green-light);font-family:'DM Mono',monospace;border-top:1px solid rgba(255,255,255,0.04)">← Matches Daraja CheckoutRequestID for callback reconciliation</div>
-          </div>
-          <!-- order_items -->
-          <div class="schema-table">
-            <div class="schema-table-head"><span class="schema-table-icon">📋</span><span class="schema-table-name">order_items</span></div>
-            <div class="schema-col"><span class="col-name pk">id</span><span class="col-type">SERIAL</span><span class="col-badge cb-pk">PK</span></div>
-            <div class="schema-col"><span class="col-name fk">order_id</span><span class="col-type">INT</span><span class="col-badge cb-fk">FK → orders</span></div>
-            <div class="schema-col"><span class="col-name fk">product_id</span><span class="col-type">INT nullable</span><span class="col-badge cb-fk">FK</span></div>
-            <div class="schema-col"><span class="col-name fk">package_id</span><span class="col-type">INT nullable</span><span class="col-badge cb-fk">FK</span></div>
-            <div class="schema-col"><span class="col-name">price_at_purchase</span><span class="col-type">DECIMAL(12,2)</span></div>
-            <div class="schema-col" style="padding:0.5rem 1rem"><span style="font-size:0.65rem;color:var(--amber);font-family:'DM Mono',monospace">CHECK: product_id XOR package_id</span></div>
-            <div style="padding:0.5rem 1rem;font-size:0.7rem;color:var(--text-3);font-style:italic;border-top:1px solid rgba(255,255,255,0.04)">price_at_purchase protects historical records against future price changes.</div>
-          </div>
-          <!-- consultation_requests -->
-          <div class="schema-table">
-            <div class="schema-table-head"><span class="schema-table-icon">💬</span><span class="schema-table-name">consultation_requests</span></div>
-            <div class="schema-col"><span class="col-name pk">id</span><span class="col-type">SERIAL</span><span class="col-badge cb-pk">PK</span></div>
-            <div class="schema-col"><span class="col-name">fullname</span><span class="col-type">VARCHAR(255)</span></div>
-            <div class="schema-col"><span class="col-name">phone_number</span><span class="col-type">VARCHAR(15)</span></div>
-            <div class="schema-col"><span class="col-name">location</span><span class="col-type">VARCHAR(255)</span></div>
-            <div class="schema-col"><span class="col-name">current_monthly_bill</span><span class="col-type">DECIMAL(10,2)</span></div>
-            <div class="schema-col"><span class="col-name">property_type</span><span class="col-type">customer_segment</span><span class="col-badge cb-enum">ENUM</span></div>
-            <div class="schema-col"><span class="col-name">status</span><span class="col-type">quote_status</span><span class="col-badge cb-enum">ENUM</span></div>
-            <div class="schema-col"><span class="col-name fk">assigned_to_staff_id</span><span class="col-type">INT nullable</span><span class="col-badge cb-fk">FK</span></div>
-          </div>
-        </div>
-
-        <!-- Relationships + Design Notes -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">
-          <div class="schema-note">
-            <div class="schema-note-title">🔗 Table Relationships</div>
-            <div class="relation-line"><span class="rel-from">products</span><span class="rel-arrow">──&lt;</span><span class="rel-to">package_items</span><span class="rel-arrow">&gt;──</span><span class="rel-to">installation_packages</span><span class="rel-type">M:M</span></div>
-            <div class="relation-line"><span class="rel-from">orders</span><span class="rel-arrow">──&lt;</span><span class="rel-to">order_items</span><span class="rel-arrow"></span><span class="rel-type">1:M</span></div>
-            <div class="relation-line"><span class="rel-from">order_items</span><span class="rel-arrow">──&gt;</span><span class="rel-to">products</span><span class="rel-type">nullable FK</span></div>
-            <div class="relation-line"><span class="rel-from">order_items</span><span class="rel-arrow">──&gt;</span><span class="rel-to">installation_packages</span><span class="rel-type">nullable FK</span></div>
-            <div class="relation-line"><span class="rel-from">consultation_requests</span><span class="rel-arrow">──&gt;</span><span class="rel-to">staff (future)</span><span class="rel-type">nullable FK</span></div>
-          </div>
-          <div class="schema-note">
-            <div class="schema-note-title">💡 Design Decisions</div>
-            <div class="schema-note-item"><strong>JSONB specifications:</strong> Batteries track Ah/DoD, panels track W/efficiency — different schemas per product type without separate tables.</div>
-            <div class="schema-note-item"><strong>ON DELETE RESTRICT:</strong> Prevents deleting a product that's tied to a live package — avoids breaking the catalog.</div>
-            <div class="schema-note-item"><strong>mpesa_checkout_id:</strong> Unique index for O(1) lookup when Safaricom's callback hits <code style="font-family:'DM Mono',monospace;color:var(--gold-light)">/api/v1/mpesa/callback</code>.</div>
-            <div class="schema-note-item"><strong>price_at_purchase:</strong> Snapshot price at order time — price changes later never corrupt historical order records.</div>
+            <div class="mpf-group" style="margin-bottom:0.7rem"><label>Sender ID</label><input class="mpf-input" placeholder="Sender name (max 11 chars)"></div>
+            <button class="send-btn" onclick="showToast('Settings are managed via .env on Railway — not saved here')">Save SMS Settings</button>
           </div>
         </div>
       </div>
@@ -1120,11 +572,43 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
   </div><!-- /main -->
 </div><!-- /shell -->
 
-<!-- ── ORDER DETAIL DRAWER ── -->
+<!-- Product Modal -->
+<div id="product-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;">
+  <div style="background:var(--navy-card);border:1px solid var(--border-2);border-radius:var(--radius-lg);padding:1.5rem;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+      <h3 id="product-modal-title" style="margin:0;font-size:1.1rem;color:var(--text-1)">Add Product</h3>
+      <button onclick="closeProductModal()" style="background:none;border:none;color:var(--text-3);font-size:1.3rem;cursor:pointer;">&times;</button>
+    </div>
+    <form id="product-form" onsubmit="submitProduct(event)">
+      <input type="hidden" id="pf-id">
+      <div style="margin-bottom:0.75rem;"><label class="pf-label">SKU *</label><input class="mpf-input" id="pf-sku" required placeholder="e.g. PANEL-450W" style="width:100%;"></div>
+      <div style="margin-bottom:0.75rem;"><label class="pf-label">Product Name *</label><input class="mpf-input" id="pf-name" required placeholder="e.g. 450W Monocrystalline Panel" oninput="autoSlug()" style="width:100%;"></div>
+      <div style="margin-bottom:0.75rem;"><label class="pf-label">Slug *</label><input class="mpf-input" id="pf-slug" required placeholder="e.g. panel-450w" style="width:100%;"></div>
+      <div style="margin-bottom:0.75rem;"><label class="pf-label">Category *</label>
+        <select class="mpf-select" id="pf-category" required style="width:100%;">
+          <option value="panel">Panel</option><option value="battery">Battery</option><option value="inverter">Inverter</option><option value="charge_controller">Charge Controller</option><option value="accessory">Accessory</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
+        <div><label class="pf-label">Price (KES) *</label><input class="mpf-input" id="pf-price" type="number" min="0" required style="width:100%;"></div>
+        <div><label class="pf-label">Stock Quantity</label><input class="mpf-input" id="pf-stock" type="number" min="0" value="0" style="width:100%;"></div>
+      </div>
+      <div style="margin-bottom:0.75rem;"><label class="pf-label">Description</label><textarea class="mpf-input" id="pf-description" rows="3" style="width:100%;resize:vertical;"></textarea></div>
+      <div style="margin-bottom:1rem;"><label class="pf-label">Specifications (key: value per line)</label><textarea class="mpf-input" id="pf-specs" rows="2" placeholder="wattage: 450W&#10;warranty: 25 years" style="width:100%;resize:vertical;"></textarea></div>
+      <div id="pf-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.75rem;"></div>
+      <div style="display:flex;gap:0.75rem;justify-content:flex-end;">
+        <button type="button" onclick="closeProductModal()" class="tb-btn" style="background:transparent;border:1px solid var(--border);">Cancel</button>
+        <button type="submit" class="tb-btn primary" id="pf-submit-btn">Save Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Order/Quote Drawer -->
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="detail-drawer" id="detail-drawer">
   <div class="dd-head">
-    <div class="dd-title" id="dd-title">Order Detail</div>
+    <div class="dd-title" id="dd-title">Detail</div>
     <button class="dd-close" onclick="closeDrawer()">✕</button>
   </div>
   <div class="dd-body" id="dd-body"></div>
@@ -1132,369 +616,11 @@ tbody tr:hover{background:rgba(255,255,255,0.03)}
 </div>
 
 <script>
-// ── DATA ──
-const INVENTORY = [
-  {icon:'☀️',name:'MonoPerc 400W Panel',   sku:'SKU-PNL-400M',stock:45,max:80, price:'28,000', warn:10},
-  {icon:'🔋',name:'LiFePO4 100Ah Battery', sku:'SKU-BAT-LFP1',stock:3, max:30, price:'55,000', warn:5},
-  {icon:'⚡',name:'Hybrid Inverter 5kW',   sku:'SKU-INV-HYB5',stock:18,max:25, price:'72,000', warn:5},
-  {icon:'🏠',name:'Home Starter Kit 2kW',  sku:'SKU-PKG-STR2',stock:8, max:20, price:'185,000',warn:3},
-  {icon:'🔌',name:'Gel Lead-Acid 200Ah',   sku:'SKU-BAT-GEL2',stock:2, max:40, price:'18,500', warn:6},
-  {icon:'🏢',name:'Business Pro 10kW',     sku:'SKU-PKG-PRO10',stock:4,max:10, price:'580,000',warn:2},
-];
-
-const QUOTES_DATA = [
-  {name:'Mary Wanjiku',   system:'Home Premium 3kW', value:'265,000', stage:'contacted', tag:'hot',  time:'2h ago'},
-  {name:'Baraka Ent.',    system:'Business Pro 10kW',value:'580,000', stage:'new',       tag:'warm', time:'1h ago'},
-  {name:'St. Josephs',   system:'Power Home 5kW',   value:'390,000', stage:'contacted', tag:'warm', time:'3d ago'},
-  {name:'Hassan Traders', system:'Business Pro 10kW',value:'580,000', stage:'priced',    tag:'hot',  time:'5d ago'},
-  {name:'Njeri Wairimu',  system:'Home Starter 2kW', value:'185,000', stage:'new',       tag:'cold', time:'30m ago'},
-  {name:'Ouma & Sons',   system:'Business Pro 10kW',value:'580,000', stage:'priced',    tag:'warm', time:'6d ago'},
-  {name:'Fatuma Ali',    system:'Home Premium 3kW', value:'265,000', stage:'converted', tag:'hot',  time:'1d ago'},
-];
-
-const GEO = [
-  {county:'Nairobi',   orders:14, pct:90, amount:'KES 4.2M'},
-  {county:'Mombasa',   orders:6,  pct:42, amount:'KES 1.8M'},
-  {county:'Kiambu',    orders:5,  pct:38, amount:'KES 980K'},
-  {county:'Nakuru',    orders:4,  pct:30, amount:'KES 870K'},
-  {county:'Kisumu',    orders:3,  pct:22, amount:'KES 560K'},
-  {county:'Turkana',   orders:2,  pct:15, amount:'KES 780K'},
-];
-
-const MONTHLY_REV = [1.8,2.0,2.4,2.1,2.4];
-const MONTHLY_LABELS = ['Jan','Feb','Mar','Apr','May'];
-const TOP_PRODUCTS = [
-  {icon:'🏢',name:'Business Pro 10kW',rev:'4.06M',pct:100},
-  {icon:'🏠',name:'Home Starter 2kW', rev:'1.85M',pct:46},
-  {icon:'🏡',name:'Home Premium 3kW', rev:'1.33M',pct:33},
-  {icon:'☀️',name:'MonoPerc Panel',   rev:'980K', pct:24},
-  {icon:'🔋',name:'LiFePO4 Battery',  rev:'770K', pct:19},
-];
-
-// ── NAV ──
-function switchView(id, btn) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-' + id).classList.add('active');
-  if (btn) btn.classList.add('active');
-  const titles = {overview:'Overview',orders:'Orders',quotes:'Quote Pipeline',inventory:'Inventory',analytics:'Analytics',mpesa:'Send M-Pesa Link',sms:'SMS Broadcast',products:'Products',settings:'Settings'};
-  document.getElementById('page-title').textContent = titles[id] || id;
-}
-
-// ── RENDER BARS ──
-function renderBars(containerId, data, labels, color, maxVal) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  const max = maxVal || Math.max(...data);
-  el.innerHTML = data.map((v, i) => `
-    <div class="bar-col">
-      <div class="bar-val">${typeof v === 'number' && v < 10 ? v.toFixed(1) + 'M' : v}</div>
-      <div class="bar-fill" style="height:${Math.round((v/max)*100)}%;background:${color || 'var(--gold)'}"></div>
-      <div class="bar-label">${labels[i]}</div>
-    </div>`).join('');
-}
-
-function renderDailyBars() {
-  const days = ['1','3','5','7','9','11','13','15','17','19'];
-  const vals = [42,68,35,95,120,85,140,98,175,165];
-  renderBars('rev-bars', vals, days, 'var(--gold)', 200);
-}
-
-function renderMonthlyBars() {
-  renderBars('monthly-bars', MONTHLY_REV, MONTHLY_LABELS, 'var(--green)', 3);
-}
-
-// ── PIPELINE ──
-function buildPipeline(containerId, compact) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  const stages = [
-    {id:'new',      label:'New',       color:'var(--blue)'},
-    {id:'contacted',label:'Contacted', color:'var(--gold)'},
-    {id:'priced',   label:'Priced',    color:'var(--amber)'},
-    {id:'converted',label:'Converted', color:'var(--green)'},
-  ];
-  el.innerHTML = stages.map(s => {
-    const cards = QUOTES_DATA.filter(q => q.stage === s.id);
-    return `<div class="pipeline-col">
-      <div class="pipe-head"><span style="color:${s.color}">${s.label}</span><span class="pipe-count">${cards.length}</span></div>
-      ${cards.map(q => `
-        <div class="quote-card" onclick="openQuoteDetail('${q.name}','—','—','—','${q.system}','${q.value}','${q.stage}','—','')">
-          <div class="qc-name">${q.name}</div>
-          <div class="qc-system">${q.system}</div>
-          <div class="qc-footer">
-            <span class="qc-value">KES ${q.value}</span>
-            <span class="qc-tag qct-${q.tag}">${q.tag}</span>
-          </div>
-          <div class="qc-time" style="margin-top:0.4rem">${q.time}</div>
-        </div>`).join('')}
-    </div>`;
-  }).join('');
-}
-
-// ── INVENTORY ──
-// ── INVENTORY ──
-function buildInventory() {
-  const el = document.getElementById('inv-grid');
-  if (!el) return;
-  el.innerHTML = INVENTORY.map(item => {
-    const pct = Math.round((item.stock / item.max) * 100);
-    const low = item.stock <= item.warn;
-    const barColor = low ? 'var(--red)' : pct < 50 ? 'var(--amber)' : 'var(--green)';
-    return `<div class="inv-card">
-      <div class="inv-icon">${item.icon}</div>
-      <div class="inv-name">${item.name}</div>
-      <div class="inv-sku">${item.sku}</div>
-      <div class="inv-stock-row">
-        <span class="inv-stock-label">In stock</span>
-        <span class="inv-stock-num">${item.stock}</span>
-      </div>
-      <div class="inv-bar-track"><div class="inv-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
-      <div class="inv-footer">
-        <span class="inv-price">KES <strong>${item.price}</strong></span>
-        ${low ? '<span class="pill pill-low">Low Stock</span>' : '<span class="pill pill-ok">In Stock</span>'}
-      </div>
-      ${low ? `<button class="send-btn" style="margin-top:0.8rem;padding:0.5rem;font-size:0.78rem" onclick="showToast('Reorder request sent for ${item.name}')">📦 Reorder</button>` : ''}
-    </div>`;
-  }).join('');
-}
-
-// ── GEO ──
-function buildGeo() {
-  const el = document.getElementById('geo-grid');
-  if (!el) return;
-  el.innerHTML = GEO.map(g => `
-    <div class="geo-card">
-      <div class="geo-county">${g.county}</div>
-      <div class="geo-orders">${g.orders} orders</div>
-      <div class="geo-bar"><div class="geo-fill" style="width:${g.pct}%"></div></div>
-      <div class="geo-amount">${g.amount}</div>
-    </div>`).join('');
-}
-
-// ── TOP PRODUCTS ──
-function buildTopProducts() {
-  const el = document.getElementById('top-products-list');
-  if (!el) return;
-  el.innerHTML = TOP_PRODUCTS.map((p, i) => `
-    <div class="tp-item">
-      <span class="tp-rank">${i + 1}</span>
-      <span class="tp-icon">${p.icon}</span>
-      <div style="flex:1">
-        <div class="tp-name">${p.name}</div>
-        <div class="tp-bar"><div class="tp-bar-fill" style="width:${p.pct}%"></div></div>
-      </div>
-      <span class="tp-rev">${p.rev}</span>
-    </div>`).join('');
-}
-
-// ── DRAWERS ──
-function openOrderDetail(id, name, product, amount, status, location, phone, date) {
-  const orderId = document.getElementById('detail-drawer').dataset.orderId || '';
-  document.getElementById('dd-title').textContent = id;
-
-  const NEXT_STATUS = {
-    pending:    ['paid','cancelled'],
-    paid:       ['processing','cancelled'],
-    processing: ['dispatched'],
-    dispatched: ['completed'],
-    completed:  [],
-    cancelled:  [],
-  };
-  const STATUS_LABELS = { paid:'Mark Paid', processing:'Start Processing', dispatched:'Mark Dispatched', completed:'Mark Complete', cancelled:'Cancel Order' };
-  const STATUS_STYLES = { paid:'dd-btn-primary', processing:'dd-btn-primary', dispatched:'dd-btn-primary', completed:'dd-btn-primary', cancelled:'dd-btn-danger' };
-
-  const nextStatuses = NEXT_STATUS[status] || [];
-  const advanceBtns  = nextStatuses.map(s => `
-    <button class="dd-btn ${STATUS_STYLES[s]}" onclick="advanceOrderStatus('${orderId}','${s}')">
-      ${STATUS_LABELS[s]}
-    </button>`).join('');
-
-  document.getElementById('dd-body').innerHTML = `
-    <div class="dd-section">
-      <div class="dd-sec-title">Customer</div>
-      <div class="dd-row"><span class="dd-key">Name</span><span class="dd-val">${name}</span></div>
-      <div class="dd-row"><span class="dd-key">Phone</span><span class="dd-val">${phone}</span></div>
-      <div class="dd-row"><span class="dd-key">Location</span><span class="dd-val">${location}</span></div>
-    </div>
-    <div class="dd-section">
-      <div class="dd-sec-title">Order</div>
-      <div class="dd-row"><span class="dd-key">Product</span><span class="dd-val">${product}</span></div>
-      <div class="dd-row"><span class="dd-key">Amount</span><span class="dd-val" style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold-light)">KES ${amount}</span></div>
-      <div class="dd-row"><span class="dd-key">Date</span><span class="dd-val">${date}</span></div>
-      <div class="dd-row"><span class="dd-key">Status</span><span class="dd-val"><span class="pill pill-${status}">${status.charAt(0).toUpperCase()+status.slice(1)}</span></span></div>
-    </div>
-    ${nextStatuses.length ? `
-    <div class="dd-section">
-      <div class="dd-sec-title">Advance Status</div>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap">${advanceBtns}</div>
-    </div>` : ''}
-    <div class="dd-section">
-      <div class="dd-sec-title">📱 SMS Quick-Actions</div>
-      <button class="sms-action-btn" onclick="sendOrderSMS('${orderId}','installation_reminder')">
-        <span class="sms-btn-icon">🔧</span>
-        <span class="sms-btn-text">
-          <span class="sms-btn-label">Installation Reminder</span>
-          <span class="sms-btn-preview">"Hi ${name}, your installation is scheduled…"</span>
-        </span>
-        <span class="sms-send-arrow">→</span>
-      </button>
-      <button class="sms-action-btn" onclick="sendOrderSMS('${orderId}','site_visit_reminder')">
-        <span class="sms-btn-icon">📍</span>
-        <span class="sms-btn-text">
-          <span class="sms-btn-label">Site Visit Reminder</span>
-          <span class="sms-btn-preview">"Hi ${name}, our engineers will visit tomorrow…"</span>
-        </span>
-        <span class="sms-send-arrow">→</span>
-      </button>
-      <button class="sms-action-btn" onclick="sendOrderSMS('${orderId}','payment_link')">
-        <span class="sms-btn-icon">💳</span>
-        <span class="sms-btn-text">
-          <span class="sms-btn-label">Send Payment Link</span>
-          <span class="sms-btn-preview">"Hi ${name}, your quote is ready — reply YES…"</span>
-        </span>
-        <span class="sms-send-arrow">→</span>
-      </button>
-    </div>
-    <div class="dd-section">
-      <div class="dd-sec-title">Activity Log</div>
-      <div class="activity-item"><div class="act-dot" style="background:var(--green)"></div><div><div class="act-text">Order placed via website checkout</div><div class="act-time">${date}</div></div></div>
-      ${status !== 'pending' ? '<div class="activity-item"><div class="act-dot" style="background:var(--gold)"></div><div><div class="act-text">M-Pesa payment confirmed via Daraja callback</div><div class="act-time">+12 min</div></div></div>' : ''}
-      ${status === 'completed' ? '<div class="activity-item"><div class="act-dot" style="background:var(--blue)"></div><div><div class="act-text">Installation completed — customer signed off</div><div class="act-time">3 days later</div></div></div>' : ''}
-      <div style="margin-top:0.8rem">
-        <textarea class="log-input" id="order-note-input" rows="2" placeholder="Log a call note…"></textarea>
-        <button style="background:var(--navy-hover);border:1px solid var(--border);border-radius:var(--radius);padding:0.4rem 0.9rem;font-size:0.78rem;color:var(--text-2)" onclick="saveOrderNote('${orderId}')">Save note</button>
-      </div>
-    </div>`;
-
-  document.getElementById('dd-actions').innerHTML = `
-    <button class="dd-btn dd-btn-secondary" onclick="sendOrderSMS('${orderId}','installation_reminder')">📱 Send SMS</button>
-    <button class="dd-btn dd-btn-primary"   onclick="sendMpesaToOrder('${orderId}','${phone}','${amount}')">💚 M-Pesa Link</button>
-    ${status !== 'cancelled' && status !== 'completed' ? `<button class="dd-btn dd-btn-danger" onclick="advanceOrderStatus('${orderId}','cancelled')">Cancel</button>` : ''}`;
-
-  openDrawer();
-}
-
-function openQuoteDetail(name, phone, type, county, system, value, stage, date, notes) {
-  const quoteId = document.getElementById('detail-drawer').dataset.quoteId || '';
-  document.getElementById('dd-title').textContent = `Quote — ${name}`;
-
-  document.getElementById('dd-body').innerHTML = `
-    <div class="dd-section">
-      <div class="dd-sec-title">Lead Details</div>
-      <div class="dd-row"><span class="dd-key">Name</span><span class="dd-val">${name}</span></div>
-      <div class="dd-row"><span class="dd-key">Phone</span><span class="dd-val">${phone}</span></div>
-      <div class="dd-row"><span class="dd-key">Type</span><span class="dd-val">${type}</span></div>
-      <div class="dd-row"><span class="dd-key">County</span><span class="dd-val">${county}</span></div>
-    </div>
-    <div class="dd-section">
-      <div class="dd-sec-title">Quote</div>
-      <div class="dd-row"><span class="dd-key">System</span><span class="dd-val">${system}</span></div>
-      <div class="dd-row"><span class="dd-key">Est. Value</span><span class="dd-val" style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold-light)">KES ${value}</span></div>
-      <div class="dd-row"><span class="dd-key">Stage</span><span class="dd-val"><span class="pill pill-${stage}">${stage.charAt(0).toUpperCase()+stage.slice(1)}</span></span></div>
-      <div class="dd-row"><span class="dd-key">Submitted</span><span class="dd-val">${date}</span></div>
-      <div class="dd-row"><span class="dd-key">Notes</span><span class="dd-val" style="max-width:200px;text-align:right;font-size:0.78rem">${notes || '—'}</span></div>
-    </div>
-    <div class="dd-section">
-      <div class="dd-sec-title">Move Stage</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.8rem">
-        <button style="padding:0.45rem;border-radius:var(--radius);background:var(--blue-pale);color:#60AEFF;border:1px solid rgba(96,160,255,0.2);font-size:0.75rem;font-weight:600"
-          onclick="updateQuoteStage('${quoteId}','contacted')">→ Contacted</button>
-        <button style="padding:0.45rem;border-radius:var(--radius);background:var(--amber-pale);color:#FBA94C;border:1px solid rgba(232,120,32,0.2);font-size:0.75rem;font-weight:600"
-          onclick="updateQuoteStage('${quoteId}','site_visit_scheduled')">→ Site Visit</button>
-        <button style="padding:0.45rem;border-radius:var(--radius);background:var(--green-pale);color:#4ADE80;border:1px solid rgba(30,140,69,0.2);font-size:0.75rem;font-weight:600"
-          onclick="updateQuoteStage('${quoteId}','invoice_sent')">→ Invoice Sent</button>
-        <button style="padding:0.45rem;border-radius:var(--radius);background:var(--red-pale);color:#F87171;border:1px solid rgba(232,64,64,0.2);font-size:0.75rem;font-weight:600"
-          onclick="updateQuoteStage('${quoteId}','closed_lost')">✕ Lost</button>
-      </div>
-    </div>
-    <div class="dd-section">
-      <div class="dd-sec-title">Call Log</div>
-      <textarea class="log-input" id="quote-note-input" rows="3" placeholder="Log call notes, price breakdown, custom requirements…">${notes || ''}</textarea>
-      <button style="background:var(--navy-hover);border:1px solid var(--border);border-radius:var(--radius);padding:0.4rem 0.9rem;font-size:0.78rem;color:var(--text-2);margin-top:0.4rem" onclick="saveQuoteNote('${quoteId}')">Save note</button>
-    </div>`;
-
-  document.getElementById('dd-actions').innerHTML = `
-    <button class="dd-btn dd-btn-primary"   onclick="sendPaymentLinkFromQuote('${quoteId}')">💚 Send M-Pesa Link</button>
-    <button class="dd-btn dd-btn-secondary" onclick="sendQuoteSMS('${quoteId}','${phone}','${system}','${value}')">📱 SMS Customer</button>
-    <button class="dd-btn dd-btn-secondary" onclick="updateQuoteStage('${quoteId}','closed_won')">✅ Mark Won</button>`;
-
-  openDrawer();
-}
-
-// ── WIRED DRAWER ACTION HELPERS ───────────────────────────────────────────────
-
-async function sendOrderSMS(orderId, type) {
-  if (!orderId) { showToast('⚠️ Open an order first'); return; }
-  const date = new Date(Date.now() + 86400000).toLocaleDateString('en-KE',{weekday:'long',day:'numeric',month:'long'});
-  try {
-    await api(`/orders/${orderId}/sms`, {
-      method: 'POST',
-      body: { type, date, time: '9:00 AM' },
-    });
-    showToast(`✅ SMS sent — ${type.replace(/_/g,' ')}`);
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-async function sendMpesaToOrder(orderId, phone, amount) {
-  if (!orderId) { showToast('⚠️ No order ID'); return; }
-  try {
-    // Re-trigger STK push for unpaid/pending orders
-    await api('/mpesa/stk-push', {
-      method: 'POST',
-      body: {
-        phone,
-        customerName: 'Customer',
-        items: [{ productId: 1, quantity: 1 }], // backend recalculates from existing order
-      },
-    });
-    showToast(`✅ M-Pesa STK Push sent to ${phone}`);
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-async function saveOrderNote(orderId) {
-  const note = document.getElementById('order-note-input')?.value.trim();
-  if (!note) return;
-  // In production: POST /api/v1/orders/:id/notes
-  showToast('✅ Note saved to order log');
-}
-
-async function saveQuoteNote(quoteId) {
-  const note = document.getElementById('quote-note-input')?.value.trim();
-  if (!quoteId || !note) { showToast('⚠️ Write a note first'); return; }
-  try {
-    await api(`/quotes/${quoteId}`, {
-      method: 'PATCH',
-      body: { call_log: note },
-    });
-    showToast('✅ Call log saved');
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-async function sendQuoteSMS(quoteId, phone, system, value) {
-  try {
-    await api(`/quotes/${quoteId}`, { method: 'PATCH', body: { status: 'contacted' } });
-    showToast(`✅ Follow-up SMS queued for ${phone}`);
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-
-function openDrawer() {
-  document.getElementById('overlay').classList.add('open');
-  document.getElementById('detail-drawer').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeDrawer() {
-  document.getElementById('overlay').classList.remove('open');
-  document.getElementById('detail-drawer').classList.remove('open');
-}
-
 // ── API CONFIG ────────────────────────────────────────────────────────────────
-const API_BASE   = 'https://shem-solar-production.up.railway.app/api/v1';
-// For local dev: const API_BASE = 'http://localhost:3000/api/v1';
-const ADMIN_KEY  = localStorage.getItem('shem_admin_key') || '';
+const API_BASE = 'https://shem-solar-production.up.railway.app/api/v1';
+let ADMIN_KEY  = localStorage.getItem('shem_admin_key') || '';
 
- async function api(path, opts = {}) {
+async function api(path, opts = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
     ...opts,
     headers: {
@@ -1509,365 +635,14 @@ const ADMIN_KEY  = localStorage.getItem('shem_admin_key') || '';
   return data;
 }
 
-// ── AUTH CHECK on load ────────────────────────────────────────────────────────
-function checkAuth() {
-  if (!ADMIN_KEY) {
-    const key = prompt('Enter admin secret key:');
-    if (key) {
-      localStorage.setItem('shem_admin_key', key);
-      location.reload();
-    }
-  }
-}
-
-// ── LIVE DATA LOADERS ─────────────────────────────────────────────────────────
-async function loadOverview() {
-  try {
-    const data = await api('/analytics/overview');
-    // Revenue
-    document.querySelector('#view-overview .stat-card.sc-gold .stat-num').textContent =
-      'KES ' + Number(data.revenue.total_revenue).toLocaleString('en-KE', {notation:'compact',maximumFractionDigits:1});
-    // Orders
-    document.querySelector('#view-overview .stat-card.sc-green .stat-num').textContent = data.orders.total;
-    // Quotes
-    document.querySelector('#view-overview .stat-card.sc-blue .stat-num').textContent = data.quotes.total;
-    // Low stock
-    document.querySelector('#view-overview .stat-card.sc-red .stat-num').textContent = data.low_stock.count;
-    // Update sidebar badge
-    if (data.quotes.new_count > 0) {
-      document.querySelector('.sb-item:nth-child(3) .sb-badge')?.textContent && 
-        (document.querySelector('.sb-item:nth-child(3) .sb-badge').textContent = data.quotes.new_count);
-    }
-  } catch(e) { console.warn('Overview load failed:', e.message); }
-}
-
-async function loadOrders() {
-  try {
-    const data = await api('/orders?limit=50');
-    const tbody = document.getElementById('orders-tbody');
-    if (!tbody || !data.data?.length) return;
-    tbody.innerHTML = data.data.map(o => `
-      <tr onclick="openOrderDetailById(${o.id})">
-        <td class="td-mono">${o.order_number}</td>
-        <td class="td-primary">${o.customer_name}</td>
-        <td>${o.shipping_address?.split(',')[0] || '—'}</td>
-        <td>Order #${o.id}</td>
-        <td class="td-amount">${Number(o.total_amount).toLocaleString()}</td>
-        <td>${new Date(o.created_at).toLocaleDateString('en-KE',{day:'numeric',month:'short'})}</td>
-        <td><span class="pill pill-${o.payment_status === 'completed' ? 'paid' : o.order_status}">${o.payment_status === 'completed' ? 'Paid' : o.order_status.charAt(0).toUpperCase()+o.order_status.slice(1)}</span></td>
-        <td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td>
-      </tr>`).join('');
-  } catch(e) { console.warn('Orders load failed:', e.message); }
-}
-
-async function openOrderDetailById(id) {
-  try {
-    const o = await api(`/orders/${id}`);
-    const productList = o.items?.map(i => i.product_name || i.package_name).join(', ') || '—';
-    openOrderDetail(
-      o.order_number, o.customer_name, productList,
-      Number(o.total_amount).toLocaleString(),
-      o.payment_status === 'completed' ? 'paid' : o.order_status,
-      o.shipping_address || '—', o.customer_phone,
-      new Date(o.created_at).toLocaleDateString('en-KE')
-    );
-    // Store real id for actions
-    document.getElementById('detail-drawer').dataset.orderId = id;
-  } catch(e) { showToast('⚠️ Could not load order'); }
-}
-
-async function loadQuotes() {
-  try {
-    const data = await api('/quotes?limit=50');
-    const tbody = document.getElementById('quotes-tbody');
-    if (!tbody || !data.data?.length) return;
-    tbody.innerHTML = data.data.map(q => `
-      <tr onclick="openQuoteDetailById(${q.id})">
-        <td class="td-primary">${q.fullname}</td>
-        <td>${q.property_type}</td>
-        <td>${q.location?.split(',')[0] || '—'}</td>
-        <td>${q.recommended_system || '—'}</td>
-        <td class="td-amount">${q.estimated_value ? Number(q.estimated_value).toLocaleString() : '—'}</td>
-        <td>${new Date(q.created_at).toLocaleDateString('en-KE',{day:'numeric',month:'short'})}</td>
-        <td><span class="pill pill-${q.status}">${q.status.charAt(0).toUpperCase()+q.status.slice(1)}</span></td>
-        <td style="color:var(--text-3);font-size:0.8rem">›</td>
-      </tr>`).join('');
-
-    // Rebuild pipeline from live data
-    const pipeline = await api('/quotes/pipeline');
-    buildPipelineFromAPI(pipeline.data);
-  } catch(e) { console.warn('Quotes load failed:', e.message); }
-}
-
-async function openQuoteDetailById(id) {
-  try {
-    const q = await api(`/quotes/${id}`);
-    openQuoteDetail(
-      q.fullname, q.phone_number, q.property_type,
-      q.location, q.recommended_system || '—',
-      q.estimated_value ? Number(q.estimated_value).toLocaleString() : '0',
-      q.status, new Date(q.created_at).toLocaleDateString('en-KE'),
-      q.additional_notes || ''
-    );
-    document.getElementById('detail-drawer').dataset.quoteId = id;
-  } catch(e) { showToast('⚠️ Could not load quote'); }
-}
-async function loadProductsTable() {
-  try {
-    const data = await api('/products');
-    const tbody = document.getElementById('products-table-body');
-    if (!tbody) return;
-    const EMOJIS = {panel:'☀️',battery:'🔋',inverter:'⚡',charge_controller:'🔧',accessory:'📦'};
-    tbody.innerHTML = (data.data || []).map(item => {
-      const low = item.stock_quantity <= 3;
-      return `<tr>
-        <td class="td-primary">${EMOJIS[item.category] || '📦'} ${item.name}</td>
-        <td>${item.category}</td>
-        <td class="td-amount">${Number(item.price).toLocaleString()}</td>
-        <td>${item.stock_quantity}</td>
-        <td>${low ? '<span class="pill pill-low">Low Stock</span>' : '<span class="pill pill-ok">Active</span>'}</td>
-        <td>
-          <button class="sec-action" onclick='openProductModal(${JSON.stringify(item).replace(/'/g, "&#39;")})'>Edit</button>
-          <button class="sec-action" onclick="deleteProductConfirm(${item.id},'${item.name.replace(/'/g, "\\'")}')">Delete</button>
-        </td>
-      </tr>`;
-    }).join('');
-  } catch (e) { console.warn('Products table load failed:', e.message); }
-}
-
-async function loadInventory() {
-  try {
-    const data = await api('/products');
-    const el = document.getElementById('inv-grid');
-    if (!el || !data.data?.length) return;
-    const EMOJIS = {panel:'☀️',battery:'🔋',inverter:'⚡',charge_controller:'🔧',accessory:'📦'};
-    el.innerHTML = data.data.map(item => {
-      const pct  = Math.min(100, Math.round((item.stock_quantity / 50) * 100));
-      const low  = item.stock_quantity <= 3;
-      const barColor = low ? 'var(--red)' : pct < 50 ? 'var(--amber)' : 'var(--green)';
-      return `<div class="inv-card">
-        <div class="inv-icon">${EMOJIS[item.category] || '📦'}</div>
-        <div class="inv-name">${item.name}</div>
-        <div class="inv-sku">${item.sku}</div>
-        <div class="inv-stock-row">
-          <span class="inv-stock-label">In stock</span>
-          <span class="inv-stock-num">${item.stock_quantity}</span>
-        </div>
-        <div class="inv-bar-track"><div class="inv-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
-        <div class="inv-footer">
-          <span class="inv-price">KES <strong>${Number(item.price).toLocaleString()}</strong></span>
-          ${low ? '<span class="pill pill-low">Low Stock</span>' : '<span class="pill pill-ok">In Stock</span>'}
-        </div>
-        ${low ? `<button class="send-btn" style="margin-top:0.8rem;padding:0.5rem;font-size:0.78rem" onclick="restockProduct(${item.id},'${item.name}')">📦 Reorder</button>` : ''}
-        <div style="display:flex;gap:0.5rem;margin-top:0.6rem;">
-  <button class="send-btn" style="flex:1;padding:0.5rem;font-size:0.78rem;background:var(--bg-3,#222);" onclick='openProductModal(${JSON.stringify(item).replace(/'/g, "&#39;")})'>✏️ Edit</button>
-  <button class="send-btn" style="flex:1;padding:0.5rem;font-size:0.78rem;background:#ef4444;" onclick="deleteProductConfirm(${item.id},'${item.name.replace(/'/g, "\\'")}')">🗑️ Delete</button>
-</div>
-      </div>`;
-    }).join('');
-  } catch(e) { console.warn('Inventory load failed:', e.message); }
-}
-
-async function restockProduct(id, name) {
-  const units = prompt(`How many units to add for "${name}"?`);
-  if (!units || isNaN(units)) return;
-  try {
-    await api(`/products/${id}/stock`, { method: 'PATCH', body: { units: parseInt(units) } });
-    showToast(`✅ ${units} units added to "${name}"`);
-    loadInventory();
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-async function loadAnalytics() {
-  try {
-    const [overview, revenue, topProds] = await Promise.all([
-      api('/analytics/overview'),
-      api('/analytics/revenue'),
-      api('/analytics/top-products'),
-    ]);
-    // Update stat cards
-    const cards = document.querySelectorAll('#view-analytics .stat-card');
-    if (cards[0]) cards[0].querySelector('.stat-num').textContent =
-      'KES ' + Number(overview.revenue.total_revenue).toLocaleString('en-KE',{notation:'compact',maximumFractionDigits:1});
-    if (cards[1]) cards[1].querySelector('.stat-num').textContent = overview.orders.total || '—';
-
-    // Revenue bars from live data
-    if (revenue.data?.length) {
-      const el = document.getElementById('monthly-bars');
-      if (el) {
-        const max = Math.max(...revenue.data.map(r => parseFloat(r.revenue)));
-        el.innerHTML = revenue.data.map(r => `
-          <div class="bar-col">
-            <div class="bar-val">${(parseFloat(r.revenue)/1000000).toFixed(1)}M</div>
-            <div class="bar-fill" style="height:${Math.round((parseFloat(r.revenue)/max)*100)}%;background:var(--green)"></div>
-            <div class="bar-label">${r.month.split(' ')[0]}</div>
-          </div>`).join('');
-      }
-    }
-
-    // Top products
-    if (topProds.data?.length) {
-      const el = document.getElementById('top-products-list');
-      if (el) {
-        const maxRev = Math.max(...topProds.data.map(p => parseFloat(p.revenue)));
-        el.innerHTML = topProds.data.map((p,i) => `
-          <div class="tp-item">
-            <span class="tp-rank">${i+1}</span>
-            <span class="tp-icon">📦</span>
-            <div style="flex:1">
-              <div class="tp-name">${p.product_name}</div>
-              <div class="tp-bar"><div class="tp-bar-fill" style="width:${Math.round((parseFloat(p.revenue)/maxRev)*100)}%"></div></div>
-            </div>
-            <span class="tp-rev">${(parseFloat(p.revenue)/1000).toFixed(0)}K</span>
-          </div>`).join('');
-      }
-    }
-  } catch(e) { console.warn('Analytics load failed:', e.message); }
-}
-
-function buildPipelineFromAPI(stages) {
-  const STAGE_ORDER = ['new','contacted','site_visit_scheduled','invoice_sent'];
-  const STAGE_LABELS = {new:'New',contacted:'Contacted',site_visit_scheduled:'Site Visit',invoice_sent:'Invoice Sent'};
-  const STAGE_COLORS = {new:'var(--blue)',contacted:'var(--gold)',site_visit_scheduled:'var(--amber)',invoice_sent:'var(--green)'};
-  const stageMap = {};
-  stages.forEach(s => stageMap[s.status] = s);
-
-  ['mini-pipeline','full-pipeline'].forEach(containerId => {
-    const el = document.getElementById(containerId);
-    if (!el) return;
-    el.innerHTML = STAGE_ORDER.map(sid => {
-      const s = stageMap[sid] || { count: 0, pipeline_value: 0 };
-      return `<div class="pipeline-col">
-        <div class="pipe-head">
-          <span style="color:${STAGE_COLORS[sid]}">${STAGE_LABELS[sid]}</span>
-          <span class="pipe-count">${s.count}</span>
-        </div>
-        <div style="font-size:0.72rem;color:var(--text-3);padding:0.3rem 0">
-          KES ${Number(s.pipeline_value).toLocaleString('en-KE',{notation:'compact',maximumFractionDigits:0})} pipeline
-        </div>
-      </div>`;
-    }).join('');
-  });
-}
-
-// ── MPESA TOOL — real API ─────────────────────────────────────────────────────
-function updateMpfAmount() {
-  const sel = document.getElementById('mpf-product');
-  const val = sel.value;
-  document.getElementById('mpf-amount').value = val || '';
-}
-
-async function simulateMpesaSend() {
-  const name   = document.getElementById('mpf-name').value.trim();
-  const phone  = document.getElementById('mpf-phone').value.trim();
-  const amount = document.getElementById('mpf-amount').value.trim();
-  const ref    = document.getElementById('mpf-ref').value.trim();
-  if (!name || !phone || !amount) { showToast('⚠️ Please fill in all fields'); return; }
-
-  // Map product selection to items payload
-  const productSel = document.getElementById('mpf-product');
-  const pkgMap = {
-    '185000': { packageId: 1 }, '265000': { packageId: 1 },
-    '390000': { packageId: 1 }, '580000': { packageId: 2 },
-    '28000':  { productId: 1 }, '55000':  { productId: 2 },
-    '72000':  { productId: 3 },
-  };
-  const item = pkgMap[productSel.value] || { productId: 1 };
-
-  try {
-    const data = await api('/mpesa/stk-push', {
-      method: 'POST',
-      body: { phone, customerName: name, items: [{ ...item, quantity: 1 }] },
-    });
-    showToast(`✅ STK Push sent — Order ${data.orderNumber}`);
-    // Refresh orders
-    loadOrders();
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-// ── ORDER STATUS ADVANCE — real API ──────────────────────────────────────────
-async function advanceOrderStatus(orderId, newStatus) {
-  try {
-    await api(`/orders/${orderId}/status`, { method: 'PATCH', body: { status: newStatus } });
-    showToast(`✅ Order moved to ${newStatus}`);
-    loadOrders();
-    closeDrawer();
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-// ── QUOTE STAGE UPDATE — real API ─────────────────────────────────────────────
-async function updateQuoteStage(quoteId, status) {
-  try {
-    await api(`/quotes/${quoteId}`, { method: 'PATCH', body: { status } });
-    showToast(`✅ Quote moved to ${status}`);
-    loadQuotes();
-    closeDrawer();
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-// ── SEND PAYMENT LINK from quote detail — real API ────────────────────────────
-async function sendPaymentLinkFromQuote(quoteId) {
-  try {
-    const data = await api(`/quotes/${quoteId}/send-payment-link`, { method: 'POST' });
-    showToast(`✅ STK Push sent — Order ${data.orderNumber}`);
-    loadQuotes();
-    closeDrawer();
-  } catch(e) { showToast(`⚠️ ${e.message}`); }
-}
-
-// ── SMS BROADCAST — real API ──────────────────────────────────────────────────
-let smsRecipients = 0;
-function updateSmsCount(sel) { smsRecipients = parseInt(sel.value) || 0; updateSmsCost(); }
-function loadTemplate(sel) { if (sel.value) document.getElementById('sms-body').value = sel.value; updateSmsChars(document.getElementById('sms-body')); }
-function updateSmsChars(ta) { document.getElementById('sms-chars').textContent = `${ta.value.length} / 160 chars`; updateSmsCost(); }
-function updateSmsCost() { document.getElementById('sms-cost').textContent = `Recipients: ${smsRecipients} · Cost: ~KES ${(smsRecipients*1.2).toFixed(0)}`; }
-async function simulateSmsSend() {
-  if (!smsRecipients) { showToast('⚠️ Select a recipient segment'); return; }
-  const body = document.getElementById('sms-body').value.trim();
-  if (!body) { showToast('⚠️ Enter a message'); return; }
-  // In production this would call a bulk SMS endpoint
-  showToast(`✅ SMS queued for ${smsRecipients} recipients via Africa's Talking`);
-}
-
-// ── SEARCH / FILTER ───────────────────────────────────────────────────────────
-function filterTable(input, tbodyId) {
-  const q = input.value.toLowerCase();
-  document.querySelectorAll(`#${tbodyId} tr`).forEach(row => {
-    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
-  });
-}
-function filterTableStatus(sel, tbodyId) {
-  const q = sel.value.toLowerCase();
-  document.querySelectorAll(`#${tbodyId} tr`).forEach(row => {
-    row.style.display = !q || row.textContent.toLowerCase().includes(q) ? '' : 'none';
-  });
-}
-
-// ── SWITCHVIEW — load live data on tab change ─────────────────────────────────
-const _origSwitchView = switchView;
-window.switchView = function(id, btn) {
-  _origSwitchView(id, btn);
-  const loaders = {
-    overview:  () => { loadOverview(); loadOrders(); },
-    orders:    loadOrders,
-    quotes:    loadQuotes,
-    inventory: loadInventory,
-    analytics: loadAnalytics,
-    products:  loadProductsTable,
-  };
-  loaders[id]?.();
-};
-
-// ── TOAST ──
-// ── ADMIN ACCOUNTS ───────────────────────────────────────────────────────────
+// ── ADMIN ACCOUNTS ────────────────────────────────────────────────────────────
 const ADMIN_ACCOUNTS = [
-  { username: 'shem.manager',  password: 'Solar2026!',  name: 'Shem Manager',  role: 'Super Admin',  initials: 'SM', apiKey: 'ShemsolarAdmin2024SecretKey'   },
-  { username: 'grace.admin',   password: 'Admin@2026',  name: 'Grace Muthoni', role: 'Manager',      initials: 'GM', apiKey: 'ShemsolarAdmin2024SecretKey' },
-  { username: 'james.sales',   password: 'Sales#123',   name: 'James Kariuki', role: 'Sales',        initials: 'JK', apiKey: 'ShemsolarAdmin2024SecretKey'   },
-  { username: 'amina.finance', password: 'Finance$99',  name: 'Amina Hassan',  role: 'Finance',      initials: 'AH', apiKey: 'ShemsolarAdmin2024SecretKey' },
-  { username: 'peter.support', password: 'Support*7',   name: 'Peter Ochieng', role: 'Support',      initials: 'PO', apiKey: 'ShemsolarAdmin2024SecretKey' },
+  { username:'shem.manager',  password:'Solar2026!',  name:'Shem Manager',  role:'Super Admin', initials:'SM', apiKey:'ShemsolarAdmin2024SecretKey' },
+  { username:'grace.admin',   password:'Admin@2026',  name:'Grace Muthoni', role:'Manager',     initials:'GM', apiKey:'ShemsolarAdmin2024SecretKey' },
+  { username:'james.sales',   password:'Sales#123',   name:'James Kariuki', role:'Sales',       initials:'JK', apiKey:'ShemsolarAdmin2024SecretKey' },
+  { username:'amina.finance', password:'Finance$99',  name:'Amina Hassan',  role:'Finance',     initials:'AH', apiKey:'ShemsolarAdmin2024SecretKey' },
+  { username:'peter.support', password:'Support*7',   name:'Peter Ochieng', role:'Support',     initials:'PO', apiKey:'ShemsolarAdmin2024SecretKey' },
 ];
-
 let currentAdmin = null;
 
 function fillLogin(u, p) {
@@ -1879,35 +654,28 @@ function fillLogin(u, p) {
 function doAdminLogin() {
   const username = document.getElementById('login-username').value.trim();
   const password = document.getElementById('login-password').value;
-  const btn      = document.getElementById('login-btn');
-
   const admin = ADMIN_ACCOUNTS.find(a => a.username === username && a.password === password);
-
   if (!admin) {
     document.getElementById('login-error').style.display = 'block';
     document.getElementById('login-password').value = '';
-    document.getElementById('login-password').focus();
     return;
   }
-
-  // Store session
   currentAdmin = admin;
+  ADMIN_KEY = admin.apiKey;
   localStorage.setItem('shem_admin_key', admin.apiKey);
-  localStorage.setItem('shem_admin_user', JSON.stringify({ name: admin.name, role: admin.role, initials: admin.initials }));
-
-  // Update sidebar with logged-in user
-  document.getElementById('sb-avatar').textContent   = admin.initials;
-  document.getElementById('sb-user-name').textContent = admin.name;
-  document.getElementById('sb-user-role').textContent = admin.role;
-  document.getElementById('page-sub').textContent     = `${admin.role} · ${new Date().toLocaleDateString('en-KE',{weekday:'long',day:'numeric',month:'long'})}`;
-
-  // Show dashboard, hide login
-  document.getElementById('login-wrap').style.display      = 'none';
+  localStorage.setItem('shem_admin_user', JSON.stringify({ name:admin.name, role:admin.role, initials:admin.initials }));
+  applyUserToUI(admin);
+  document.getElementById('login-wrap').style.display = 'none';
   document.getElementById('dashboard-shell').style.display = 'flex';
-
-  // Load live data
   loadOverview();
   loadOrders();
+}
+
+function applyUserToUI(user) {
+  document.getElementById('sb-avatar').textContent     = user.initials;
+  document.getElementById('sb-user-name').textContent  = user.name;
+  document.getElementById('sb-user-role').textContent  = user.role;
+  document.getElementById('page-sub').textContent      = `${user.role} · ${new Date().toLocaleDateString('en-KE',{weekday:'long',day:'numeric',month:'long'})}`;
 }
 
 function doAdminLogout() {
@@ -1915,13 +683,12 @@ function doAdminLogout() {
   localStorage.removeItem('shem_admin_key');
   localStorage.removeItem('shem_admin_user');
   document.getElementById('dashboard-shell').style.display = 'none';
-  document.getElementById('login-wrap').style.display      = 'flex';
+  document.getElementById('login-wrap').style.display = 'flex';
   document.getElementById('login-username').value = '';
   document.getElementById('login-password').value = '';
   document.getElementById('login-error').style.display = 'none';
 }
 
-// ── SESSION RESTORE on page reload ───────────────────────────────────────────
 function checkAuth() {
   const saved = localStorage.getItem('shem_admin_user');
   const key   = localStorage.getItem('shem_admin_key');
@@ -1929,156 +696,178 @@ function checkAuth() {
     try {
       const user = JSON.parse(saved);
       currentAdmin = { ...user, apiKey: key };
-      document.getElementById('sb-avatar').textContent    = user.initials;
-      document.getElementById('sb-user-name').textContent = user.name;
-      document.getElementById('sb-user-role').textContent = user.role;
-      document.getElementById('page-sub').textContent     = `${user.role} · ${new Date().toLocaleDateString('en-KE',{weekday:'long',day:'numeric',month:'long'})}`;
-      document.getElementById('login-wrap').style.display      = 'none';
+      ADMIN_KEY = key;
+      applyUserToUI(user);
+      document.getElementById('login-wrap').style.display = 'none';
       document.getElementById('dashboard-shell').style.display = 'flex';
-    } catch(_) { /* bad session, stay on login */ }
+    } catch(_) {}
   }
 }
 
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2600);
+// ── NAV ───────────────────────────────────────────────────────────────────────
+function switchView(id, btn) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + id)?.classList.add('active');
+  if (btn) btn.classList.add('active');
+  const titles = {overview:'Overview',orders:'Orders',quotes:'Quote Pipeline',inventory:'Inventory',analytics:'Analytics',mpesa:'Send M-Pesa Link',sms:'SMS Broadcast',products:'Products',settings:'Settings'};
+  document.getElementById('page-title').textContent = titles[id] || id;
+  const loaders = { overview:()=>{loadOverview();loadOrders();}, orders:loadOrders, quotes:loadQuotes, inventory:loadInventory, analytics:loadAnalytics, products:loadProductsTable };
+  loaders[id]?.();
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-checkAuth();
-renderDailyBars();
-buildPipeline('mini-pipeline', true);
-buildPipeline('full-pipeline', false);
-buildGeo();
-buildTopProducts();
-setTimeout(renderMonthlyBars, 100);
-function autoSlug() {
-  const slugField = document.getElementById('pf-slug');
-  if (slugField.dataset.manual === 'true') return;
-  const name = document.getElementById('pf-name').value;
-  slugField.value = name
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-}
-
-function openProductModal(product) {
-  const overlay = document.getElementById('product-modal-overlay');
-  const title = document.getElementById('product-modal-title');
-  const err = document.getElementById('pf-error');
-  err.style.display = 'none';
-  err.textContent = '';
-
-  const slugField = document.getElementById('pf-slug');
-  slugField.dataset.manual = 'false';
-
-  if (product) {
-    title.textContent = 'Edit Product';
-    document.getElementById('pf-id').value = product.id;
-    document.getElementById('pf-sku').value = product.sku || '';
-    document.getElementById('pf-name').value = product.name || '';
-    slugField.value = product.slug || '';
-    slugField.dataset.manual = 'true';
-    document.getElementById('pf-category').value = product.category || 'panel';
-    document.getElementById('pf-price').value = product.price || '';
-    document.getElementById('pf-stock').value = product.stock_quantity || 0;
-    document.getElementById('pf-description').value = product.description || '';
-    let specsObj = product.specifications;
-    if (typeof specsObj === 'string') {
-      try { specsObj = JSON.parse(specsObj); } catch (e) { specsObj = null; }
-    }
-    document.getElementById('pf-specs').value = specsObj
-      ? Object.entries(specsObj).map(([k, v]) => `${k}: ${v}`).join('\n')
-      : '';
-  } else {
-    title.textContent = 'Add Product';
-    document.getElementById('product-form').reset();
-    document.getElementById('pf-id').value = '';
-    document.getElementById('pf-stock').value = 0;
-  }
-
-  overlay.style.display = 'flex';
-}
-
-function closeProductModal() {
-  document.getElementById('product-modal-overlay').style.display = 'none';
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const slugField = document.getElementById('pf-slug');
-  if (slugField) {
-    slugField.addEventListener('input', () => { slugField.dataset.manual = 'true'; });
-  }
-});
-
-function parseSpecsText(text) {
-  if (!text || !text.trim()) return {};
-  const specs = {};
-  text.split('\n').forEach((line) => {
-    const idx = line.indexOf(':');
-    if (idx > -1) {
-      const key = line.slice(0, idx).trim();
-      const val = line.slice(idx + 1).trim();
-      if (key) specs[key] = val;
-    }
-  });
-  return specs;
-}
-
-async function deleteProductConfirm(id, name) {
-  if (!confirm(`Permanently delete "${name}"? This cannot be undone.`)) return;
+// ── LIVE DATA LOADERS ─────────────────────────────────────────────────────────
+async function loadOverview() {
   try {
-    await api(`/products/${id}`, { method: 'DELETE' });
-    showToast('Product deleted ✓');
-    loadInventory();
-  } catch (e) {
-    showToast(e.message || 'Failed to delete product');
-  }
-}
+    const data = await api('/analytics/overview');
+    const rev = Number(data.revenue?.total_revenue || 0);
+    document.getElementById('ov-revenue').textContent = 'KES ' + rev.toLocaleString('en-KE',{notation:'compact',maximumFractionDigits:1});
+    document.getElementById('ov-revenue-meta').textContent = 'This month';
+    document.getElementById('ov-orders').textContent  = data.orders?.total || 0;
+    document.getElementById('ov-orders-meta').textContent = `${data.orders?.paid||0} paid · ${data.orders?.pending||0} pending`;
+    document.getElementById('ov-quotes').textContent  = data.quotes?.total || 0;
+    document.getElementById('ov-quotes-meta').textContent = `${data.quotes?.new_count||0} new this month`;
+    document.getElementById('ov-lowstock').textContent = data.low_stock?.count || 0;
+    document.getElementById('ov-lowstock-meta').textContent = data.low_stock?.count > 0 ? 'Reorder needed' : 'All stocked';
+    // Update sidebar badges
+    const badgeO = document.getElementById('badge-orders');
+    const badgeQ = document.getElementById('badge-quotes');
+    if (badgeO) badgeO.textContent = data.orders?.pending || 0;
+    if (badgeQ) badgeQ.textContent = data.quotes?.new_count || 0;
+  } catch(e) { console.warn('Overview load failed:', e.message); }
 
-async function submitProduct(event) {
-  event.preventDefault();
-  const submitBtn = document.getElementById('pf-submit-btn');
-  const err = document.getElementById('pf-error');
-  err.style.display = 'none';
-
-  const id = document.getElementById('pf-id').value;
-  const payload = {
-    sku: document.getElementById('pf-sku').value.trim(),
-    name: document.getElementById('pf-name').value.trim(),
-    slug: document.getElementById('pf-slug').value.trim(),
-    category: document.getElementById('pf-category').value,
-    price: Number(document.getElementById('pf-price').value),
-    stock_quantity: Number(document.getElementById('pf-stock').value) || 0,
-    description: document.getElementById('pf-description').value.trim() || null,
-    specifications: parseSpecsText(document.getElementById('pf-specs').value),
-  };
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Saving...';
-
+  // Also load recent orders for overview tab
   try {
-    if (id) {
-      await api(`/products/${id}`, { method: 'PATCH', body: payload });
-      showToast('Product updated ✓');
-    } else {
-      await api('/products', { method: 'POST', body: payload });
-      showToast('Product added ✓');
-    }
-    closeProductModal();
-    if (typeof loadInventory === 'function') loadInventory();
-  } catch (e) {
-    err.textContent = e.message || 'Failed to save product';
-    err.style.display = 'block';
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Save Product';
-  }
+    const data = await api('/orders?limit=5');
+    const tbody = document.getElementById('ov-orders-tbody');
+    if (!tbody) return;
+    if (!data.data?.length) { tbody.innerHTML = '<tr><td colspan="4" class="loading-state">No orders yet.</td></tr>'; return; }
+    tbody.innerHTML = data.data.map(o => `
+      <tr onclick="openOrderDetailById(${o.id})">
+        <td class="td-primary">${o.customer_name}</td>
+        <td>${o.items?.[0]?.product_name || 'Order #'+o.id}</td>
+        <td class="td-amount">${Number(o.total_amount).toLocaleString()}</td>
+        <td><span class="pill pill-${o.payment_status==='completed'?'paid':o.order_status}">${o.payment_status==='completed'?'Paid':o.order_status}</span></td>
+      </tr>`).join('');
+  } catch(e) { console.warn('Recent orders failed:', e.message); }
+
+  // Pipeline
+  try {
+    const pipeline = await api('/quotes/pipeline');
+    buildPipelineFromAPI(pipeline.data, 'mini-pipeline');
+  } catch(e) { document.getElementById('mini-pipeline').innerHTML = '<div class="loading-state" style="grid-column:1/-1">No quotes yet.</div>'; }
 }
-</script>
-</div><!-- /dashboard-shell -->
-</body>
-</html>
+
+async function loadOrders() {
+  try {
+    const data = await api('/orders?limit=100');
+    const rows = data.data || [];
+
+    // Update stat cards
+    const paid       = rows.filter(o => o.payment_status === 'completed').length;
+    const pending    = rows.filter(o => o.order_status === 'pending').length;
+    const processing = rows.filter(o => o.order_status === 'processing').length;
+    const cancelled  = rows.filter(o => o.order_status === 'cancelled').length;
+    const paidRev    = rows.filter(o => o.payment_status==='completed').reduce((s,o)=>s+Number(o.total_amount),0);
+    const pendingRev = rows.filter(o => o.order_status==='pending').reduce((s,o)=>s+Number(o.total_amount),0);
+
+    const setEl = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+    setEl('ord-paid', paid);
+    setEl('ord-paid-meta', 'KES ' + paidRev.toLocaleString('en-KE',{notation:'compact',maximumFractionDigits:1}) + ' collected');
+    setEl('ord-pending', pending);
+    setEl('ord-pending-meta', 'KES ' + pendingRev.toLocaleString('en-KE',{notation:'compact',maximumFractionDigits:1}) + ' awaiting');
+    setEl('ord-processing', processing);
+    setEl('ord-cancelled', cancelled);
+
+    const tbody = document.getElementById('orders-tbody');
+    if (!tbody) return;
+    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="loading-state">No orders yet.</td></tr>'; return; }
+    tbody.innerHTML = rows.map(o => `
+      <tr onclick="openOrderDetailById(${o.id})">
+        <td class="td-mono">${o.order_number}</td>
+        <td class="td-primary">${o.customer_name}</td>
+        <td>${o.shipping_address?.split(',')[0] || '—'}</td>
+        <td>${o.items?.[0]?.product_name || '—'}</td>
+        <td class="td-amount">${Number(o.total_amount).toLocaleString()}</td>
+        <td>${new Date(o.created_at).toLocaleDateString('en-KE',{day:'numeric',month:'short'})}</td>
+        <td><span class="pill pill-${o.payment_status==='completed'?'paid':o.order_status}">${o.payment_status==='completed'?'Paid':o.order_status}</span></td>
+        <td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td>
+      </tr>`).join('');
+
+    // Recent payments for mpesa tab
+    loadRecentPayments(rows);
+  } catch(e) { console.warn('Orders load failed:', e.message); }
+}
+
+function loadRecentPayments(rows) {
+  const el = document.getElementById('recent-payments-list');
+  if (!el) return;
+  const recent = rows.filter(o => o.mpesa_checkout_id || o.manual_payment_ref).slice(0,5);
+  if (!recent.length) { el.innerHTML = '<div class="loading-state">No payments yet.</div>'; return; }
+  el.innerHTML = `<table style="width:100%;border-collapse:collapse">
+    <thead><tr>
+      <th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;color:var(--text-3);text-align:left">Customer</th>
+      <th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;color:var(--text-3);text-align:left">Amount</th>
+      <th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;color:var(--text-3);text-align:left">Date</th>
+      <th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;color:var(--text-3);text-align:left">Status</th>
+    </tr></thead>
+    <tbody>
+      ${recent.map(o=>`<tr>
+        <td style="padding:0.6rem 0.8rem;font-size:0.83rem;color:var(--text-1);border-bottom:1px solid rgba(255,255,255,0.04)">${o.customer_name}</td>
+        <td style="padding:0.6rem 0.8rem;font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--text-1);border-bottom:1px solid rgba(255,255,255,0.04)">${Number(o.total_amount).toLocaleString()}</td>
+        <td style="padding:0.6rem 0.8rem;font-size:0.78rem;color:var(--text-3);border-bottom:1px solid rgba(255,255,255,0.04)">${new Date(o.created_at).toLocaleDateString('en-KE',{day:'numeric',month:'short'})}</td>
+        <td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.04)"><span class="pill pill-${o.payment_status==='completed'?'paid':'pending'}">${o.payment_status==='completed'?'Confirmed':'Awaiting'}</span></td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function loadQuotes() {
+  try {
+    const [quotesData, pipelineData] = await Promise.all([
+      api('/quotes?limit=100'),
+      api('/quotes/pipeline'),
+    ]);
+    const rows = quotesData.data || [];
+    buildPipelineFromAPI(pipelineData.data, 'full-pipeline');
+    const tbody = document.getElementById('quotes-tbody');
+    if (!tbody) return;
+    if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="loading-state">No quotes yet.</td></tr>'; return; }
+    tbody.innerHTML = rows.map(q => `
+      <tr onclick="openQuoteDetailById(${q.id})">
+        <td class="td-primary">${q.fullname}</td>
+        <td>${q.property_type}</td>
+        <td>${q.location?.split(',')[0] || '—'}</td>
+        <td>${q.recommended_system || '—'}</td>
+        <td class="td-amount">${q.estimated_value ? Number(q.estimated_value).toLocaleString() : '—'}</td>
+        <td>${new Date(q.created_at).toLocaleDateString('en-KE',{day:'numeric',month:'short'})}</td>
+        <td><span class="pill pill-${q.status}">${q.status.charAt(0).toUpperCase()+q.status.slice(1)}</span></td>
+        <td style="color:var(--text-3);font-size:0.8rem">›</td>
+      </tr>`).join('');
+  } catch(e) { console.warn('Quotes load failed:', e.message); }
+}
+
+async function loadInventory() {
+  try {
+    const data = await api('/products');
+    const el = document.getElementById('inv-grid');
+    if (!el) return;
+    const rows = data.data || [];
+    if (!rows.length) { el.innerHTML = '<div class="loading-state" style="grid-column:1/-1">No products yet. Click + Add Product to get started.</div>'; return; }
+    const EMOJIS = {panel:'☀️',battery:'🔋',inverter:'⚡',charge_controller:'🔧',accessory:'📦'};
+    el.innerHTML = rows.map(item => {
+      const pct = Math.min(100, Math.round((item.stock_quantity / Math.max(item.stock_quantity, 50)) * 100));
+      const low = item.stock_quantity <= 3;
+      const barColor = low ? 'var(--red)' : pct < 50 ? 'var(--amber)' : 'var(--green)';
+      return `<div class="inv-card">
+        <div class="inv-icon">${EMOJIS[item.category] || '📦'}</div>
+        <div class="inv-name">${item.name}</div>
+        <div class="inv-sku">${item.sku}</div>
+        <div class="inv-stock-row"><span class="inv-stock-label">In stock</span><span class="inv-stock-num">${item.stock_quantity}</span></div>
+        <div class="inv-bar-track"><div class="inv-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
+        <div class="inv-footer">
+          <span class="inv-price">KES <strong>${Number(item.price).toLocaleString()}</strong></span>
+          ${low ? '<span class="pill pill-low">Low Stock</span>' : '<span class="pill pill-ok">In Stock</span>'}
+        </div>
+        ${low ? `<button class="send-btn" style="margin-top:0.8rem;padding:0.5rem;font-size:0.78rem" onclick="restockProduct(${item.id},'${item.name}')">📦 Reorder</button>` : ''}
+        <div style="display:flex;gap:0.5rem;margin-top:0.6rem">
