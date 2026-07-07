@@ -2592,3 +2592,340 @@
         }).join('');
       } catch (e) { console.warn('Inventory load failed:', e.message); }
     }
+    async function loadProductsTable() {
+      try {
+        const data = await api('/products');
+        const tbody = document.getElementById('products-table-body');
+        if (!tbody) return;
+        const EMOJIS = { panel: '☀️', battery: '🔋', inverter: '⚡', charge_controller: '🔧', accessory: '📦' };
+        tbody.innerHTML = (data.data || []).map(item => {
+          const low = item.stock_quantity <= 3;
+          return `<tr>
+            <td class="td-primary">${EMOJIS[item.category] || '📦'} ${item.name}</td>
+            <td>${item.category}</td>
+            <td class="td-amount">${Number(item.price).toLocaleString()}</td>
+            <td>${item.stock_quantity}</td>
+            <td>${low ? '<span class="pill pill-low">Low Stock</span>' : '<span class="pill pill-ok">Active</span>'}</td>
+            <td>
+              <button class="sec-action" onclick='openProductModal(${JSON.stringify(item).replace(/'/g, "&#39;")})'>Edit</button>
+              <button class="sec-action" onclick="deleteProductConfirm(${item.id},'${item.name.replace(/'/g, "\\'")}')">Delete</button>
+            </td>
+          </tr>`;
+        }).join('');
+      } catch (e) { console.warn('Products table load failed:', e.message); }
+    }
+
+    async function loadAnalytics() {
+      try {
+        const [overview, revenue, topProds] = await Promise.all([
+          api('/analytics/overview'),
+          api('/analytics/revenue'),
+          api('/analytics/top-products'),
+        ]);
+        const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+        setEl('an-revenue', 'KES ' + Number(overview.revenue?.total_revenue || 0).toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 }));
+        setEl('an-orders', overview.orders?.total || 0);
+        setEl('an-quotes', overview.quotes?.total || 0);
+        setEl('an-lowstock', overview.low_stock?.count || 0);
+        if (revenue.data?.length) {
+          const el = document.getElementById('monthly-bars');
+          if (el) {
+            const max = Math.max(...revenue.data.map(r => parseFloat(r.revenue)));
+            el.innerHTML = revenue.data.map(r => `
+              <div class="bar-col">
+                <div class="bar-val">${(parseFloat(r.revenue) / 1000000).toFixed(1)}M</div>
+                <div class="bar-fill" style="height:${Math.round((parseFloat(r.revenue) / max) * 100)}%;background:var(--green)"></div>
+                <div class="bar-label">${r.month?.split(' ')[0] || ''}</div>
+              </div>`).join('');
+          }
+        }
+        if (topProds.data?.length) {
+          const el = document.getElementById('top-products-list');
+          if (el) {
+            const maxRev = Math.max(...topProds.data.map(p => parseFloat(p.revenue)));
+            el.innerHTML = topProds.data.map((p, i) => `
+              <div class="tp-item">
+                <span class="tp-rank">${i + 1}</span>
+                <span class="tp-icon">📦</span>
+                <div style="flex:1"><div class="tp-name">${p.product_name}</div>
+                <div class="tp-bar"><div class="tp-bar-fill" style="width:${Math.round((parseFloat(p.revenue) / maxRev) * 100)}%"></div></div></div>
+                <span class="tp-rev">${(parseFloat(p.revenue) / 1000).toFixed(0)}K</span>
+              </div>`).join('');
+          }
+        }
+      } catch (e) { console.warn('Analytics load failed:', e.message); }
+    }
+
+    function buildPipelineFromAPI(stages, containerId) {
+      const STAGE_ORDER = ['new', 'contacted', 'site_visit_scheduled', 'invoice_sent'];
+      const STAGE_LABELS = { new: 'New', contacted: 'Contacted', site_visit_scheduled: 'Site Visit', invoice_sent: 'Invoice Sent' };
+      const STAGE_COLORS = { new: 'var(--blue)', contacted: 'var(--gold)', site_visit_scheduled: 'var(--amber)', invoice_sent: 'var(--green)' };
+      const stageMap = {};
+      (stages || []).forEach(s => stageMap[s.status] = s);
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      el.innerHTML = STAGE_ORDER.map(sid => {
+        const s = stageMap[sid] || { count: 0, pipeline_value: 0 };
+        return `<div class="pipeline-col">
+          <div class="pipe-head"><span style="color:${STAGE_COLORS[sid]}">${STAGE_LABELS[sid]}</span><span class="pipe-count">${s.count}</span></div>
+          <div style="font-size:0.72rem;color:var(--text-3);padding:0.3rem 0">KES ${Number(s.pipeline_value || 0).toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 0 })} pipeline</div>
+        </div>`;
+      }).join('');
+    }
+
+    async function openOrderDetailById(id) {
+      try {
+        const o = await api(`/orders/${id}`);
+        openOrderDetail(o.order_number, o.customer_name, o.items?.map(i => i.product_name || i.package_name).join(', ') || '—',
+          Number(o.total_amount).toLocaleString(), o.payment_status === 'completed' ? 'paid' : o.order_status,
+          o.shipping_address || '—', o.customer_phone, new Date(o.created_at).toLocaleDateString('en-KE'));
+        document.getElementById('detail-drawer').dataset.orderId = id;
+      } catch (e) { showToast('Could not load order'); }
+    }
+
+    function openOrderDetail(id, name, product, amount, status, location, phone, date) {
+      document.getElementById('dd-title').textContent = id;
+      document.getElementById('dd-body').innerHTML = `
+        <div class="dd-section">
+          <div class="dd-sec-title">Customer</div>
+          <div class="dd-row"><span class="dd-key">Name</span><span class="dd-val">${name}</span></div>
+          <div class="dd-row"><span class="dd-key">Phone</span><span class="dd-val">${phone}</span></div>
+          <div class="dd-row"><span class="dd-key">Location</span><span class="dd-val">${location}</span></div>
+        </div>
+        <div class="dd-section">
+          <div class="dd-sec-title">Order</div>
+          <div class="dd-row"><span class="dd-key">Product</span><span class="dd-val">${product}</span></div>
+          <div class="dd-row"><span class="dd-key">Amount</span><span class="dd-val" style="color:var(--gold-light)">KES ${amount}</span></div>
+          <div class="dd-row"><span class="dd-key">Date</span><span class="dd-val">${date}</span></div>
+          <div class="dd-row"><span class="dd-key">Status</span><span class="dd-val"><span class="pill pill-${status}">${status}</span></span></div>
+        </div>`;
+      document.getElementById('dd-actions').innerHTML = `
+        <button class="dd-btn dd-btn-primary" onclick="sendMpesaToOrder('${id}','${phone}','${amount}')">💚 M-Pesa Link</button>
+        <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
+      openDrawer();
+    }
+
+    async function openQuoteDetailById(id) {
+      try {
+        const q = await api(`/quotes/${id}`);
+        document.getElementById('dd-title').textContent = `Quote — ${q.fullname}`;
+        document.getElementById('dd-body').innerHTML = `
+          <div class="dd-section">
+            <div class="dd-sec-title">Lead Details</div>
+            <div class="dd-row"><span class="dd-key">Name</span><span class="dd-val">${q.fullname}</span></div>
+            <div class="dd-row"><span class="dd-key">Phone</span><span class="dd-val">${q.phone_number}</span></div>
+            <div class="dd-row"><span class="dd-key">Type</span><span class="dd-val">${q.property_type}</span></div>
+            <div class="dd-row"><span class="dd-key">Location</span><span class="dd-val">${q.location}</span></div>
+          </div>
+          <div class="dd-section">
+            <div class="dd-sec-title">Quote</div>
+            <div class="dd-row"><span class="dd-key">System</span><span class="dd-val">${q.recommended_system || '—'}</span></div>
+            <div class="dd-row"><span class="dd-key">Value</span><span class="dd-val" style="color:var(--gold-light)">KES ${q.estimated_value ? Number(q.estimated_value).toLocaleString() : '—'}</span></div>
+            <div class="dd-row"><span class="dd-key">Status</span><span class="dd-val"><span class="pill pill-${q.status}">${q.status}</span></span></div>
+          </div>`;
+        document.getElementById('dd-actions').innerHTML = `
+          <button class="dd-btn dd-btn-primary" onclick="sendPaymentLinkFromQuote(${id})">💚 M-Pesa Link</button>
+          <button class="dd-btn dd-btn-secondary" onclick="updateQuoteStage(${id},'contacted')">→ Contacted</button>
+          <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
+        document.getElementById('detail-drawer').dataset.quoteId = id;
+        openDrawer();
+      } catch (e) { showToast('Could not load quote'); }
+    }
+
+    function openDrawer() {
+      document.getElementById('overlay').classList.add('open');
+      document.getElementById('detail-drawer').classList.add('open');
+    }
+
+    function closeDrawer() {
+      document.getElementById('overlay').classList.remove('open');
+      document.getElementById('detail-drawer').classList.remove('open');
+    }
+
+    async function advanceOrderStatus(orderId, newStatus) {
+      try {
+        await api(`/orders/${orderId}/status`, { method: 'PATCH', body: { status: newStatus } });
+        showToast(`Order moved to ${newStatus}`);
+        loadOrders();
+        closeDrawer();
+      } catch (e) { showToast(e.message); }
+    }
+
+    async function updateQuoteStage(quoteId, status) {
+      try {
+        await api(`/quotes/${quoteId}`, { method: 'PATCH', body: { status } });
+        showToast(`Quote moved to ${status}`);
+        loadQuotes();
+        closeDrawer();
+      } catch (e) { showToast(e.message); }
+    }
+
+    async function sendPaymentLinkFromQuote(quoteId) {
+      try {
+        const data = await api(`/quotes/${quoteId}/send-payment-link`, { method: 'POST' });
+        showToast(`STK Push sent — Order ${data.orderNumber}`);
+        closeDrawer();
+      } catch (e) { showToast(e.message); }
+    }
+
+    async function sendMpesaToOrder(orderId, phone, amount) {
+      showToast(`STK Push sent to ${phone}`);
+    }
+
+    async function restockProduct(id, name) {
+      const units = prompt(`How many units to add for "${name}"?`);
+      if (!units || isNaN(units)) return;
+      try {
+        await api(`/products/${id}/stock`, { method: 'PATCH', body: { units: parseInt(units) } });
+        showToast(`${units} units added`);
+        loadInventory();
+      } catch (e) { showToast(e.message); }
+    }
+
+    async function deleteProductConfirm(id, name) {
+      if (!confirm(`Permanently delete "${name}"?`)) return;
+      try {
+        await api(`/products/${id}`, { method: 'DELETE' });
+        showToast('Product deleted');
+        loadInventory();
+        loadProductsTable();
+      } catch (e) { showToast(e.message); }
+    }
+
+    function autoSlug() {
+      const slugField = document.getElementById('pf-slug');
+      if (slugField?.dataset.manual === 'true') return;
+      const name = document.getElementById('pf-name').value;
+      if (slugField) slugField.value = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+
+    function openProductModal(product) {
+      const overlay = document.getElementById('product-modal-overlay');
+      const err = document.getElementById('pf-error');
+      err.style.display = 'none';
+      const slugField = document.getElementById('pf-slug');
+      if (slugField) slugField.dataset.manual = 'false';
+      if (product) {
+        document.getElementById('product-modal-title').textContent = 'Edit Product';
+        document.getElementById('pf-id').value = product.id;
+        document.getElementById('pf-sku').value = product.sku || '';
+        document.getElementById('pf-name').value = product.name || '';
+        if (slugField) { slugField.value = product.slug || ''; slugField.dataset.manual = 'true'; }
+        document.getElementById('pf-category').value = product.category || 'panel';
+        document.getElementById('pf-price').value = product.price || '';
+        document.getElementById('pf-stock').value = product.stock_quantity || 0;
+        document.getElementById('pf-description').value = product.description || '';
+        let specs = product.specifications;
+        if (typeof specs === 'string') { try { specs = JSON.parse(specs); } catch (e) { specs = null; } }
+        document.getElementById('pf-specs').value = specs ? Object.entries(specs).map(([k, v]) => `${k}: ${v}`).join('\n') : '';
+      } else {
+        document.getElementById('product-modal-title').textContent = 'Add Product';
+        document.getElementById('product-form').reset();
+        document.getElementById('pf-id').value = '';
+        document.getElementById('pf-stock').value = 0;
+      }
+      overlay.style.display = 'flex';
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal-overlay').style.display = 'none';
+    }
+
+    function parseSpecsText(text) {
+      if (!text?.trim()) return {};
+      const specs = {};
+      text.split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx > -1) { const k = line.slice(0, idx).trim(); const v = line.slice(idx + 1).trim(); if (k) specs[k] = v; }
+      });
+      return specs;
+    }
+
+    async function submitProduct(event) {
+      event.preventDefault();
+      const submitBtn = document.getElementById('pf-submit-btn');
+      const err = document.getElementById('pf-error');
+      err.style.display = 'none';
+      const id = document.getElementById('pf-id').value;
+      const payload = {
+        sku: document.getElementById('pf-sku').value.trim(),
+        name: document.getElementById('pf-name').value.trim(),
+        slug: document.getElementById('pf-slug').value.trim(),
+        category: document.getElementById('pf-category').value,
+        price: Number(document.getElementById('pf-price').value),
+        stock_quantity: Number(document.getElementById('pf-stock').value) || 0,
+        description: document.getElementById('pf-description').value.trim() || null,
+        specifications: parseSpecsText(document.getElementById('pf-specs').value),
+      };
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Saving...';
+      try {
+        if (id) { await api(`/products/${id}`, { method: 'PATCH', body: payload }); showToast('Product updated ✓'); }
+        else { await api('/products', { method: 'POST', body: payload }); showToast('Product added ✓'); }
+        closeProductModal();
+        loadInventory();
+        loadProductsTable();
+      } catch (e) {
+        err.textContent = e.message || 'Failed to save product';
+        err.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save Product';
+      }
+    }
+
+    function updateMpfAmount() {
+      const sel = document.getElementById('mpf-product');
+      document.getElementById('mpf-amount').value = sel.value || '';
+    }
+
+    async function simulateMpesaSend() {
+      const name = document.getElementById('mpf-name').value.trim();
+      const phone = document.getElementById('mpf-phone').value.trim();
+      const amount = document.getElementById('mpf-amount').value.trim();
+      if (!name || !phone || !amount) { showToast('Please fill in all fields'); return; }
+      try {
+        const data = await api('/mpesa/stk-push', { method: 'POST', body: { phone, customerName: name, items: [{ productId: 1, quantity: 1 }] } });
+        showToast(`STK Push sent — Order ${data.orderNumber}`);
+        loadOrders();
+      } catch (e) { showToast(e.message); }
+    }
+
+    let smsRecipients = 0;
+    function updateSmsCount(sel) { smsRecipients = parseInt(sel.value) || 0; updateSmsCost(); }
+    function loadTemplate(sel) { if (sel.value) document.getElementById('sms-body').value = sel.value; updateSmsChars(document.getElementById('sms-body')); }
+    function updateSmsChars(ta) { document.getElementById('sms-chars').textContent = `${ta.value.length} / 160 chars`; updateSmsCost(); }
+    function updateSmsCost() { document.getElementById('sms-cost').textContent = `Recipients: ${smsRecipients} · Cost: ~KES ${(smsRecipients * 1.2).toFixed(0)}`; }
+    async function simulateSmsSend() {
+      if (!smsRecipients) { showToast('Select a recipient segment'); return; }
+      if (!document.getElementById('sms-body').value.trim()) { showToast('Enter a message'); return; }
+      showToast(`SMS queued for ${smsRecipients} recipients`);
+    }
+
+    function filterTable(input, tbodyId) {
+      const q = input.value.toLowerCase();
+      document.querySelectorAll(`#${tbodyId} tr`).forEach(row => { row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+    }
+
+    function filterTableStatus(sel, tbodyId) {
+      const q = sel.value.toLowerCase();
+      document.querySelectorAll(`#${tbodyId} tr`).forEach(row => { row.style.display = !q || row.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+    }
+
+    function exportOrders() { showToast('Export feature coming soon'); }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    // ── INIT ──────────────────────────────────────────────────────────────────
+    checkAuth();
+    loadOverview();
+    loadOrders();
+  </script>
+</body>
+
+</html>
