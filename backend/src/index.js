@@ -20,6 +20,7 @@ const portalRoutes = require('./routes/portal.routes');
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
+app.set('trust proxy', 1);
 
 // ── Security & parsing ────────────────────────────────────────────────────────
 app.use(helmet());
