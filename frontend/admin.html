@@ -2154,7 +2154,8 @@
                   oninput="updateSmsChars(this)"></textarea></div>
               <div
                 style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text-3);margin-bottom:0.9rem">
-                <span id="sms-chars">0 / 160 chars</span><span id="sms-cost">Recipients: 0 · Cost: ~KES 0</span></div>
+                <span id="sms-chars">0 / 160 chars</span><span id="sms-cost">Recipients: 0 · Cost: ~KES 0</span>
+              </div>
               <button class="send-btn" onclick="simulateSmsSend()">📤 Send SMS Broadcast</button>
             </div>
           </div>
@@ -2308,6 +2309,7 @@
         headers: {
           'Content-Type': 'application/json',
           'x-admin-secret': ADMIN_KEY,
+          'Authorization': `Bearer ${ADMIN_KEY}`,
           ...(opts.headers || {}),
         },
         body: opts.body ? JSON.stringify(opts.body) : undefined,
@@ -2333,24 +2335,54 @@
       document.getElementById('login-error').style.display = 'none';
     }
 
-    function doAdminLogin() {
+    async function doAdminLogin() {
       const username = document.getElementById('login-username').value.trim();
       const password = document.getElementById('login-password').value;
-      const admin = ADMIN_ACCOUNTS.find(a => a.username === username && a.password === password);
-      if (!admin) {
+      const btn = document.getElementById('login-btn');
+
+      if (!username || !password) {
         document.getElementById('login-error').style.display = 'block';
-        document.getElementById('login-password').value = '';
         return;
       }
-      currentAdmin = admin;
-      ADMIN_KEY = admin.apiKey;
-      localStorage.setItem('shem_admin_key', admin.apiKey);
-      localStorage.setItem('shem_admin_user', JSON.stringify({ name: admin.name, role: admin.role, initials: admin.initials }));
-      applyUserToUI(admin);
-      document.getElementById('login-wrap').style.display = 'none';
-      document.getElementById('dashboard-shell').style.display = 'flex';
-      loadOverview();
-      loadOrders();
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Login failed');
+
+        ADMIN_KEY = data.token;
+        localStorage.setItem('shem_admin_key', data.token);
+        localStorage.setItem('shem_admin_user', JSON.stringify({
+          name: data.user.name,
+          role: data.user.role,
+          initials: data.user.name.split(' ').map(w => w[0]).join('').toUpperCase(),
+        }));
+
+        applyUserToUI({
+          name: data.user.name,
+          role: data.user.role,
+          initials: data.user.name.split(' ').map(w => w[0]).join('').toUpperCase(),
+        });
+
+        document.getElementById('login-wrap').style.display = 'none';
+        document.getElementById('dashboard-shell').style.display = 'flex';
+        loadOverview();
+        loadOrders();
+      } catch (e) {
+        document.getElementById('login-error').textContent = e.message || 'Invalid username or password';
+        document.getElementById('login-error').style.display = 'block';
+        document.getElementById('login-password').value = '';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Sign In →';
+      }
     }
 
     function applyUserToUI(user) {
