@@ -2174,39 +2174,31 @@
 
         <!-- SETTINGS -->
         <div class="view" id="view-settings">
-          <div style="max-width:600px">
-            <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:1.2rem">System Settings</div>
-            <div class="mpesa-form" style="margin-bottom:1rem">
-              <div class="mpf-title">M-Pesa / Daraja API</div>
-              <div class="mpf-sub">Safaricom Daraja API credentials for STK Push</div>
-              <div class="mpf-row">
-                <div class="mpf-group"><label>Consumer Key</label><input class="mpf-input" type="password"
-                    placeholder="Consumer key"></div>
-                <div class="mpf-group"><label>Consumer Secret</label><input class="mpf-input" type="password"
-                    placeholder="Consumer secret"></div>
-              </div>
-              <div class="mpf-group" style="margin-bottom:0.7rem"><label>Callback URL</label><input class="mpf-input"
-                  id="setting-callback" placeholder="https://your-backend.railway.app/api/v1/mpesa/callback"></div>
-              <div class="mpf-group" style="margin-bottom:0.7rem"><label>Paybill / Till Number</label><input
-                  class="mpf-input" placeholder="Paybill number"></div>
-              <div class="mpf-row">
-                <div class="mpf-group"><label>Environment</label><select class="mpf-select">
-                    <option>Production</option>
-                    <option>Sandbox</option>
-                  </select></div>
-                <div class="mpf-group"><label>Shortcode</label><input class="mpf-input" placeholder="Shortcode"></div>
-              </div>
-              <button class="send-btn"
-                onclick="showToast('Settings are managed via .env on Railway — not saved here')">Save Daraja
-                Settings</button>
-            </div>
+  <div style="max-width:600px">
+    <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:1.2rem">System Settings</div>
+    <div class="mpesa-form" style="margin-bottom:1rem">
+      <div class="mpf-title">M-Pesa / Daraja API</div>
+      <div class="mpf-sub">Safaricom Daraja API credentials for STK Push</div>
+      <div class="mpf-row">
+        <div class="mpf-group"><label>Consumer Key</label><input class="mpf-input" type="password" value="GmDGg28lpylU4AvK74FJt5dobvAXRqVQxeJUAQi89fdWDNg8"></div>
+        <div class="mpf-group"><label>Consumer Secret</label><input class="mpf-input" type="password" value="ZIj6blfIS4zxFoxth1NQpl9iZvklhsc3waYArPOxmyngN49Wz1NFASX748697YLb"></div>
+      </div>
+      <div class="mpf-group" style="margin-bottom:0.7rem"><label>Callback URL</label><input class="mpf-input" id="setting-callback" value="https://shem-solar-production.up.railway.app/api/v1/mpesa/callback"></div>
+      <div class="mpf-group" style="margin-bottom:0.7rem"><label>Paybill / Till Number</label><input class="mpf-input" value="174379"></div>
+      <div class="mpf-row">
+        <div class="mpf-group"><label>Environment</label><select class="mpf-select"><option>Sandbox</option><option>Production</option></select></div>
+        <div class="mpf-group"><label>Shortcode</label><input class="mpf-input" value="174379"></div>
+      </div>
+      <button class="send-btn" onclick="showToast('Settings are managed via .env on Railway — not saved here')">Save Daraja Settings</button>
+    </div>
             <div class="mpesa-form">
               <div class="mpf-title">Africa's Talking SMS</div>
               <div class="mpf-sub">SMS Gateway credentials</div>
               <div class="mpf-row">
-                <div class="mpf-group"><label>API Key</label><input class="mpf-input" type="password"
-                    placeholder="API Key"></div>
-                <div class="mpf-group"><label>Username</label><input class="mpf-input" placeholder="Username"></div>
+  <div class="mpf-group"><label>API Key</label><input class="mpf-input" type="password" value="atsk_2a03fb57c2843c137118a1ada70f275bc5480f95631b9faca2bc6a04feb692b54a95dd09"></div>
+  <div class="mpf-group"><label>Username</label><input class="mpf-input" value="sandbox"></div>
+</div>
+<div class="mpf-group" style="margin-bottom:0.7rem"><label>Sender ID</label><input class="mpf-input" value="ShemSolar"></div>
               </div>
               <div class="mpf-group" style="margin-bottom:0.7rem"><label>Sender ID</label><input class="mpf-input"
                   placeholder="Sender name (max 11 chars)"></div>
