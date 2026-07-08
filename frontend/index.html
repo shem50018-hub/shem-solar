@@ -3792,10 +3792,10 @@
     ];
 
     const PACKAGES = [
-      { min: 0, max: 500, name: 'Home Starter Kit 2kW', kw: 2, price: 185000, specs: ['2kW', '5×panels', '100Ah batt', 'Installed'], desc: 'Perfect for lights, fans, TV and phone charging. Covers a typical 2-bedroom household.', emoji: '🏠' },
-      { min: 500, max: 1500, name: 'Home Premium System 3kW', kw: 3, price: 265000, specs: ['3kW', '8×panels', '200Ah batt', 'Wi-Fi monitor'], desc: 'Handles fridge, washing machine, and all lighting. Most popular for 3-bedroom homes.', emoji: '🏡' },
-      { min: 1500, max: 3500, name: 'Power Home System 5kW', kw: 5, price: 390000, specs: ['5kW', '12×panels', '2×200Ah', 'Hybrid inverter'], desc: 'Runs full household including AC unit. Suitable for large homes and small offices.', emoji: '⚡' },
-      { min: 3500, max: 99999, name: 'Business Pro System 10kW', kw: 10, price: 580000, specs: ['10kW', '25×panels', '4×batt', '3-Phase'], desc: 'Commercial-grade for SMEs, schools, and large properties with heavy loads.', emoji: '🏢' },
+      { min: 0, max: 500, name: 'Home Starter Kit 2kW', kw: 2, price: 302000, specs: ['2kW', '5×panels', '100Ah batt', 'Installed'], desc: 'Perfect for lights, fans, TV and phone charging. Covers a typical 2-bedroom household.', emoji: '🏠' },
+      { min: 500, max: 1500, name: 'Home Premium System 3kW', kw: 3, price: 451000, specs: ['3kW', '8×panels', '2×100Ah batt', 'Hybrid inverter'], desc: 'Handles fridge, washing machine, and all lighting. Most popular for 3-bedroom homes.', emoji: '🏡' },
+      { min: 1500, max: 3500, name: 'Power Home System 5kW', kw: 5, price: 643000, specs: ['5kW', '12×panels', '3×100Ah', 'Hybrid inverter'], desc: 'Runs full household including AC unit. Suitable for large homes and small offices.', emoji: '⚡' },
+      { min: 3500, max: 99999, name: 'Business Pro System 10kW', kw: 10, price: 1112000, specs: ['10kW', '25×panels', '4×batt', '3-Phase'], desc: 'Commercial-grade for SMEs, schools, and large properties with heavy loads.', emoji: '🏢' },
     ];
 
     let appQty = {};
@@ -3984,7 +3984,7 @@
 
   <script>
     // ── PRODUCT DATA ──
-    // ── PRODUCT DATA (fetched live from API) ──
+    // ── PRODUCT + PACKAGE DATA (fetched live from API) ──
     let PRODUCTS_DATA = [];
 
     const CATEGORY_META = {
@@ -4011,20 +4011,24 @@
     async function fetchProducts() {
       const grid = document.getElementById('products-grid');
       try {
-        const res = await fetch(`${API_BASE}/products`);
-        const json = await res.json();
-        const rows = json.data || [];
+        const [prodRes, pkgRes] = await Promise.all([
+          fetch(`${API_BASE}/products`),
+          fetch(`${API_BASE}/products/packages`),
+        ]);
+        const prodJson = await prodRes.json();
+        const pkgJson = await pkgRes.json();
+        const prodRows = prodJson.data || [];
+        const pkgRows = pkgJson.data || [];
 
-        PRODUCTS_DATA = rows.map(p => {
+        const mappedProducts = prodRows.map(p => {
           const meta = CATEGORY_META[p.category] || CATEGORY_META.panel;
           const specs = typeof p.specifications === 'string' ? JSON.parse(p.specifications) : (p.specifications || {});
           return {
-            id: p.id,
+            id: p.id, isPackage: false,
             name: p.name,
             cat: CATEGORY_LABELS[p.category] || p.category,
             catKey: p.category,
-            emoji: meta.emoji,
-            bg: meta.bg,
+            emoji: meta.emoji, bg: meta.bg,
             price: Math.round(parseFloat(p.price)),
             unit: meta.unit,
             stock: p.stock_quantity,
@@ -4032,11 +4036,26 @@
             specs: Object.entries(specs).map(([k, v]) => [
               k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), v
             ]),
-            faq: GENERIC_FAQ,
-            warranty: GENERIC_WARRANTY,
+            faq: GENERIC_FAQ, warranty: GENERIC_WARRANTY,
           };
         });
 
+        const pkgEmoji = { home: '🏠', business: '🏢' };
+        const mappedPackages = pkgRows.map(pkg => ({
+          id: pkg.id, isPackage: true,
+          name: pkg.name,
+          cat: 'Packages', catKey: 'package',
+          emoji: pkgEmoji[pkg.target_segment] || '🏠',
+          bg: CATEGORY_META.package.bg,
+          price: Math.round(pkg.total_price),
+          unit: '/kit',
+          stock: 99,
+          desc: pkg.description || '',
+          specs: pkg.components.map(c => [c.name, `×${c.quantity}`]),
+          faq: GENERIC_FAQ, warranty: GENERIC_WARRANTY,
+        }));
+
+        PRODUCTS_DATA = [...mappedProducts, ...mappedPackages];
         renderProductGrid();
       } catch (err) {
         console.warn('Failed to load products:', err.message);
@@ -4050,8 +4069,9 @@
         grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-light)">No products available yet.</div>';
         return;
       }
+      const catAttr = { panel: 'panels', battery: 'batteries', inverter: 'inverters', package: 'packages' };
       grid.innerHTML = PRODUCTS_DATA.map((p, idx) => `
-    <div class="product-card" data-cat="${p.catKey === 'panel' ? 'panels' : p.catKey === 'battery' ? 'batteries' : p.catKey === 'inverter' ? 'inverters' : 'packages'}">
+    <div class="product-card" data-cat="${catAttr[p.catKey] || 'panels'}">
       <div class="product-img" onclick="openProduct(${idx})" style="cursor:pointer;background:${p.bg}">${p.emoji}</div>
       <div class="product-body">
         <div class="product-category">${p.cat}</div>
