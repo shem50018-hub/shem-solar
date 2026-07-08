@@ -107,26 +107,61 @@ async function seed() {
       120000,
       'business'
     ]);
-    console.log('  ✓ 2 installation packages seeded');
+    const pkg3 = await client.query(`
+  INSERT INTO installation_packages (name, slug, description, base_installation_fee, target_segment)
+  VALUES ($1,$2,$3,$4,$5)
+  ON CONFLICT (slug) DO UPDATE SET name=EXCLUDED.name
+  RETURNING id
+`, [
+      'Home Premium System 3kW',
+      'home-premium-system-3kw',
+      'Handles fridge, washing machine, and all lighting. Most popular for 3-bedroom homes: 8× 400W panels, 2× LiFePO4 100Ah batteries, 5kW hybrid inverter + professional installation.',
+      45000,
+      'home'
+    ]);
+
+    const pkg4 = await client.query(`
+  INSERT INTO installation_packages (name, slug, description, base_installation_fee, target_segment)
+  VALUES ($1,$2,$3,$4,$5)
+  ON CONFLICT (slug) DO UPDATE SET name=EXCLUDED.name
+  RETURNING id
+`, [
+      'Power Home System 5kW',
+      'power-home-system-5kw',
+      'Runs full household including AC unit. Suitable for large homes and small offices: 12× 400W panels, 3× LiFePO4 100Ah batteries, 5kW hybrid inverter + professional installation.',
+      70000,
+      'home'
+    ]);
+    console.log('  ✓ 4 installation packages seeded');
 
     // Link package items
-    const panelRow  = await client.query(`SELECT id FROM products WHERE sku='SKU-PNL-400M'`);
-    const battRow   = await client.query(`SELECT id FROM products WHERE sku='SKU-BAT-LFP1'`);
-    const invRow    = await client.query(`SELECT id FROM products WHERE sku='SKU-INV-HYB5'`);
+    const panelRow = await client.query(`SELECT id FROM products WHERE sku='SKU-PNL-400M'`);
+    const battRow = await client.query(`SELECT id FROM products WHERE sku='SKU-BAT-LFP1'`);
+    const invRow = await client.query(`SELECT id FROM products WHERE sku='SKU-INV-HYB5'`);
     const panelId = panelRow.rows[0].id;
-    const battId  = battRow.rows[0].id;
-    const invId   = invRow.rows[0].id;
-    const p1Id    = pkg1.rows[0].id;
-    const p2Id    = pkg2.rows[0].id;
+    const battId = battRow.rows[0].id;
+    const invId = invRow.rows[0].id;
+    const p1Id = pkg1.rows[0].id;
+    const p2Id = pkg2.rows[0].id;
+
+    const p3Id = pkg3.rows[0].id;
+    const p4Id = pkg4.rows[0].id;
 
     const items = [
-      [p1Id, panelId, 5],   // Starter: 5 panels
-      [p1Id, battId,  1],   // Starter: 1 battery
-      [p1Id, invId,   1],   // Starter: 1 inverter
-      [p2Id, panelId, 25],  // Pro: 25 panels
-      [p2Id, battId,  4],   // Pro: 4 batteries
-      [p2Id, invId,   1],   // Pro: 1 inverter (10kW variant)
+      [p1Id, panelId, 5],   // Starter 2kW: 5 panels
+      [p1Id, battId, 1],   // Starter 2kW: 1 battery
+      [p1Id, invId, 1],   // Starter 2kW: 1 inverter
+      [p3Id, panelId, 8],   // Premium 3kW: 8 panels
+      [p3Id, battId, 2],   // Premium 3kW: 2 batteries
+      [p3Id, invId, 1],   // Premium 3kW: 1 inverter
+      [p4Id, panelId, 12],  // Power 5kW: 12 panels
+      [p4Id, battId, 3],   // Power 5kW: 3 batteries
+      [p4Id, invId, 1],   // Power 5kW: 1 inverter
+      [p2Id, panelId, 25],  // Pro 10kW: 25 panels
+      [p2Id, battId, 4],   // Pro 10kW: 4 batteries
+      [p2Id, invId, 1],   // Pro 10kW: 1 inverter
     ];
+
     for (const [pid, prid, qty] of items) {
       await client.query(`
         INSERT INTO package_items (package_id, product_id, quantity)
