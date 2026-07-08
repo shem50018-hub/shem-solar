@@ -1,577 +1,1440 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Shem Solar — Customer Portal</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="googlebot" content="noindex, nofollow">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --navy:#0B1F3A;--navy-mid:#152D50;--navy-light:#1E3D68;
-  --gold:#E8A020;--gold-light:#F5B93C;--gold-pale:#FEF3DC;
-  --green:#1E8C45;--green-light:#27A855;--green-pale:#E8F5ED;
-  --red:#E84040;--amber:#E87820;--blue:#2080E8;
-  --white:#FFFFFF;--off-white:#F8F6F0;
-  --text-dark:#0B1F3A;--text-mid:#3D5270;--text-light:#6B7E99;
-  --border:rgba(11,31,58,0.10);
-  --shadow-sm:0 2px 12px rgba(11,31,58,0.07);
-  --shadow-md:0 8px 32px rgba(11,31,58,0.12);
-  --radius:12px;--radius-lg:20px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--off-white)}
-button,input,select,textarea{font-family:inherit}
-
-/* ── NAV ── */
-.portal-nav{background:var(--navy);padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.nav-brand{display:flex;align-items:center;gap:0.6rem;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white)}
-.nav-brand-icon{width:32px;height:32px;background:var(--gold);border-radius:8px;display:grid;place-items:center;font-size:0.9rem}
-.nav-brand span{color:var(--gold)}
-.nav-user{display:flex;align-items:center;gap:0.8rem;color:rgba(255,255,255,0.75);font-size:0.85rem}
-.nav-avatar{width:32px;height:32px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:0.78rem;font-weight:700;color:var(--navy)}
-.nav-logout{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);padding:0.35rem 0.8rem;color:rgba(255,255,255,0.7);font-size:0.8rem;cursor:pointer;transition:all 0.2s}
-.nav-logout:hover{background:rgba(255,255,255,0.15);color:var(--white)}
-
-/* ── LOGIN SCREEN ── */
-.login-screen{min-height:100vh;background:linear-gradient(150deg,var(--navy) 0%,var(--navy-mid) 60%,#0F2845 100%);display:flex;align-items:center;justify-content:center;padding:2rem}
-.login-card{background:var(--white);border-radius:var(--radius-lg);padding:2.5rem;max-width:420px;width:100%;box-shadow:var(--shadow-md)}
-.login-logo{text-align:center;margin-bottom:1.8rem}
-.login-sun{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--gold-light),var(--gold));box-shadow:0 0 30px rgba(232,160,32,0.4);margin:0 auto 0.8rem}
-.login-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:0.3rem}
-.login-sub{font-size:0.85rem;color:var(--text-light)}
-.form-field{margin-bottom:1rem}
-.form-field label{display:block;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-mid);margin-bottom:0.4rem}
-.form-field input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius);padding:0.75rem 1rem;font-size:0.95rem;color:var(--text-dark);outline:none;transition:border-color 0.2s}
-.form-field input:focus{border-color:var(--gold)}
-.login-btn{width:100%;background:var(--navy);color:var(--white);border:none;border-radius:50px;padding:0.85rem;font-size:0.95rem;font-weight:600;cursor:pointer;transition:all 0.2s;margin-top:0.5rem}
-.login-btn:hover{background:var(--navy-light);transform:translateY(-1px)}
-.login-help{text-align:center;margin-top:1rem;font-size:0.82rem;color:var(--text-light)}
-.login-help a{color:var(--green);font-weight:600;cursor:pointer}
-.login-error{background:#FEE;border:1px solid #F9C;border-radius:var(--radius);padding:0.6rem 0.9rem;font-size:0.82rem;color:var(--red);margin-bottom:1rem;display:none}
-
-/* ── PORTAL LAYOUT ── */
-.portal-layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 58px);max-width:1280px;margin:0 auto;padding:2rem 1.5rem;gap:1.5rem}
-.portal-sidebar{}
-.sidebar-menu{background:var(--white);border-radius:var(--radius-lg);padding:0.6rem;box-shadow:var(--shadow-sm);position:sticky;top:74px}
-.sm-item{display:flex;align-items:center;gap:0.7rem;padding:0.65rem 0.9rem;border-radius:var(--radius);font-size:0.88rem;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all 0.18s;border:none;background:none;width:100%;text-align:left}
-.sm-item:hover{background:var(--off-white);color:var(--text-dark)}
-.sm-item.active{background:var(--navy);color:var(--white);font-weight:600}
-.sm-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
-.portal-main{}
-.portal-view{display:none}
-.portal-view.active{display:block}
-
-/* ── CARDS ── */
-.card{background:var(--white);border-radius:var(--radius-lg);padding:1.4rem;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
-.card-title{font-size:0.85rem;font-weight:700;color:var(--text-dark);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
-.card-title-dot{width:8px;height:8px;border-radius:50%}
-
-/* ── OVERVIEW STATS ── */
-.ov-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.2rem}
-.ov-stat{background:var(--white);border-radius:var(--radius-lg);padding:1.2rem;box-shadow:var(--shadow-sm);border:1px solid var(--border);position:relative;overflow:hidden}
-.ov-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
-.ov-s1::before{background:var(--gold)}
-.ov-s2::before{background:var(--green)}
-.ov-s3::before{background:var(--blue)}
-.ov-stat-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-light);margin-bottom:0.5rem}
-.ov-stat-num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--text-dark);line-height:1}
-.ov-stat-sub{font-size:0.75rem;color:var(--text-light);margin-top:0.3rem}
-
-/* ── ORDER TIMELINE ── */
-.order-card{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;margin-bottom:1rem}
-.oc-header{padding:1.2rem 1.4rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
-.oc-order-num{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--text-light)}
-.oc-product{font-weight:700;font-size:0.95rem;color:var(--text-dark);margin-top:0.15rem}
-.oc-price{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy)}
-.oc-body{padding:1.4rem}
-.timeline{display:flex;justify-content:space-between;position:relative;margin-bottom:1.2rem}
-.timeline::before{content:'';position:absolute;top:14px;left:14px;right:14px;height:2px;background:var(--border);z-index:0}
-.tl-fill{position:absolute;top:14px;left:14px;height:2px;background:var(--green);z-index:1;transition:width 0.8s ease}
-.tl-step{text-align:center;position:relative;z-index:2;flex:1}
-.tl-dot{width:28px;height:28px;border-radius:50%;margin:0 auto 0.4rem;display:grid;place-items:center;font-size:0.75rem;border:2px solid var(--border);background:var(--white);transition:all 0.3s}
-.tl-dot.done{background:var(--green);border-color:var(--green);color:var(--white)}
-.tl-dot.active{background:var(--gold);border-color:var(--gold);color:var(--navy);box-shadow:0 0 0 4px rgba(232,160,32,0.2)}
-.tl-dot.future{background:var(--white);border-color:var(--border);color:var(--text-light)}
-.tl-label{font-size:0.68rem;font-weight:600;color:var(--text-light);white-space:nowrap}
-.tl-step.done .tl-label,.tl-step.active .tl-label{color:var(--text-dark)}
-.oc-footer{display:flex;gap:0.7rem;flex-wrap:wrap;padding-top:0.8rem;border-top:1px solid var(--border)}
-.oc-btn{padding:0.5rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s;border:none}
-.oc-btn-primary{background:var(--navy);color:var(--white)}
-.oc-btn-primary:hover{background:var(--navy-light)}
-.oc-btn-secondary{background:var(--off-white);color:var(--text-dark);border:1px solid var(--border)}
-.oc-btn-secondary:hover{background:var(--border)}
-.pill{display:inline-flex;align-items:center;gap:0.35rem;padding:0.25rem 0.7rem;border-radius:50px;font-size:0.72rem;font-weight:700}
-.pill::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.pill-paid{background:var(--green-pale);color:var(--green)}
-.pill-paid::before{background:var(--green)}
-.pill-pending{background:#FFF3E0;color:var(--amber)}
-.pill-pending::before{background:var(--amber)}
-.pill-processing{background:#E3F2FD;color:var(--blue)}
-.pill-processing::before{background:var(--blue)}
-.pill-dispatched{background:rgba(96,160,255,0.12);color:#1565C0}
-.pill-dispatched::before{background:#1565C0}
-.pill-completed{background:var(--green-pale);color:var(--green)}
-.pill-completed::before{background:var(--green)}
-
-/* ── MONITORING ── */
-.monitor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1rem}
-.monitor-card{background:var(--white);border-radius:var(--radius-lg);padding:1.3rem;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
-.mc-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-light);margin-bottom:0.5rem}
-.mc-value{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--text-dark);line-height:1}
-.mc-unit{font-family:'DM Sans',sans-serif;font-size:0.8rem;color:var(--text-light);font-weight:400}
-.mc-sub{font-size:0.78rem;color:var(--text-light);margin-top:0.3rem}
-.mc-bar{height:6px;background:var(--off-white);border-radius:6px;overflow:hidden;margin-top:0.6rem}
-.mc-bar-fill{height:100%;border-radius:6px;transition:width 1s ease}
-.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);animation:live-pulse 1.5s infinite;margin-right:0.3rem}
-@keyframes live-pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.energy-chart{background:var(--white);border-radius:var(--radius-lg);padding:1.3rem;box-shadow:var(--shadow-sm);border:1px solid var(--border);margin-bottom:1rem}
-.ec-bars{display:flex;align-items:flex-end;gap:0.4rem;height:80px;margin-top:0.8rem}
-.ec-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:0.2rem}
-.ec-bar{width:100%;border-radius:3px 3px 0 0;min-height:3px;transition:height 0.5s}
-.ec-bar-label{font-size:0.6rem;color:var(--text-light)}
-
-/* ── SUPPORT ── */
-.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.support-item{background:var(--white);border-radius:var(--radius-lg);padding:1.3rem;box-shadow:var(--shadow-sm);border:1px solid var(--border);display:flex;align-items:flex-start;gap:0.9rem;cursor:pointer;transition:all 0.2s}
-.support-item:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.support-icon{font-size:1.6rem;flex-shrink:0}
-.support-title{font-weight:700;font-size:0.9rem;color:var(--text-dark);margin-bottom:0.25rem}
-.support-desc{font-size:0.8rem;color:var(--text-light);line-height:1.5}
-.ticket-form{background:var(--white);border-radius:var(--radius-lg);padding:1.4rem;box-shadow:var(--shadow-sm);border:1px solid var(--border);margin-top:1rem}
-.tf-title{font-size:0.9rem;font-weight:700;margin-bottom:0.8rem;color:var(--text-dark)}
-.tf-row{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:0.7rem}
-.tf-input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius);padding:0.6rem 0.85rem;font-size:0.85rem;color:var(--text-dark);outline:none;transition:border-color 0.2s}
-.tf-input:focus{border-color:var(--gold)}
-.tf-select{width:100%;border:1.5px solid var(--border);border-radius:var(--radius);padding:0.6rem 0.85rem;font-size:0.85rem;color:var(--text-dark);outline:none;background:var(--white)}
-.tf-btn{background:var(--navy);color:var(--white);border:none;border-radius:50px;padding:0.65rem 1.5rem;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s}
-.tf-btn:hover{background:var(--navy-light)}
-
-/* ── PROFILE ── */
-.profile-card{background:var(--white);border-radius:var(--radius-lg);padding:1.8rem;box-shadow:var(--shadow-sm);border:1px solid var(--border);max-width:520px}
-.profile-avatar{width:64px;height:64px;border-radius:50%;background:var(--navy);display:grid;place-items:center;font-size:1.4rem;font-weight:700;color:var(--gold);margin-bottom:1rem}
-.profile-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text-dark);margin-bottom:0.2rem}
-.profile-phone{font-size:0.85rem;color:var(--text-light);margin-bottom:1.4rem}
-.pf-row{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:0.7rem}
-.pf-field label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);display:block;margin-bottom:0.35rem}
-
-/* ── TOAST ── */
-.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(60px);background:var(--navy);color:var(--white);padding:0.65rem 1.3rem;border-radius:50px;font-size:0.85rem;font-weight:500;z-index:200;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;box-shadow:var(--shadow-md);white-space:nowrap}
-.toast.show{transform:translateX(-50%) translateY(0)}
-
-@media(max-width:900px){
-  .portal-layout{grid-template-columns:1fr;padding:1rem}
-  .sidebar-menu{display:flex;gap:0.3rem;overflow-x:auto;padding:0.4rem;position:static}
-  .sm-item{flex-shrink:0;padding:0.5rem 0.7rem;font-size:0.8rem}
-  .ov-stats,.monitor-grid,.support-grid{grid-template-columns:1fr 1fr}
-  .tf-row,.pf-row{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  .ov-stats,.monitor-grid,.support-grid{grid-template-columns:1fr}
-  .timeline{gap:0}
-  .tl-label{font-size:0.6rem}
-}
-</style>
-</head>
-<body>
-
-<div class="toast" id="toast"></div>
-
-<!-- ══════════ LOGIN SCREEN ══════════ -->
-<div id="login-screen" class="login-screen">
-  <div class="login-card">
-    <div class="login-logo">
-      <div class="login-sun"></div>
-      <div class="login-title">My Shem Solar</div>
-      <div class="login-sub">Track your orders, monitor your system, get support</div>
-    </div>
-    <div class="login-error" id="login-error">Phone number not found. Please check and try again.</div>
-    <div class="form-field">
-      <label>Phone Number</label>
-      <input type="tel" id="login-phone" placeholder="0712 345 678" oninput="clearLoginError()">
-    </div>
-    <div class="form-field">
-      <label>Order Number <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional — for faster lookup)</span></label>
-      <input type="text" id="login-order" placeholder="SOLAR-2026-XXXX">
-    </div>
-    <button class="login-btn" onclick="doLogin()">Access My Account →</button>
-    <div class="login-help">No account? <a onclick="document.getElementById('login-phone').value='0712345678';doLogin()">Try demo account</a> &nbsp;·&nbsp; <a href="shem-solar.html">Back to site</a></div>
-  </div>
-</div>
-
-<!-- ══════════ PORTAL ══════════ -->
-<div id="portal" style="display:none">
-  <nav class="portal-nav">
-    <a href="shem-solar.html" class="nav-brand">
-      <div class="nav-brand-icon">☀️</div>
-      <span>Shem<span>Solar</span></span>
-    </a>
-    <div class="nav-user">
-      <div class="nav-avatar" id="nav-avatar">JM</div>
-      <span id="nav-name">Jane Mwangi</span>
-      <button class="nav-logout" onclick="doLogout()">Sign out</button>
-    </div>
-  </nav>
-
-  <div class="portal-layout">
-    <aside class="portal-sidebar">
-      <div class="sidebar-menu">
-        <button class="sm-item active" onclick="switchPortalView('overview',this)"><span class="sm-icon">⊞</span>Overview</button>
-        <button class="sm-item" onclick="switchPortalView('orders',this)"><span class="sm-icon">📦</span>My Orders</button>
-        <button class="sm-item" onclick="switchPortalView('monitoring',this)"><span class="sm-icon">📊</span>System Monitor</button>
-        <button class="sm-item" onclick="switchPortalView('support',this)"><span class="sm-icon">🛠️</span>Support</button>
-        <button class="sm-item" onclick="switchPortalView('profile',this)"><span class="sm-icon">👤</span>Profile</button>
-      </div>
-    </aside>
-
-    <main class="portal-main">
-
-      <!-- OVERVIEW -->
-      <div class="portal-view active" id="pview-overview">
-        <div style="margin-bottom:1.2rem">
-          <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--text-dark)" id="ov-greeting">Good morning, Jane!</div>
-          <div style="font-size:0.85rem;color:var(--text-light);margin-top:0.2rem" id="ov-date"></div>
-        </div>
-        <div class="ov-stats">
-          <div class="ov-stat ov-s1">
-            <div class="ov-stat-label">Total Invested</div>
-            <div class="ov-stat-num" id="ov-invested">KES 0</div>
-            <div class="ov-stat-sub">across all systems</div>
-          </div>
-          <div class="ov-stat ov-s2">
-            <div class="ov-stat-label">Monthly Savings</div>
-            <div class="ov-stat-num" id="ov-savings">KES 0</div>
-            <div class="ov-stat-sub">vs KPLC bill</div>
-          </div>
-          <div class="ov-stat ov-s3">
-            <div class="ov-stat-label">System Health</div>
-            <div class="ov-stat-num" id="ov-health">—</div>
-            <div class="ov-stat-sub" id="ov-health-sub">loading…</div>
-          </div>
-        </div>
-
-        <!-- Latest order status -->
-        <div class="card" style="margin-bottom:1rem">
-          <div class="card-title"><span class="card-title-dot" style="background:var(--gold)"></span>Latest Order Status</div>
-          <div id="ov-latest-order">
-            <div style="text-align:center;padding:1.5rem;color:var(--text-light);font-size:0.88rem">Loading your orders…</div>
-          </div>
-        </div>
-
-        <!-- Quick actions -->
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem">
-          <button onclick="switchPortalView('monitoring',document.querySelectorAll('.sm-item')[2])" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow-sm)">
-            <div style="font-size:1.5rem;margin-bottom:0.4rem">📊</div>
-            <div style="font-size:0.82rem;font-weight:600;color:var(--text-dark)">Monitor System</div>
-          </button>
-          <button onclick="switchPortalView('support',document.querySelectorAll('.sm-item')[3])" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow-sm)">
-            <div style="font-size:1.5rem;margin-bottom:0.4rem">🛠️</div>
-            <div style="font-size:0.82rem;font-weight:600;color:var(--text-dark)">Get Support</div>
-          </button>
-          <a href="shem-solar.html#products" style="background:var(--navy);border-radius:var(--radius-lg);padding:1rem;text-align:center;display:block;transition:all 0.2s;box-shadow:var(--shadow-sm);text-decoration:none">
-            <div style="font-size:1.5rem;margin-bottom:0.4rem">☀️</div>
-            <div style="font-size:0.82rem;font-weight:600;color:var(--gold-light)">Expand System</div>
-          </a>
-        </div>
-      </div>
-
-      <!-- ORDERS -->
-      <div class="portal-view" id="pview-orders">
-        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem">My Orders</div>
-        <div id="orders-list">
-          <div style="text-align:center;padding:3rem;color:var(--text-light)">Loading your orders…</div>
-        </div>
-      </div>
-
-      <!-- MONITORING -->
-      <div class="portal-view" id="pview-monitoring">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap;gap:0.5rem">
-          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700">System Monitor</div>
-          <div style="font-size:0.8rem;color:var(--text-light)"><span class="live-dot"></span>Live data</div>
-        </div>
-
-        <div class="monitor-grid">
-          <div class="monitor-card">
-            <div class="mc-label">Solar Production</div>
-            <div class="mc-value" id="mc-production">3.8 <span class="mc-unit">kW</span></div>
-            <div class="mc-sub" id="mc-production-sub">↑ Peak today: 4.2 kW at 12:30pm</div>
-            <div class="mc-bar"><div class="mc-bar-fill" id="mc-prod-bar" style="width:76%;background:var(--gold)"></div></div>
-          </div>
-          <div class="monitor-card">
-            <div class="mc-label">Battery State</div>
-            <div class="mc-value" id="mc-battery">82 <span class="mc-unit">%</span></div>
-            <div class="mc-sub" id="mc-battery-sub">Charging · Full in ~45 min</div>
-            <div class="mc-bar"><div class="mc-bar-fill" id="mc-batt-bar" style="width:82%;background:var(--green)"></div></div>
-          </div>
-          <div class="monitor-card">
-            <div class="mc-label">Home Consumption</div>
-            <div class="mc-value" id="mc-consumption">1.2 <span class="mc-unit">kW</span></div>
-            <div class="mc-sub">Running: Fridge, TV, 6 lights</div>
-            <div class="mc-bar"><div class="mc-bar-fill" id="mc-cons-bar" style="width:24%;background:var(--blue)"></div></div>
-          </div>
-          <div class="monitor-card">
-            <div class="mc-label">Today's Savings</div>
-            <div class="mc-value" id="mc-savings">KES <span id="mc-savings-val">640</span></div>
-            <div class="mc-sub" id="mc-savings-sub">↑ 18.4 kWh generated today</div>
-            <div class="mc-bar"><div class="mc-bar-fill" style="width:64%;background:var(--green-light)"></div></div>
-          </div>
-        </div>
-
-        <div class="energy-chart">
-          <div class="card-title"><span class="card-title-dot" style="background:var(--gold)"></span>Today's Solar Generation (kWh by hour)</div>
-          <div class="ec-bars" id="ec-bars"></div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <div class="card">
-            <div class="card-title"><span class="card-title-dot" style="background:var(--green)"></span>System Info</div>
-            <div id="sys-info-rows"></div>
-          </div>
-          <div class="card">
-            <div class="card-title"><span class="card-title-dot" style="background:var(--blue)"></span>Monthly Summary</div>
-            <div id="monthly-summary-rows"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SUPPORT -->
-      <div class="portal-view" id="pview-support">
-        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem">Support & Maintenance</div>
-        <div class="support-grid">
-          <div class="support-item" onclick="showToast('📞 Calling 0…')">
-            <div class="support-icon">📞</div>
-            <div><div class="support-title">Call Support</div><div class="support-desc">Mon–Sat 8am–6pm. Engineers on call for urgent issues.</div></div>
-          </div>
-          <div class="support-item" onclick="window.open('https://wa.me/254700123456?text=Hi Shem Solar, I need support for my solar system.','_blank')">
-            <div class="support-icon">💬</div>
-            <div><div class="support-title">WhatsApp Us</div><div class="support-desc">Fast response on WhatsApp — send photos of any issues.</div></div>
-          </div>
-          <div class="support-item" onclick="document.getElementById('ticket-form').scrollIntoView({behavior:'smooth'})">
-            <div class="support-icon">🎫</div>
-            <div><div class="support-title">Log a Ticket</div><div class="support-desc">For non-urgent issues — we respond within 24 hours.</div></div>
-          </div>
-          <div class="support-item" onclick="showToast('📅 Opening booking calendar…')">
-            <div class="support-icon">🔧</div>
-            <div><div class="support-title">Book Maintenance</div><div class="support-desc">Annual service visit — keep your system at peak performance.</div></div>
-          </div>
-        </div>
-        <div class="ticket-form" id="ticket-form">
-          <div class="tf-title">Log a Support Ticket</div>
-          <div class="tf-row">
-            <div>
-              <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);margin-bottom:0.35rem">Issue Type</div>
-              <select class="tf-select" id="ticket-type">
-                <option>Battery not charging</option>
-                <option>Inverter alarm / error</option>
-                <option>Low power output</option>
-                <option>Panel damage</option>
-                <option>Monitoring app issue</option>
-                <option>Billing / payment query</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div>
-              <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);margin-bottom:0.35rem">Priority</div>
-              <select class="tf-select" id="ticket-priority">
-                <option>Low — general query</option>
-                <option>Medium — partial loss of power</option>
-                <option>High — no power</option>
-                <option>Critical — equipment damage</option>
-              </select>
-            </div>
-          </div>
-          <div style="margin-bottom:0.7rem">
-            <div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);margin-bottom:0.35rem">Describe the issue</div>
-            <textarea class="tf-input" rows="3" id="ticket-desc" placeholder="e.g. My inverter started beeping last night and the battery indicator is showing red…"></textarea>
-          </div>
-          <button class="tf-btn" onclick="submitTicket()">Submit Ticket →</button>
-        </div>
-      </div>
-
-      <!-- PROFILE -->
-      <div class="portal-view" id="pview-profile">
-        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem">My Profile</div>
-        <div class="profile-card">
-          <div class="profile-avatar" id="profile-avatar">JM</div>
-          <div class="profile-name" id="profile-name">Jane Mwangi</div>
-          <div class="profile-phone" id="profile-phone">0712 345 678 · Nairobi</div>
-          <div class="pf-row">
-            <div class="pf-field"><label>Full Name</label><input class="tf-input" id="pf-name" value="Jane Mwangi"></div>
-            <div class="pf-field"><label>Phone</label><input class="tf-input" id="pf-phone" value="0712 345 678" type="tel"></div>
-          </div>
-          <div class="pf-row">
-            <div class="pf-field"><label>Email</label><input class="tf-input" id="pf-email" value="" placeholder="jane@example.com" type="email"></div>
-            <div class="pf-field"><label>Location</label><input class="tf-input" id="pf-location" value="Nairobi"></div>
-          </div>
-          <button class="tf-btn" onclick="saveProfile()" style="margin-top:0.5rem">Save Changes</button>
-        </div>
-      </div>
-
-    </main>
-  </div>
-</div>
-
-<script>
-const API_BASE = 'https://shem-solar-production.up.railway.app/api/v1';
-// For local dev: const API_BASE = 'http://localhost:3000/api/v1';
-
-let currentUser = null;
-let userOrders  = [];
-
-// ── AUTH ──────────────────────────────────────────────────────────────────────
-async function doLogin() {
-  const rawPhone = document.getElementById('login-phone').value.trim();
-  const orderRef = document.getElementById('login-order').value.trim();
-  if (!rawPhone) { showLoginError('Please enter your phone number'); return; }
-
-  const btn = document.querySelector('.login-btn');
-  btn.disabled = true;
-  btn.textContent = 'Looking up account…';
-
-  // Normalise phone for both display and search
-  const phone     = rawPhone.replace(/\s/g,'');
-  const searchTerm = phone.replace(/^(\+254|0)/,'');  // strip prefix for search
-
-  try {
-    const res = await fetch(
-      `${API_BASE}/portal/orders?phone=${encodeURIComponent(phone)}${orderRef ? '&order='+encodeURIComponent(orderRef) : ''}`,
-      { headers: { 'x-portal-token': 'portal-readonly' } }
-    );
-
-    if (res.status === 404) {
-      btn.disabled = false; btn.textContent = 'Access My Account →';
-      showLoginError('No orders found for this number. Check the number or enter your order reference.');
-      return;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Shem Solar — Customer Portal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0B1F3A;
+      --navy-mid: #152D50;
+      --navy-light: #1E3D68;
+      --gold: #E8A020;
+      --gold-light: #F5B93C;
+      --gold-pale: #FEF3DC;
+      --green: #1E8C45;
+      --green-light: #27A855;
+      --green-pale: #E8F5ED;
+      --red: #E84040;
+      --amber: #E87820;
+      --blue: #2080E8;
+      --white: #FFFFFF;
+      --off-white: #F8F6F0;
+      --text-dark: #0B1F3A;
+      --text-mid: #3D5270;
+      --text-light: #6B7E99;
+      --border: rgba(11, 31, 58, 0.10);
+      --shadow-sm: 0 2px 12px rgba(11, 31, 58, 0.07);
+      --shadow-md: 0 8px 32px rgba(11, 31, 58, 0.12);
+      --radius: 12px;
+      --radius-lg: 20px;
     }
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Lookup failed');
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-    userOrders = data.orders || [];
-    const name = userOrders[0]?.customer_name || 'Customer';
-    btn.disabled = false; btn.textContent = 'Access My Account →';
-    loginSuccess(name, phone, userOrders);
+    html,
+    body {
+      height: 100%;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      background: var(--off-white)
+    }
 
-  } catch(err) {
-    // Graceful demo fallback — works without backend
-    btn.disabled = false; btn.textContent = 'Access My Account →';
-    const demoOrders = [{
-      id: 2847,
-      order_number: 'SOLAR-2026-A3F7',
-      customer_name: 'Jane Mwangi',
-      customer_phone: phone,
-      total_amount: 185000,
-      order_status: 'processing',
-      payment_status: 'completed',
-      shipping_address: 'Kiambu',
-      created_at: new Date(Date.now() - 7*86400000).toISOString(),
-      items: [{ product_name: 'Home Starter Kit 2kW' }],
-    }];
-    loginSuccess('Jane Mwangi', phone, demoOrders);
-  }
-}
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit
+    }
 
-function loginSuccess(name, phone, orders) {
-  currentUser = { name, phone, orders };
-  userOrders = orders;
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('portal').style.display = 'block';
+    /* ── NAV ── */
+    .portal-nav {
+      background: var(--navy);
+      padding: 0 2rem;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100
+    }
 
-  // Set user info
-  const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  document.getElementById('nav-avatar').textContent = initials;
-  document.getElementById('nav-name').textContent   = name;
-  document.getElementById('profile-avatar').textContent = initials;
-  document.getElementById('profile-name').textContent   = name;
-  document.getElementById('profile-phone').textContent  = `${phone} · ${orders[0]?.shipping_address || 'Kenya'}`;
-  document.getElementById('pf-name').value  = name;
-  document.getElementById('pf-phone').value = phone;
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white)
+    }
 
-  // Greeting
-  const hour = new Date().getHours();
-  const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('ov-greeting').textContent = `${greet}, ${name.split(' ')[0]}!`;
-  document.getElementById('ov-date').textContent     = new Date().toLocaleDateString('en-KE',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    .nav-brand-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--gold);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem
+    }
 
-  buildOverview();
-  buildOrders();
-  buildMonitoring();
-}
+    .nav-brand span {
+      color: var(--gold)
+    }
 
-function showLoginError(msg) {
-  const el = document.getElementById('login-error');
-  el.textContent = msg; el.style.display = 'block';
-}
-function clearLoginError() { document.getElementById('login-error').style.display = 'none'; }
+    .nav-user {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.85rem
+    }
 
-function doLogout() {
-  currentUser = null; userOrders = [];
-  document.getElementById('portal').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-}
+    .nav-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--navy)
+    }
 
-// ── VIEWS ─────────────────────────────────────────────────────────────────────
-function switchPortalView(id, btn) {
-  document.querySelectorAll('.portal-view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.sm-item').forEach(b => b.classList.remove('active'));
-  document.getElementById(`pview-${id}`)?.classList.add('active');
-  btn?.classList.add('active');
-}
+    .nav-logout {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius);
+      padding: 0.35rem 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s
+    }
 
-// ── BUILD OVERVIEW ────────────────────────────────────────────────────────────
-function buildOverview() {
-  const total = userOrders.reduce((s,o) => s + parseFloat(o.total_amount||0), 0);
-  const savings = Math.round(total * 0.45 / 12); // rough: 45% of cost saved annually, /12 for monthly
-  document.getElementById('ov-invested').textContent = 'KES ' + total.toLocaleString();
-  document.getElementById('ov-savings').textContent  = 'KES ' + savings.toLocaleString();
+    .nav-logout:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white)
+    }
 
-  const paidOrders = userOrders.filter(o => o.payment_status === 'completed');
-  const health = paidOrders.length ? '✅ Good' : '—';
-  document.getElementById('ov-health').textContent     = health;
-  document.getElementById('ov-health-sub').textContent = paidOrders.length ? 'All systems nominal' : 'No active system';
+    /* ── LOGIN SCREEN ── */
+    .login-screen {
+      min-height: 100vh;
+      background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 60%, #0F2845 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem
+    }
 
-  // Latest order card
-  const latest = userOrders[0];
-  if (latest) {
-    document.getElementById('ov-latest-order').innerHTML = buildOrderCard(latest, true);
-  } else {
-    document.getElementById('ov-latest-order').innerHTML = `<div style="color:var(--text-light);font-size:0.88rem;padding:1rem 0">No orders yet. <a href="shem-solar.html#products" style="color:var(--green);font-weight:600">Shop now →</a></div>`;
-  }
-}
+    .login-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: var(--shadow-md)
+    }
 
-// ── BUILD ORDERS ──────────────────────────────────────────────────────────────
-function buildOrders() {
-  if (!userOrders.length) {
-    document.getElementById('orders-list').innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text-light)">No orders yet. <a href="shem-solar.html#products" style="color:var(--green);font-weight:600">Browse our products →</a></div>`;
-    return;
-  }
-  document.getElementById('orders-list').innerHTML = userOrders.map(o => buildOrderCard(o, false)).join('');
-}
+    .login-logo {
+      text-align: center;
+      margin-bottom: 1.8rem
+    }
 
-const STATUS_STEPS = ['pending','paid','processing','dispatched','completed'];
-const STEP_LABELS  = ['Placed','Paid','Preparing','Dispatched','Complete'];
-const STEP_ICONS   = ['📝','💳','🔧','🚛','✅'];
+    .login-sun {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold));
+      box-shadow: 0 0 30px rgba(232, 160, 32, 0.4);
+      margin: 0 auto 0.8rem
+    }
 
-function buildOrderCard(o, compact) {
-  const stepIdx    = STATUS_STEPS.indexOf(o.order_status);
-  const fillPct    = Math.max(0, Math.min(100, (stepIdx / (STATUS_STEPS.length-1)) * 100));
-  const productName = o.items?.[0]?.product_name || o.items?.[0]?.package_name || 'Solar equipment';
+    .login-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.3rem
+    }
 
-  const steps = STATUS_STEPS.map((s,i) => {
-    const cls = i < stepIdx ? 'done' : i === stepIdx ? 'active' : 'future';
-    return `<div class="tl-step ${cls}">
+    .login-sub {
+      font-size: 0.85rem;
+      color: var(--text-light)
+    }
+
+    .form-field {
+      margin-bottom: 1rem
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-mid);
+      margin-bottom: 0.4rem
+    }
+
+    .form-field input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s
+    }
+
+    .form-field input:focus {
+      border-color: var(--gold)
+    }
+
+    .login-btn {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem
+    }
+
+    .login-btn:hover {
+      background: var(--navy-light);
+      transform: translateY(-1px)
+    }
+
+    .login-help {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-light)
+    }
+
+    .login-help a {
+      color: var(--green);
+      font-weight: 600;
+      cursor: pointer
+    }
+
+    .login-error {
+      background: #FEE;
+      border: 1px solid #F9C;
+      border-radius: var(--radius);
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+      display: none
+    }
+
+    /* ── PORTAL LAYOUT ── */
+    .portal-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: calc(100vh - 58px);
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      gap: 1.5rem
+    }
+
+    .portal-sidebar {}
+
+    .sidebar-menu {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 0.6rem;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 74px
+    }
+
+    .sm-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all 0.18s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left
+    }
+
+    .sm-item:hover {
+      background: var(--off-white);
+      color: var(--text-dark)
+    }
+
+    .sm-item.active {
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .sm-icon {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0
+    }
+
+    .portal-main {}
+
+    .portal-view {
+      display: none
+    }
+
+    .portal-view.active {
+      display: block
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border)
+    }
+
+    .card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem
+    }
+
+    .card-title-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%
+    }
+
+    /* ── OVERVIEW STATS ── */
+    .ov-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.2rem
+    }
+
+    .ov-stat {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden
+    }
+
+    .ov-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0
+    }
+
+    .ov-s1::before {
+      background: var(--gold)
+    }
+
+    .ov-s2::before {
+      background: var(--green)
+    }
+
+    .ov-s3::before {
+      background: var(--blue)
+    }
+
+    .ov-stat-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin-bottom: 0.5rem
+    }
+
+    .ov-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1
+    }
+
+    .ov-stat-sub {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.3rem
+    }
+
+    /* ── ORDER TIMELINE ── */
+    .order-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 1rem
+    }
+
+    .oc-header {
+      padding: 1.2rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem
+    }
+
+    .oc-order-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--text-light)
+    }
+
+    .oc-product {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-top: 0.15rem
+    }
+
+    .oc-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy)
+    }
+
+    .oc-body {
+      padding: 1.4rem
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 1.2rem
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--border);
+      z-index: 0
+    }
+
+    .tl-fill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      height: 2px;
+      background: var(--green);
+      z-index: 1;
+      transition: width 0.8s ease
+    }
+
+    .tl-step {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      flex: 1
+    }
+
+    .tl-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin: 0 auto 0.4rem;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      border: 2px solid var(--border);
+      background: var(--white);
+      transition: all 0.3s
+    }
+
+    .tl-dot.done {
+      background: var(--green);
+      border-color: var(--green);
+      color: var(--white)
+    }
+
+    .tl-dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 0 0 4px rgba(232, 160, 32, 0.2)
+    }
+
+    .tl-dot.future {
+      background: var(--white);
+      border-color: var(--border);
+      color: var(--text-light)
+    }
+
+    .tl-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-light);
+      white-space: nowrap
+    }
+
+    .tl-step.done .tl-label,
+    .tl-step.active .tl-label {
+      color: var(--text-dark)
+    }
+
+    .oc-footer {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border)
+    }
+
+    .oc-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none
+    }
+
+    .oc-btn-primary {
+      background: var(--navy);
+      color: var(--white)
+    }
+
+    .oc-btn-primary:hover {
+      background: var(--navy-light)
+    }
+
+    .oc-btn-secondary {
+      background: var(--off-white);
+      color: var(--text-dark);
+      border: 1px solid var(--border)
+    }
+
+    .oc-btn-secondary:hover {
+      background: var(--border)
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700
+    }
+
+    .pill::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .pill-paid {
+      background: var(--green-pale);
+      color: var(--green)
+    }
+
+    .pill-paid::before {
+      background: var(--green)
+    }
+
+    .pill-pending {
+      background: #FFF3E0;
+      color: var(--amber)
+    }
+
+    .pill-pending::before {
+      background: var(--amber)
+    }
+
+    .pill-processing {
+      background: #E3F2FD;
+      color: var(--blue)
+    }
+
+    .pill-processing::before {
+      background: var(--blue)
+    }
+
+    .pill-dispatched {
+      background: rgba(96, 160, 255, 0.12);
+      color: #1565C0
+    }
+
+    .pill-dispatched::before {
+      background: #1565C0
+    }
+
+    .pill-completed {
+      background: var(--green-pale);
+      color: var(--green)
+    }
+
+    .pill-completed::before {
+      background: var(--green)
+    }
+
+    /* ── MONITORING ── */
+    .monitor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem
+    }
+
+    .monitor-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border)
+    }
+
+    .mc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin-bottom: 0.5rem
+    }
+
+    .mc-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1
+    }
+
+    .mc-unit {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      font-weight: 400
+    }
+
+    .mc-sub {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 0.3rem
+    }
+
+    .mc-bar {
+      height: 6px;
+      background: var(--off-white);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 0.6rem
+    }
+
+    .mc-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 1s ease
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: live-pulse 1.5s infinite;
+      margin-right: 0.3rem
+    }
+
+    @keyframes live-pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    .energy-chart {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 1rem
+    }
+
+    .ec-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.4rem;
+      height: 80px;
+      margin-top: 0.8rem
+    }
+
+    .ec-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem
+    }
+
+    .ec-bar {
+      width: 100%;
+      border-radius: 3px 3px 0 0;
+      min-height: 3px;
+      transition: height 0.5s
+    }
+
+    .ec-bar-label {
+      font-size: 0.6rem;
+      color: var(--text-light)
+    }
+
+    /* ── SUPPORT ── */
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem
+    }
+
+    .support-item {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s
+    }
+
+    .support-item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px)
+    }
+
+    .support-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0
+    }
+
+    .support-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem
+    }
+
+    .support-desc {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.5
+    }
+
+    .ticket-form {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      margin-top: 1rem
+    }
+
+    .tf-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--text-dark)
+    }
+
+    .tf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem
+    }
+
+    .tf-input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.85rem;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s
+    }
+
+    .tf-input:focus {
+      border-color: var(--gold)
+    }
+
+    .tf-select {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.85rem;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      outline: none;
+      background: var(--white)
+    }
+
+    .tf-btn {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s
+    }
+
+    .tf-btn:hover {
+      background: var(--navy-light)
+    }
+
+    /* ── PROFILE ── */
+    .profile-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      max-width: 520px
+    }
+
+    .profile-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 1rem
+    }
+
+    .profile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.2rem
+    }
+
+    .profile-phone {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 1.4rem
+    }
+
+    .pf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem
+    }
+
+    .pf-field label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 0.35rem
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.65rem 1.3rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 200;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      box-shadow: var(--shadow-md);
+      white-space: nowrap
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0)
+    }
+
+    @media(max-width:900px) {
+      .portal-layout {
+        grid-template-columns: 1fr;
+        padding: 1rem
+      }
+
+      .sidebar-menu {
+        display: flex;
+        gap: 0.3rem;
+        overflow-x: auto;
+        padding: 0.4rem;
+        position: static
+      }
+
+      .sm-item {
+        flex-shrink: 0;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.8rem
+      }
+
+      .ov-stats,
+      .monitor-grid,
+      .support-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .tf-row,
+      .pf-row {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:600px) {
+
+      .ov-stats,
+      .monitor-grid,
+      .support-grid {
+        grid-template-columns: 1fr
+      }
+
+      .timeline {
+        gap: 0
+      }
+
+      .tl-label {
+        font-size: 0.6rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- ══════════ LOGIN SCREEN ══════════ -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-sun"></div>
+        <div class="login-title">My Shem Solar</div>
+        <div class="login-sub">Track your orders, monitor your system, get support</div>
+      </div>
+      <div class="login-error" id="login-error">Phone number not found. Please check and try again.</div>
+      <div class="form-field">
+        <label>Phone Number</label>
+        <input type="tel" id="login-phone" placeholder="0712 345 678" oninput="clearLoginError()">
+      </div>
+      <div class="form-field">
+        <label>Order Number <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional — for faster
+            lookup)</span></label>
+        <input type="text" id="login-order" placeholder="SOLAR-2026-XXXX">
+      </div>
+      <button class="login-btn" onclick="doLogin()">Access My Account →</button>
+      <div class="login-help">No account? <a
+          onclick="document.getElementById('login-phone').value='0712345678';doLogin()">Try demo account</a>
+        &nbsp;·&nbsp; <a href="shem-solar.html">Back to site</a></div>
+    </div>
+  </div>
+
+  <!-- ══════════ PORTAL ══════════ -->
+  <div id="portal" style="display:none">
+    <nav class="portal-nav">
+      <a href="shem-solar.html" class="nav-brand">
+        <div class="nav-brand-icon">☀️</div>
+        <span>Shem<span>Solar</span></span>
+      </a>
+      <div class="nav-user">
+        <div class="nav-avatar" id="nav-avatar">JM</div>
+        <span id="nav-name">Jane Mwangi</span>
+        <button class="nav-logout" onclick="doLogout()">Sign out</button>
+      </div>
+    </nav>
+
+    <div class="portal-layout">
+      <aside class="portal-sidebar">
+        <div class="sidebar-menu">
+          <button class="sm-item active" onclick="switchPortalView('overview',this)"><span
+              class="sm-icon">⊞</span>Overview</button>
+          <button class="sm-item" onclick="switchPortalView('orders',this)"><span class="sm-icon">📦</span>My
+            Orders</button>
+          <button class="sm-item" onclick="switchPortalView('monitoring',this)"><span class="sm-icon">📊</span>System
+            Monitor</button>
+          <button class="sm-item" onclick="switchPortalView('support',this)"><span
+              class="sm-icon">🛠️</span>Support</button>
+          <button class="sm-item" onclick="switchPortalView('profile',this)"><span
+              class="sm-icon">👤</span>Profile</button>
+        </div>
+      </aside>
+
+      <main class="portal-main">
+
+        <!-- OVERVIEW -->
+        <div class="portal-view active" id="pview-overview">
+          <div style="margin-bottom:1.2rem">
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--text-dark)"
+              id="ov-greeting">Good morning, Jane!</div>
+            <div style="font-size:0.85rem;color:var(--text-light);margin-top:0.2rem" id="ov-date"></div>
+          </div>
+          <div class="ov-stats">
+            <div class="ov-stat ov-s1">
+              <div class="ov-stat-label">Total Invested</div>
+              <div class="ov-stat-num" id="ov-invested">KES 0</div>
+              <div class="ov-stat-sub">across all systems</div>
+            </div>
+            <div class="ov-stat ov-s2">
+              <div class="ov-stat-label">Monthly Savings</div>
+              <div class="ov-stat-num" id="ov-savings">KES 0</div>
+              <div class="ov-stat-sub">vs KPLC bill</div>
+            </div>
+            <div class="ov-stat ov-s3">
+              <div class="ov-stat-label">System Health</div>
+              <div class="ov-stat-num" id="ov-health">—</div>
+              <div class="ov-stat-sub" id="ov-health-sub">loading…</div>
+            </div>
+          </div>
+
+          <!-- Latest order status -->
+          <div class="card" style="margin-bottom:1rem">
+            <div class="card-title"><span class="card-title-dot" style="background:var(--gold)"></span>Latest Order
+              Status</div>
+            <div id="ov-latest-order">
+              <div style="text-align:center;padding:1.5rem;color:var(--text-light);font-size:0.88rem">Loading your
+                orders…</div>
+            </div>
+          </div>
+
+          <!-- Quick actions -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem">
+            <button onclick="switchPortalView('monitoring',document.querySelectorAll('.sm-item')[2])"
+              style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow-sm)">
+              <div style="font-size:1.5rem;margin-bottom:0.4rem">📊</div>
+              <div style="font-size:0.82rem;font-weight:600;color:var(--text-dark)">Monitor System</div>
+            </button>
+            <button onclick="switchPortalView('support',document.querySelectorAll('.sm-item')[3])"
+              style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow-sm)">
+              <div style="font-size:1.5rem;margin-bottom:0.4rem">🛠️</div>
+              <div style="font-size:0.82rem;font-weight:600;color:var(--text-dark)">Get Support</div>
+            </button>
+            <a href="shem-solar.html#products"
+              style="background:var(--navy);border-radius:var(--radius-lg);padding:1rem;text-align:center;display:block;transition:all 0.2s;box-shadow:var(--shadow-sm);text-decoration:none">
+              <div style="font-size:1.5rem;margin-bottom:0.4rem">☀️</div>
+              <div style="font-size:0.82rem;font-weight:600;color:var(--gold-light)">Expand System</div>
+            </a>
+          </div>
+        </div>
+
+        <!-- ORDERS -->
+        <div class="portal-view" id="pview-orders">
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem">My
+            Orders</div>
+          <div id="orders-list">
+            <div style="text-align:center;padding:3rem;color:var(--text-light)">Loading your orders…</div>
+          </div>
+        </div>
+
+        <!-- MONITORING -->
+        <div class="portal-view" id="pview-monitoring">
+          <div
+            style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap;gap:0.5rem">
+            <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700">System Monitor</div>
+            <div style="font-size:0.8rem;color:var(--text-light)"><span class="live-dot"></span>Live data</div>
+          </div>
+
+          <div class="monitor-grid">
+            <div class="monitor-card">
+              <div class="mc-label">Solar Production</div>
+              <div class="mc-value" id="mc-production">3.8 <span class="mc-unit">kW</span></div>
+              <div class="mc-sub" id="mc-production-sub">↑ Peak today: 4.2 kW at 12:30pm</div>
+              <div class="mc-bar">
+                <div class="mc-bar-fill" id="mc-prod-bar" style="width:76%;background:var(--gold)"></div>
+              </div>
+            </div>
+            <div class="monitor-card">
+              <div class="mc-label">Battery State</div>
+              <div class="mc-value" id="mc-battery">82 <span class="mc-unit">%</span></div>
+              <div class="mc-sub" id="mc-battery-sub">Charging · Full in ~45 min</div>
+              <div class="mc-bar">
+                <div class="mc-bar-fill" id="mc-batt-bar" style="width:82%;background:var(--green)"></div>
+              </div>
+            </div>
+            <div class="monitor-card">
+              <div class="mc-label">Home Consumption</div>
+              <div class="mc-value" id="mc-consumption">1.2 <span class="mc-unit">kW</span></div>
+              <div class="mc-sub">Running: Fridge, TV, 6 lights</div>
+              <div class="mc-bar">
+                <div class="mc-bar-fill" id="mc-cons-bar" style="width:24%;background:var(--blue)"></div>
+              </div>
+            </div>
+            <div class="monitor-card">
+              <div class="mc-label">Today's Savings</div>
+              <div class="mc-value" id="mc-savings">KES <span id="mc-savings-val">640</span></div>
+              <div class="mc-sub" id="mc-savings-sub">↑ 18.4 kWh generated today</div>
+              <div class="mc-bar">
+                <div class="mc-bar-fill" style="width:64%;background:var(--green-light)"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="energy-chart">
+            <div class="card-title"><span class="card-title-dot" style="background:var(--gold)"></span>Today's Solar
+              Generation (kWh by hour)</div>
+            <div class="ec-bars" id="ec-bars"></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="card">
+              <div class="card-title"><span class="card-title-dot" style="background:var(--green)"></span>System Info
+              </div>
+              <div id="sys-info-rows"></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><span class="card-title-dot" style="background:var(--blue)"></span>Monthly Summary
+              </div>
+              <div id="monthly-summary-rows"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="portal-view" id="pview-support">
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem">
+            Support & Maintenance</div>
+          <div class="support-grid">
+            <div class="support-item" onclick="showToast('📞 Calling 0…')">
+              <div class="support-icon">📞</div>
+              <div>
+                <div class="support-title">Call Support</div>
+                <div class="support-desc">Mon–Sat 8am–6pm. Engineers on call for urgent issues.</div>
+              </div>
+            </div>
+            <div class="support-item"
+              onclick="window.open('https://wa.me/254717644620?text=Hi Shem Solar, I need support for my solar system.','_blank')">
+              <div class="support-icon">💬</div>
+              <div>
+                <div class="support-title">WhatsApp Us</div>
+                <div class="support-desc">Fast response on WhatsApp — send photos of any issues.</div>
+              </div>
+            </div>
+            <div class="support-item"
+              onclick="document.getElementById('ticket-form').scrollIntoView({behavior:'smooth'})">
+              <div class="support-icon">🎫</div>
+              <div>
+                <div class="support-title">Log a Ticket</div>
+                <div class="support-desc">For non-urgent issues — we respond within 24 hours.</div>
+              </div>
+            </div>
+            <div class="support-item" onclick="showToast('📅 Opening booking calendar…')">
+              <div class="support-icon">🔧</div>
+              <div>
+                <div class="support-title">Book Maintenance</div>
+                <div class="support-desc">Annual service visit — keep your system at peak performance.</div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-form" id="ticket-form">
+            <div class="tf-title">Log a Support Ticket</div>
+            <div class="tf-row">
+              <div>
+                <div
+                  style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);margin-bottom:0.35rem">
+                  Issue Type</div>
+                <select class="tf-select" id="ticket-type">
+                  <option>Battery not charging</option>
+                  <option>Inverter alarm / error</option>
+                  <option>Low power output</option>
+                  <option>Panel damage</option>
+                  <option>Monitoring app issue</option>
+                  <option>Billing / payment query</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <div
+                  style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);margin-bottom:0.35rem">
+                  Priority</div>
+                <select class="tf-select" id="ticket-priority">
+                  <option>Low — general query</option>
+                  <option>Medium — partial loss of power</option>
+                  <option>High — no power</option>
+                  <option>Critical — equipment damage</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-bottom:0.7rem">
+              <div
+                style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);margin-bottom:0.35rem">
+                Describe the issue</div>
+              <textarea class="tf-input" rows="3" id="ticket-desc"
+                placeholder="e.g. My inverter started beeping last night and the battery indicator is showing red…"></textarea>
+            </div>
+            <button class="tf-btn" onclick="submitTicket()">Submit Ticket →</button>
+          </div>
+        </div>
+
+        <!-- PROFILE -->
+        <div class="portal-view" id="pview-profile">
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem">My
+            Profile</div>
+          <div class="profile-card">
+            <div class="profile-avatar" id="profile-avatar">JM</div>
+            <div class="profile-name" id="profile-name">Jane Mwangi</div>
+            <div class="profile-phone" id="profile-phone">0712 345 678 · Nairobi</div>
+            <div class="pf-row">
+              <div class="pf-field"><label>Full Name</label><input class="tf-input" id="pf-name" value="Jane Mwangi">
+              </div>
+              <div class="pf-field"><label>Phone</label><input class="tf-input" id="pf-phone" value="0712 345 678"
+                  type="tel"></div>
+            </div>
+            <div class="pf-row">
+              <div class="pf-field"><label>Email</label><input class="tf-input" id="pf-email" value=""
+                  placeholder="jane@example.com" type="email"></div>
+              <div class="pf-field"><label>Location</label><input class="tf-input" id="pf-location" value="Nairobi">
+              </div>
+            </div>
+            <button class="tf-btn" onclick="saveProfile()" style="margin-top:0.5rem">Save Changes</button>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = 'https://shem-solar-production.up.railway.app/api/v1';
+    // For local dev: const API_BASE = 'http://localhost:3000/api/v1';
+
+    let currentUser = null;
+    let userOrders = [];
+
+    // ── AUTH ──────────────────────────────────────────────────────────────────────
+    async function doLogin() {
+      const rawPhone = document.getElementById('login-phone').value.trim();
+      const orderRef = document.getElementById('login-order').value.trim();
+      if (!rawPhone) { showLoginError('Please enter your phone number'); return; }
+
+      const btn = document.querySelector('.login-btn');
+      btn.disabled = true;
+      btn.textContent = 'Looking up account…';
+
+      // Normalise phone for both display and search
+      const phone = rawPhone.replace(/\s/g, '');
+      const searchTerm = phone.replace(/^(\+254|0)/, '');  // strip prefix for search
+
+      try {
+        const res = await fetch(
+          `${API_BASE}/portal/orders?phone=${encodeURIComponent(phone)}${orderRef ? '&order=' + encodeURIComponent(orderRef) : ''}`,
+          { headers: { 'x-portal-token': 'portal-readonly' } }
+        );
+
+        if (res.status === 404) {
+          btn.disabled = false; btn.textContent = 'Access My Account →';
+          showLoginError('No orders found for this number. Check the number or enter your order reference.');
+          return;
+        }
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Lookup failed');
+
+        userOrders = data.orders || [];
+        const name = userOrders[0]?.customer_name || 'Customer';
+        btn.disabled = false; btn.textContent = 'Access My Account →';
+        loginSuccess(name, phone, userOrders);
+
+      } catch (err) {
+        // Graceful demo fallback — works without backend
+        btn.disabled = false; btn.textContent = 'Access My Account →';
+        const demoOrders = [{
+          id: 2847,
+          order_number: 'SOLAR-2026-A3F7',
+          customer_name: 'Jane Mwangi',
+          customer_phone: phone,
+          total_amount: 185000,
+          order_status: 'processing',
+          payment_status: 'completed',
+          shipping_address: 'Kiambu',
+          created_at: new Date(Date.now() - 7 * 86400000).toISOString(),
+          items: [{ product_name: 'Home Starter Kit 2kW' }],
+        }];
+        loginSuccess('Jane Mwangi', phone, demoOrders);
+      }
+    }
+
+    function loginSuccess(name, phone, orders) {
+      currentUser = { name, phone, orders };
+      userOrders = orders;
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('portal').style.display = 'block';
+
+      // Set user info
+      const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+      document.getElementById('nav-avatar').textContent = initials;
+      document.getElementById('nav-name').textContent = name;
+      document.getElementById('profile-avatar').textContent = initials;
+      document.getElementById('profile-name').textContent = name;
+      document.getElementById('profile-phone').textContent = `${phone} · ${orders[0]?.shipping_address || 'Kenya'}`;
+      document.getElementById('pf-name').value = name;
+      document.getElementById('pf-phone').value = phone;
+
+      // Greeting
+      const hour = new Date().getHours();
+      const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+      document.getElementById('ov-greeting').textContent = `${greet}, ${name.split(' ')[0]}!`;
+      document.getElementById('ov-date').textContent = new Date().toLocaleDateString('en-KE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      buildOverview();
+      buildOrders();
+      buildMonitoring();
+    }
+
+    function showLoginError(msg) {
+      const el = document.getElementById('login-error');
+      el.textContent = msg; el.style.display = 'block';
+    }
+    function clearLoginError() { document.getElementById('login-error').style.display = 'none'; }
+
+    function doLogout() {
+      currentUser = null; userOrders = [];
+      document.getElementById('portal').style.display = 'none';
+      document.getElementById('login-screen').style.display = 'flex';
+    }
+
+    // ── VIEWS ─────────────────────────────────────────────────────────────────────
+    function switchPortalView(id, btn) {
+      document.querySelectorAll('.portal-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.sm-item').forEach(b => b.classList.remove('active'));
+      document.getElementById(`pview-${id}`)?.classList.add('active');
+      btn?.classList.add('active');
+    }
+
+    // ── BUILD OVERVIEW ────────────────────────────────────────────────────────────
+    function buildOverview() {
+      const total = userOrders.reduce((s, o) => s + parseFloat(o.total_amount || 0), 0);
+      const savings = Math.round(total * 0.45 / 12); // rough: 45% of cost saved annually, /12 for monthly
+      document.getElementById('ov-invested').textContent = 'KES ' + total.toLocaleString();
+      document.getElementById('ov-savings').textContent = 'KES ' + savings.toLocaleString();
+
+      const paidOrders = userOrders.filter(o => o.payment_status === 'completed');
+      const health = paidOrders.length ? '✅ Good' : '—';
+      document.getElementById('ov-health').textContent = health;
+      document.getElementById('ov-health-sub').textContent = paidOrders.length ? 'All systems nominal' : 'No active system';
+
+      // Latest order card
+      const latest = userOrders[0];
+      if (latest) {
+        document.getElementById('ov-latest-order').innerHTML = buildOrderCard(latest, true);
+      } else {
+        document.getElementById('ov-latest-order').innerHTML = `<div style="color:var(--text-light);font-size:0.88rem;padding:1rem 0">No orders yet. <a href="shem-solar.html#products" style="color:var(--green);font-weight:600">Shop now →</a></div>`;
+      }
+    }
+
+    // ── BUILD ORDERS ──────────────────────────────────────────────────────────────
+    function buildOrders() {
+      if (!userOrders.length) {
+        document.getElementById('orders-list').innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text-light)">No orders yet. <a href="shem-solar.html#products" style="color:var(--green);font-weight:600">Browse our products →</a></div>`;
+        return;
+      }
+      document.getElementById('orders-list').innerHTML = userOrders.map(o => buildOrderCard(o, false)).join('');
+    }
+
+    const STATUS_STEPS = ['pending', 'paid', 'processing', 'dispatched', 'completed'];
+    const STEP_LABELS = ['Placed', 'Paid', 'Preparing', 'Dispatched', 'Complete'];
+    const STEP_ICONS = ['📝', '💳', '🔧', '🚛', '✅'];
+
+    function buildOrderCard(o, compact) {
+      const stepIdx = STATUS_STEPS.indexOf(o.order_status);
+      const fillPct = Math.max(0, Math.min(100, (stepIdx / (STATUS_STEPS.length - 1)) * 100));
+      const productName = o.items?.[0]?.product_name || o.items?.[0]?.package_name || 'Solar equipment';
+
+      const steps = STATUS_STEPS.map((s, i) => {
+        const cls = i < stepIdx ? 'done' : i === stepIdx ? 'active' : 'future';
+        return `<div class="tl-step ${cls}">
       <div class="tl-dot ${cls}">${i < stepIdx ? '✓' : STEP_ICONS[i]}</div>
       <div class="tl-label">${STEP_LABELS[i]}</div>
     </div>`;
-  }).join('');
+      }).join('');
 
-  const statusPill = `<span class="pill pill-${o.payment_status === 'completed' ? 'paid' : o.order_status}">${o.payment_status === 'completed' ? 'Paid' : o.order_status}</span>`;
+      const statusPill = `<span class="pill pill-${o.payment_status === 'completed' ? 'paid' : o.order_status}">${o.payment_status === 'completed' ? 'Paid' : o.order_status}</span>`;
 
-  return `<div class="order-card">
+      return `<div class="order-card">
     <div class="oc-header">
       <div>
-        <div class="oc-order-num">${o.order_number} · ${new Date(o.created_at).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})}</div>
+        <div class="oc-order-num">${o.order_number} · ${new Date(o.created_at).toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
         <div class="oc-product">${productName}</div>
       </div>
       <div style="text-align:right">
@@ -591,99 +1454,100 @@ function buildOrderCard(o, compact) {
       </div>` : ''}
     </div>
   </div>`;
-}
+    }
 
-// ── BUILD MONITORING ──────────────────────────────────────────────────────────
-function buildMonitoring() {
-  // Simulated live data — in production this polls a monitoring API
-  const hourlyGen = [0,0,0,0,0,0.2,0.8,1.8,2.9,3.6,4.1,4.2,3.9,3.6,3.2,2.6,1.8,0.8,0.2,0,0,0,0,0];
-  const now = new Date().getHours();
-  const upToNow = hourlyGen.slice(6, Math.min(now+1, 20));
-  const maxH = Math.max(...hourlyGen);
-  const hours = Array.from({length: upToNow.length}, (_,i) => `${i+6}h`);
+    // ── BUILD MONITORING ──────────────────────────────────────────────────────────
+    function buildMonitoring() {
+      // Simulated live data — in production this polls a monitoring API
+      const hourlyGen = [0, 0, 0, 0, 0, 0.2, 0.8, 1.8, 2.9, 3.6, 4.1, 4.2, 3.9, 3.6, 3.2, 2.6, 1.8, 0.8, 0.2, 0, 0, 0, 0, 0];
+      const now = new Date().getHours();
+      const upToNow = hourlyGen.slice(6, Math.min(now + 1, 20));
+      const maxH = Math.max(...hourlyGen);
+      const hours = Array.from({ length: upToNow.length }, (_, i) => `${i + 6}h`);
 
-  const barsEl = document.getElementById('ec-bars');
-  if (barsEl) {
-    barsEl.innerHTML = upToNow.map((v,i) => `
+      const barsEl = document.getElementById('ec-bars');
+      if (barsEl) {
+        barsEl.innerHTML = upToNow.map((v, i) => `
       <div class="ec-bar-col">
-        <div class="ec-bar" style="height:${Math.round((v/maxH)*100)}%;background:${i===upToNow.length-1?'var(--gold)':'var(--green-pale)'};min-height:${v>0?'4px':'0'}"></div>
+        <div class="ec-bar" style="height:${Math.round((v / maxH) * 100)}%;background:${i === upToNow.length - 1 ? 'var(--gold)' : 'var(--green-pale)'};min-height:${v > 0 ? '4px' : '0'}"></div>
         <div class="ec-bar-label">${hours[i]}</div>
       </div>`).join('');
-  }
+      }
 
-  const totalToday = upToNow.reduce((s,v)=>s+v,0).toFixed(1);
-  document.getElementById('mc-savings-val').textContent = Math.round(totalToday * 25).toLocaleString();
-  document.getElementById('mc-savings-sub').textContent = `↑ ${totalToday} kWh generated today`;
+      const totalToday = upToNow.reduce((s, v) => s + v, 0).toFixed(1);
+      document.getElementById('mc-savings-val').textContent = Math.round(totalToday * 25).toLocaleString();
+      document.getElementById('mc-savings-sub').textContent = `↑ ${totalToday} kWh generated today`;
 
-  const order = userOrders.find(o => o.payment_status === 'completed') || userOrders[0];
-  const product = order?.items?.[0]?.product_name || 'Home Starter Kit 2kW';
+      const order = userOrders.find(o => o.payment_status === 'completed') || userOrders[0];
+      const product = order?.items?.[0]?.product_name || 'Home Starter Kit 2kW';
 
-  const sysInfoEl = document.getElementById('sys-info-rows');
-  if (sysInfoEl) sysInfoEl.innerHTML = [
-    ['System','Home Solar — ' + product],
-    ['Installed',order ? new Date(order.created_at).toLocaleDateString('en-KE',{month:'long',year:'numeric'}) : '—'],
-    ['Inverter Status','✅ Online'],
-    ['Grid Connection','✅ Connected'],
-    ['Last Service','N/A — scheduled soon'],
-  ].map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.82rem"><span style="color:var(--text-light)">${k}</span><span style="font-weight:500">${v}</span></div>`).join('');
+      const sysInfoEl = document.getElementById('sys-info-rows');
+      if (sysInfoEl) sysInfoEl.innerHTML = [
+        ['System', 'Home Solar — ' + product],
+        ['Installed', order ? new Date(order.created_at).toLocaleDateString('en-KE', { month: 'long', year: 'numeric' }) : '—'],
+        ['Inverter Status', '✅ Online'],
+        ['Grid Connection', '✅ Connected'],
+        ['Last Service', 'N/A — scheduled soon'],
+      ].map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.82rem"><span style="color:var(--text-light)">${k}</span><span style="font-weight:500">${v}</span></div>`).join('');
 
-  const monthlyEl = document.getElementById('monthly-summary-rows');
-  if (monthlyEl) {
-    const monthlyKwh = (totalToday * 30).toFixed(0);
-    const monthlySaved = Math.round(monthlyKwh * 25);
-    monthlyEl.innerHTML = [
-      ['Month','May 2026'],
-      ['Energy Generated', monthlyKwh + ' kWh (est.)'],
-      ['KPLC Cost Avoided','KES ' + monthlySaved.toLocaleString()],
-      ['CO₂ Offset', (monthlyKwh * 0.5).toFixed(0) + ' kg'],
-      ['System Uptime','99.2%'],
-    ].map(([k,v])=>`<div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.82rem"><span style="color:var(--text-light)">${k}</span><span style="font-weight:600;color:var(--green)">${v}</span></div>`).join('');
-  }
+      const monthlyEl = document.getElementById('monthly-summary-rows');
+      if (monthlyEl) {
+        const monthlyKwh = (totalToday * 30).toFixed(0);
+        const monthlySaved = Math.round(monthlyKwh * 25);
+        monthlyEl.innerHTML = [
+          ['Month', 'May 2026'],
+          ['Energy Generated', monthlyKwh + ' kWh (est.)'],
+          ['KPLC Cost Avoided', 'KES ' + monthlySaved.toLocaleString()],
+          ['CO₂ Offset', (monthlyKwh * 0.5).toFixed(0) + ' kg'],
+          ['System Uptime', '99.2%'],
+        ].map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.82rem"><span style="color:var(--text-light)">${k}</span><span style="font-weight:600;color:var(--green)">${v}</span></div>`).join('');
+      }
 
-  // Animate values
-  animateMonitor();
-}
+      // Animate values
+      animateMonitor();
+    }
 
-function animateMonitor() {
-  setInterval(() => {
-    const prod = (3.5 + Math.random()*0.8).toFixed(1);
-    const batt = Math.min(100, 82 + Math.floor(Math.random()*3));
-    const cons = (1.0 + Math.random()*0.4).toFixed(1);
-    document.getElementById('mc-production').innerHTML = `${prod} <span class="mc-unit">kW</span>`;
-    document.getElementById('mc-battery').innerHTML    = `${batt} <span class="mc-unit">%</span>`;
-    document.getElementById('mc-consumption').innerHTML= `${cons} <span class="mc-unit">kW</span>`;
-    document.getElementById('mc-prod-bar').style.width = `${prod/5*100}%`;
-    document.getElementById('mc-batt-bar').style.width = `${batt}%`;
-    document.getElementById('mc-batt-bar').style.background = batt > 50 ? 'var(--green)' : batt > 20 ? 'var(--amber)' : 'var(--red)';
-    document.getElementById('mc-cons-bar').style.width = `${cons/5*100}%`;
-  }, 4000);
-}
+    function animateMonitor() {
+      setInterval(() => {
+        const prod = (3.5 + Math.random() * 0.8).toFixed(1);
+        const batt = Math.min(100, 82 + Math.floor(Math.random() * 3));
+        const cons = (1.0 + Math.random() * 0.4).toFixed(1);
+        document.getElementById('mc-production').innerHTML = `${prod} <span class="mc-unit">kW</span>`;
+        document.getElementById('mc-battery').innerHTML = `${batt} <span class="mc-unit">%</span>`;
+        document.getElementById('mc-consumption').innerHTML = `${cons} <span class="mc-unit">kW</span>`;
+        document.getElementById('mc-prod-bar').style.width = `${prod / 5 * 100}%`;
+        document.getElementById('mc-batt-bar').style.width = `${batt}%`;
+        document.getElementById('mc-batt-bar').style.background = batt > 50 ? 'var(--green)' : batt > 20 ? 'var(--amber)' : 'var(--red)';
+        document.getElementById('mc-cons-bar').style.width = `${cons / 5 * 100}%`;
+      }, 4000);
+    }
 
-// ── SUPPORT TICKET ────────────────────────────────────────────────────────────
-async function submitTicket() {
-  const type = document.getElementById('ticket-type').value;
-  const desc = document.getElementById('ticket-desc').value.trim();
-  if (!desc) { showToast('⚠️ Please describe the issue'); return; }
-  // In production POST to /api/v1/support/tickets
-  showToast('✅ Ticket logged — we\'ll respond within 24 hours');
-  document.getElementById('ticket-desc').value = '';
-}
+    // ── SUPPORT TICKET ────────────────────────────────────────────────────────────
+    async function submitTicket() {
+      const type = document.getElementById('ticket-type').value;
+      const desc = document.getElementById('ticket-desc').value.trim();
+      if (!desc) { showToast('⚠️ Please describe the issue'); return; }
+      // In production POST to /api/v1/support/tickets
+      showToast('✅ Ticket logged — we\'ll respond within 24 hours');
+      document.getElementById('ticket-desc').value = '';
+    }
 
-// ── PROFILE SAVE ──────────────────────────────────────────────────────────────
-function saveProfile() {
-  const name = document.getElementById('pf-name').value.trim();
-  if (!name) { showToast('⚠️ Name is required'); return; }
-  document.getElementById('nav-name').textContent     = name;
-  document.getElementById('profile-name').textContent = name;
-  showToast('✅ Profile updated');
-}
+    // ── PROFILE SAVE ──────────────────────────────────────────────────────────────
+    function saveProfile() {
+      const name = document.getElementById('pf-name').value.trim();
+      if (!name) { showToast('⚠️ Name is required'); return; }
+      document.getElementById('nav-name').textContent = name;
+      document.getElementById('profile-name').textContent = name;
+      showToast('✅ Profile updated');
+    }
 
-// ── TOAST ─────────────────────────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-</script>
+    // ── TOAST ─────────────────────────────────────────────────────────────────────
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+  </script>
 </body>
+
 </html>
