@@ -2184,14 +2184,12 @@
           class="mpf-input" value="ShemSolar"></div>
       <button class="send-btn" onclick="showToast('Settings are managed via .env on Railway — not saved here')">Save SMS
         Settings</button>
+
     </div>
-
   </div>
   </div>
-  </div>
-
   <div class="view" id="view-settings">
-    <div style="max-width:600px; display: flex; flex-direction: column; gap: 1.5rem; padding: 1rem;">
+    <div style="max-width:600px; display: flex; flex-direction: column; gap: 1.5rem; padding: 1.5rem;">
 
       <div style="font-size:1rem; font-weight:700; color:var(--text-1); margin-bottom:0.2rem">System Settings</div>
 
@@ -2230,8 +2228,7 @@
             <input class="mpf-input" value="174379">
           </div>
         </div>
-        <button class="send-btn" style="margin-top:0.5rem; background:var(--accent-1, #10b981);">Save Daraja
-          Settings</button>
+        <button class="send-btn" style="margin-top:0.5rem;">Save Daraja Settings</button>
       </div>
 
       <div class="mpesa-form">
@@ -2239,19 +2236,19 @@
         <div class="mpf-sub">SMS Gateway credentials</div>
         <div class="mpf-row">
           <div class="mpf-group">
-            <label>API KEY</label>
+            <label>API Key</label>
             <input class="mpf-input" type="password" value="your_api_key_here">
           </div>
           <div class="mpf-group">
-            <label>USERNAME</label>
+            <label>Username</label>
             <input class="mpf-input" value="sandbox">
           </div>
         </div>
         <div class="mpf-group" style="margin-bottom:0.7rem">
-          <label>SENDER ID</label>
+          <label>Sender ID</label>
           <input class="mpf-input" value="ShemSolar">
         </div>
-        <button class="send-btn" style="background:var(--accent-1, #10b981);">Save SMS Settings</button>
+        <button class="send-btn">Save SMS Settings</button>
       </div>
 
       <div class="mpesa-form">
@@ -2294,277 +2291,280 @@
 
     </div>
   </div>
+</body>
 
-  <!-- SETTINGS -->
-  <div class="view" id="view-settings">
-    <div style="max-width:600px">
-      <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:1.2rem">System Settings</div>
-      <div class="mpesa-form" style="margin-bottom:1rem">
-        <div class="mpf-title">M-Pesa / Daraja API</div>
-        <div class="mpf-sub">Safaricom Daraja API credentials for STK Push</div>
-        <div class="mpf-row">
-          <div class="mpf-group"><label>API Key</label><input class="mpf-input" type="password"
-              placeholder="Managed via Railway .env" disabled></div>
-          <div class="mpf-group"><label>Username</label><input class="mpf-input" value="sandbox"></div>
-        </div>
-        <div class="mpf-group" style="margin-bottom:0.7rem"><label>Callback URL</label><input class="mpf-input"
-            id="setting-callback" value="https://shem-solar-production.up.railway.app/api/v1/mpesa/callback">
-        </div>
-        <div class="mpf-group" style="margin-bottom:0.7rem"><label>Paybill / Till Number</label><input class="mpf-input"
-            value="6429266"></div>
-        <div class="mpf-row">
-          <div class="mpf-group"><label>Environment</label><select class="mpf-select">
-              <option>Sandbox</option>
-              <option>Production</option>
-            </select></div>
-          <div class="mpf-group"><label>Shortcode</label><input class="mpf-input" value="174379"></div>
-        </div>
-        <!-- Product Modal -->
-        <div id="product-modal-overlay"
-          style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;">
-          <div
-            style="background:var(--navy-card);border:1px solid var(--border-2);border-radius:var(--radius-lg);padding:1.5rem;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-              <h3 id="product-modal-title" style="margin:0;font-size:1.1rem;color:var(--text-1)">Add Product</h3>
-              <button onclick="closeProductModal()"
-                style="background:none;border:none;color:var(--text-3);font-size:1.3rem;cursor:pointer;">&times;</button>
+</html>
+
+<!-- SETTINGS -->
+<div class="view" id="view-settings">
+  <div style="max-width:600px">
+    <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:1.2rem">System Settings</div>
+    <div class="mpesa-form" style="margin-bottom:1rem">
+      <div class="mpf-title">M-Pesa / Daraja API</div>
+      <div class="mpf-sub">Safaricom Daraja API credentials for STK Push</div>
+      <div class="mpf-row">
+        <div class="mpf-group"><label>API Key</label><input class="mpf-input" type="password"
+            placeholder="Managed via Railway .env" disabled></div>
+        <div class="mpf-group"><label>Username</label><input class="mpf-input" value="sandbox"></div>
+      </div>
+      <div class="mpf-group" style="margin-bottom:0.7rem"><label>Callback URL</label><input class="mpf-input"
+          id="setting-callback" value="https://shem-solar-production.up.railway.app/api/v1/mpesa/callback">
+      </div>
+      <div class="mpf-group" style="margin-bottom:0.7rem"><label>Paybill / Till Number</label><input class="mpf-input"
+          value="6429266"></div>
+      <div class="mpf-row">
+        <div class="mpf-group"><label>Environment</label><select class="mpf-select">
+            <option>Sandbox</option>
+            <option>Production</option>
+          </select></div>
+        <div class="mpf-group"><label>Shortcode</label><input class="mpf-input" value="174379"></div>
+      </div>
+      <!-- Product Modal -->
+      <div id="product-modal-overlay"
+        style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;">
+        <div
+          style="background:var(--navy-card);border:1px solid var(--border-2);border-radius:var(--radius-lg);padding:1.5rem;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 id="product-modal-title" style="margin:0;font-size:1.1rem;color:var(--text-1)">Add Product</h3>
+            <button onclick="closeProductModal()"
+              style="background:none;border:none;color:var(--text-3);font-size:1.3rem;cursor:pointer;">&times;</button>
+          </div>
+          <form id="product-form" onsubmit="submitProduct(event)">
+            <input type="hidden" id="pf-id">
+            <div style="margin-bottom:0.75rem;"><label class="pf-label">SKU *</label><input class="mpf-input"
+                id="pf-sku" required placeholder="e.g. PANEL-450W" style="width:100%;"></div>
+            <div style="margin-bottom:0.75rem;"><label class="pf-label">Product Name *</label><input class="mpf-input"
+                id="pf-name" required placeholder="e.g. 450W Monocrystalline Panel" oninput="autoSlug()"
+                style="width:100%;"></div>
+            <div style="margin-bottom:0.75rem;"><label class="pf-label">Slug *</label><input class="mpf-input"
+                id="pf-slug" required placeholder="e.g. panel-450w" style="width:100%;"></div>
+            <div style="margin-bottom:0.75rem;"><label class="pf-label">Category *</label>
+              <select class="mpf-select" id="pf-category" required style="width:100%;">
+                <option value="panel">Panel</option>
+                <option value="battery">Battery</option>
+                <option value="inverter">Inverter</option>
+                <option value="charge_controller">Charge Controller</option>
+                <option value="accessory">Accessory</option>
+              </select>
             </div>
-            <form id="product-form" onsubmit="submitProduct(event)">
-              <input type="hidden" id="pf-id">
-              <div style="margin-bottom:0.75rem;"><label class="pf-label">SKU *</label><input class="mpf-input"
-                  id="pf-sku" required placeholder="e.g. PANEL-450W" style="width:100%;"></div>
-              <div style="margin-bottom:0.75rem;"><label class="pf-label">Product Name *</label><input class="mpf-input"
-                  id="pf-name" required placeholder="e.g. 450W Monocrystalline Panel" oninput="autoSlug()"
-                  style="width:100%;"></div>
-              <div style="margin-bottom:0.75rem;"><label class="pf-label">Slug *</label><input class="mpf-input"
-                  id="pf-slug" required placeholder="e.g. panel-450w" style="width:100%;"></div>
-              <div style="margin-bottom:0.75rem;"><label class="pf-label">Category *</label>
-                <select class="mpf-select" id="pf-category" required style="width:100%;">
-                  <option value="panel">Panel</option>
-                  <option value="battery">Battery</option>
-                  <option value="inverter">Inverter</option>
-                  <option value="charge_controller">Charge Controller</option>
-                  <option value="accessory">Accessory</option>
-                </select>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
-                <div><label class="pf-label">Price (KES) *</label><input class="mpf-input" id="pf-price" type="number"
-                    min="0" required style="width:100%;"></div>
-                <div><label class="pf-label">Stock Quantity</label><input class="mpf-input" id="pf-stock" type="number"
-                    min="0" value="0" style="width:100%;"></div>
-              </div>
-              <div style="margin-bottom:0.75rem;"><label class="pf-label">Description</label><textarea class="mpf-input"
-                  id="pf-description" rows="3" style="width:100%;resize:vertical;"></textarea></div>
-              <div style="margin-bottom:1rem;"><label class="pf-label">Specifications (key: value per
-                  line)</label><textarea class="mpf-input" id="pf-specs" rows="2"
-                  placeholder="wattage: 450W&#10;warranty: 25 years" style="width:100%;resize:vertical;"></textarea>
-              </div>
-              <div id="pf-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.75rem;"></div>
-              <div style="display:flex;gap:0.75rem;justify-content:flex-end;">
-                <button type="button" onclick="closeProductModal()" class="tb-btn"
-                  style="background:transparent;border:1px solid var(--border);">Cancel</button>
-                <button type="submit" class="tb-btn primary" id="pf-submit-btn">Save Product</button>
-              </div>
-            </form>
-          </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
+              <div><label class="pf-label">Price (KES) *</label><input class="mpf-input" id="pf-price" type="number"
+                  min="0" required style="width:100%;"></div>
+              <div><label class="pf-label">Stock Quantity</label><input class="mpf-input" id="pf-stock" type="number"
+                  min="0" value="0" style="width:100%;"></div>
+            </div>
+            <div style="margin-bottom:0.75rem;"><label class="pf-label">Description</label><textarea class="mpf-input"
+                id="pf-description" rows="3" style="width:100%;resize:vertical;"></textarea></div>
+            <div style="margin-bottom:1rem;"><label class="pf-label">Specifications (key: value per
+                line)</label><textarea class="mpf-input" id="pf-specs" rows="2"
+                placeholder="wattage: 450W&#10;warranty: 25 years" style="width:100%;resize:vertical;"></textarea>
+            </div>
+            <div id="pf-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.75rem;"></div>
+            <div style="display:flex;gap:0.75rem;justify-content:flex-end;">
+              <button type="button" onclick="closeProductModal()" class="tb-btn"
+                style="background:transparent;border:1px solid var(--border);">Cancel</button>
+              <button type="submit" class="tb-btn primary" id="pf-submit-btn">Save Product</button>
+            </div>
+          </form>
         </div>
+      </div>
 
-        <!-- Order/Quote Drawer -->
-        <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
-        <div class="detail-drawer" id="detail-drawer">
-          <div class="dd-head">
-            <div class="dd-title" id="dd-title">Detail</div>
-            <button class="dd-close" onclick="closeDrawer()">✕</button>
-          </div>
-          <div class="dd-body" id="dd-body"></div>
-          <div class="dd-actions" id="dd-actions"></div>
+      <!-- Order/Quote Drawer -->
+      <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+      <div class="detail-drawer" id="detail-drawer">
+        <div class="dd-head">
+          <div class="dd-title" id="dd-title">Detail</div>
+          <button class="dd-close" onclick="closeDrawer()">✕</button>
         </div>
+        <div class="dd-body" id="dd-body"></div>
+        <div class="dd-actions" id="dd-actions"></div>
+      </div>
 
-        <script>
-          // ── API CONFIG ────────────────────────────────────────────────────────────────
-          const API_BASE = 'https://shem-solar-production.up.railway.app/api/v1';
-          let ADMIN_KEY = localStorage.getItem('shem_admin_key') || '';
+      <script>
+        // ── API CONFIG ────────────────────────────────────────────────────────────────
+        const API_BASE = 'https://shem-solar-production.up.railway.app/api/v1';
+        let ADMIN_KEY = localStorage.getItem('shem_admin_key') || '';
 
-          async function api(path, opts = {}) {
-            const res = await fetch(`${API_BASE}${path}`, {
-              ...opts,
-              headers: {
-                'Content-Type': 'application/json',
-                'x-admin-secret': ADMIN_KEY,
-                'Authorization': `Bearer ${ADMIN_KEY}`,
-                ...(opts.headers || {}),
-              },
-              body: opts.body ? JSON.stringify(opts.body) : undefined,
+        async function api(path, opts = {}) {
+          const res = await fetch(`${API_BASE}${path}`, {
+            ...opts,
+            headers: {
+              'Content-Type': 'application/json',
+              'x-admin-secret': ADMIN_KEY,
+              'Authorization': `Bearer ${ADMIN_KEY}`,
+              ...(opts.headers || {}),
+            },
+            body: opts.body ? JSON.stringify(opts.body) : undefined,
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+          return data;
+        }
+
+
+
+        async function doAdminLogin() {
+          const username = document.getElementById('login-username').value.trim();
+          const password = document.getElementById('login-password').value;
+          const btn = document.getElementById('login-btn');
+
+          if (!username || !password) {
+            document.getElementById('login-error').style.display = 'block';
+            return;
+          }
+
+          btn.disabled = true;
+          btn.textContent = 'Signing in…';
+
+          try {
+            const res = await fetch(`${API_BASE}/auth/login`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ username, password }),
             });
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
-            return data;
+            if (!res.ok) throw new Error(data.error || 'Login failed');
+
+            ADMIN_KEY = data.token;
+            localStorage.setItem('shem_admin_key', data.token);
+            localStorage.setItem('shem_admin_user', JSON.stringify({
+              name: data.user.name,
+              role: data.user.role,
+              initials: data.user.name.split(' ').map(w => w[0]).join('').toUpperCase(),
+            }));
+
+            applyUserToUI({
+              name: data.user.name,
+              role: data.user.role,
+              initials: data.user.name.split(' ').map(w => w[0]).join('').toUpperCase(),
+            });
+
+            document.getElementById('login-wrap').style.display = 'none';
+            document.getElementById('dashboard-shell').style.display = 'flex';
+            loadOverview();
+            loadOrders();
+          } catch (e) {
+            document.getElementById('login-error').textContent = e.message || 'Invalid username or password';
+            document.getElementById('login-error').style.display = 'block';
+            document.getElementById('login-password').value = '';
+          } finally {
+            btn.disabled = false;
+            btn.textContent = 'Sign In →';
           }
+        }
 
+        function applyUserToUI(user) {
+          document.getElementById('sb-avatar').textContent = user.initials;
+          document.getElementById('sb-user-name').textContent = user.name;
+          document.getElementById('sb-user-role').textContent = user.role;
+          document.getElementById('page-sub').textContent = `${user.role} · ${new Date().toLocaleDateString('en-KE', { weekday: 'long', day: 'numeric', month: 'long' })}`;
+        }
 
+        function doAdminLogout() {
+          currentAdmin = null;
+          localStorage.removeItem('shem_admin_key');
+          localStorage.removeItem('shem_admin_user');
+          document.getElementById('dashboard-shell').style.display = 'none';
+          document.getElementById('login-wrap').style.display = 'flex';
+          document.getElementById('login-username').value = '';
+          document.getElementById('login-password').value = '';
+          document.getElementById('login-error').style.display = 'none';
+        }
 
-          async function doAdminLogin() {
-            const username = document.getElementById('login-username').value.trim();
-            const password = document.getElementById('login-password').value;
-            const btn = document.getElementById('login-btn');
-
-            if (!username || !password) {
-              document.getElementById('login-error').style.display = 'block';
-              return;
-            }
-
-            btn.disabled = true;
-            btn.textContent = 'Signing in…';
-
+        function checkAuth() {
+          const saved = localStorage.getItem('shem_admin_user');
+          const key = localStorage.getItem('shem_admin_key');
+          if (saved && key) {
             try {
-              const res = await fetch(`${API_BASE}/auth/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password }),
-              });
-              const data = await res.json();
-              if (!res.ok) throw new Error(data.error || 'Login failed');
-
-              ADMIN_KEY = data.token;
-              localStorage.setItem('shem_admin_key', data.token);
-              localStorage.setItem('shem_admin_user', JSON.stringify({
-                name: data.user.name,
-                role: data.user.role,
-                initials: data.user.name.split(' ').map(w => w[0]).join('').toUpperCase(),
-              }));
-
-              applyUserToUI({
-                name: data.user.name,
-                role: data.user.role,
-                initials: data.user.name.split(' ').map(w => w[0]).join('').toUpperCase(),
-              });
-
+              const user = JSON.parse(saved);
+              currentAdmin = { ...user, apiKey: key };
+              ADMIN_KEY = key;
+              applyUserToUI(user);
               document.getElementById('login-wrap').style.display = 'none';
               document.getElementById('dashboard-shell').style.display = 'flex';
-              loadOverview();
-              loadOrders();
-            } catch (e) {
-              document.getElementById('login-error').textContent = e.message || 'Invalid username or password';
-              document.getElementById('login-error').style.display = 'block';
-              document.getElementById('login-password').value = '';
-            } finally {
-              btn.disabled = false;
-              btn.textContent = 'Sign In →';
-            }
+            } catch (_) { }
           }
+        }
 
-          function applyUserToUI(user) {
-            document.getElementById('sb-avatar').textContent = user.initials;
-            document.getElementById('sb-user-name').textContent = user.name;
-            document.getElementById('sb-user-role').textContent = user.role;
-            document.getElementById('page-sub').textContent = `${user.role} · ${new Date().toLocaleDateString('en-KE', { weekday: 'long', day: 'numeric', month: 'long' })}`;
-          }
+        // ── NAV ───────────────────────────────────────────────────────────────────────
+        function switchView(id, btn) {
+          document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+          document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
+          document.getElementById('view-' + id)?.classList.add('active');
+          if (btn) btn.classList.add('active');
+          const titles = { overview: 'Overview', orders: 'Orders', quotes: 'Quote Pipeline', inventory: 'Inventory', analytics: 'Analytics', mpesa: 'Send M-Pesa Link', sms: 'SMS Broadcast', products: 'Products', settings: 'Settings' };
+          document.getElementById('page-title').textContent = titles[id] || id;
+          const loaders = { overview: () => { loadOverview(); loadOrders(); }, orders: loadOrders, quotes: loadQuotes, inventory: loadInventory, analytics: loadAnalytics, products: loadProductsTable, mpesa: loadMpesaCatalog };
+          loaders[id]?.();
+        }
 
-          function doAdminLogout() {
-            currentAdmin = null;
-            localStorage.removeItem('shem_admin_key');
-            localStorage.removeItem('shem_admin_user');
-            document.getElementById('dashboard-shell').style.display = 'none';
-            document.getElementById('login-wrap').style.display = 'flex';
-            document.getElementById('login-username').value = '';
-            document.getElementById('login-password').value = '';
-            document.getElementById('login-error').style.display = 'none';
-          }
+        // ── LIVE DATA LOADERS ─────────────────────────────────────────────────────────
+        async function loadOverview() {
+          try {
+            const data = await api('/analytics/overview');
+            const rev = Number(data.revenue?.total_revenue || 0);
+            document.getElementById('ov-revenue').textContent = 'KES ' + rev.toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 });
+            document.getElementById('ov-revenue-meta').textContent = 'This month';
+            document.getElementById('ov-orders').textContent = data.orders?.total || 0;
+            document.getElementById('ov-orders-meta').textContent = `${data.orders?.paid || 0} paid · ${data.orders?.pending || 0} pending`;
+            document.getElementById('ov-quotes').textContent = data.quotes?.total || 0;
+            document.getElementById('ov-quotes-meta').textContent = `${data.quotes?.new_count || 0} new this month`;
+            document.getElementById('ov-lowstock').textContent = data.low_stock?.count || 0;
+            document.getElementById('ov-lowstock-meta').textContent = data.low_stock?.count > 0 ? 'Reorder needed' : 'All stocked';
+            // Update sidebar badges
+            const badgeO = document.getElementById('badge-orders');
+            const badgeQ = document.getElementById('badge-quotes');
+            if (badgeO) badgeO.textContent = data.orders?.pending || 0;
+            if (badgeQ) badgeQ.textContent = data.quotes?.new_count || 0;
+          } catch (e) { console.warn('Overview load failed:', e.message); }
 
-          function checkAuth() {
-            const saved = localStorage.getItem('shem_admin_user');
-            const key = localStorage.getItem('shem_admin_key');
-            if (saved && key) {
-              try {
-                const user = JSON.parse(saved);
-                currentAdmin = { ...user, apiKey: key };
-                ADMIN_KEY = key;
-                applyUserToUI(user);
-                document.getElementById('login-wrap').style.display = 'none';
-                document.getElementById('dashboard-shell').style.display = 'flex';
-              } catch (_) { }
-            }
-          }
-
-          // ── NAV ───────────────────────────────────────────────────────────────────────
-          function switchView(id, btn) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
-            document.getElementById('view-' + id)?.classList.add('active');
-            if (btn) btn.classList.add('active');
-            const titles = { overview: 'Overview', orders: 'Orders', quotes: 'Quote Pipeline', inventory: 'Inventory', analytics: 'Analytics', mpesa: 'Send M-Pesa Link', sms: 'SMS Broadcast', products: 'Products', settings: 'Settings' };
-            document.getElementById('page-title').textContent = titles[id] || id;
-            const loaders = { overview: () => { loadOverview(); loadOrders(); }, orders: loadOrders, quotes: loadQuotes, inventory: loadInventory, analytics: loadAnalytics, products: loadProductsTable, mpesa: loadMpesaCatalog };
-            loaders[id]?.();
-          }
-
-          // ── LIVE DATA LOADERS ─────────────────────────────────────────────────────────
-          async function loadOverview() {
-            try {
-              const data = await api('/analytics/overview');
-              const rev = Number(data.revenue?.total_revenue || 0);
-              document.getElementById('ov-revenue').textContent = 'KES ' + rev.toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 });
-              document.getElementById('ov-revenue-meta').textContent = 'This month';
-              document.getElementById('ov-orders').textContent = data.orders?.total || 0;
-              document.getElementById('ov-orders-meta').textContent = `${data.orders?.paid || 0} paid · ${data.orders?.pending || 0} pending`;
-              document.getElementById('ov-quotes').textContent = data.quotes?.total || 0;
-              document.getElementById('ov-quotes-meta').textContent = `${data.quotes?.new_count || 0} new this month`;
-              document.getElementById('ov-lowstock').textContent = data.low_stock?.count || 0;
-              document.getElementById('ov-lowstock-meta').textContent = data.low_stock?.count > 0 ? 'Reorder needed' : 'All stocked';
-              // Update sidebar badges
-              const badgeO = document.getElementById('badge-orders');
-              const badgeQ = document.getElementById('badge-quotes');
-              if (badgeO) badgeO.textContent = data.orders?.pending || 0;
-              if (badgeQ) badgeQ.textContent = data.quotes?.new_count || 0;
-            } catch (e) { console.warn('Overview load failed:', e.message); }
-
-            // Also load recent orders for overview tab
-            try {
-              const data = await api('/orders?limit=5');
-              const tbody = document.getElementById('ov-orders-tbody');
-              if (!tbody) return;
-              if (!data.data?.length) { tbody.innerHTML = '<tr><td colspan="4" class="loading-state">No orders yet.</td></tr>'; return; }
-              tbody.innerHTML = data.data.map(o => `
+          // Also load recent orders for overview tab
+          try {
+            const data = await api('/orders?limit=5');
+            const tbody = document.getElementById('ov-orders-tbody');
+            if (!tbody) return;
+            if (!data.data?.length) { tbody.innerHTML = '<tr><td colspan="4" class="loading-state">No orders yet.</td></tr>'; return; }
+            tbody.innerHTML = data.data.map(o => `
       <tr onclick="openOrderDetailById(${o.id})">
         <td class="td-primary">${o.customer_name}</td>
         <td>${o.items?.[0]?.product_name || 'Order #' + o.id}</td>
         <td class="td-amount">${Number(o.total_amount).toLocaleString()}</td>
         <td><span class="pill pill-${o.payment_status === 'completed' ? 'paid' : o.order_status}">${o.payment_status === 'completed' ? 'Paid' : o.order_status}</span></td>
       </tr>`).join('');
-            } catch (e) { console.warn('Recent orders failed:', e.message); }
+          } catch (e) { console.warn('Recent orders failed:', e.message); }
 
-            // Pipeline
-            try {
-              const pipeline = await api('/quotes/pipeline');
-              buildPipelineFromAPI(pipeline.data, 'mini-pipeline');
-            } catch (e) { document.getElementById('mini-pipeline').innerHTML = '<div class="loading-state" style="grid-column:1/-1">No quotes yet.</div>'; }
-          }
+          // Pipeline
+          try {
+            const pipeline = await api('/quotes/pipeline');
+            buildPipelineFromAPI(pipeline.data, 'mini-pipeline');
+          } catch (e) { document.getElementById('mini-pipeline').innerHTML = '<div class="loading-state" style="grid-column:1/-1">No quotes yet.</div>'; }
+        }
 
-          async function loadOrders() {
-            try {
-              const data = await api('/orders?limit=100');
-              const rows = data.data || [];
+        async function loadOrders() {
+          try {
+            const data = await api('/orders?limit=100');
+            const rows = data.data || [];
 
-              // Update stat cards
-              const paid = rows.filter(o => o.payment_status === 'completed').length;
-              const pending = rows.filter(o => o.order_status === 'pending').length;
-              const processing = rows.filter(o => o.order_status === 'processing').length;
-              const cancelled = rows.filter(o => o.order_status === 'cancelled').length;
-              const paidRev = rows.filter(o => o.payment_status === 'completed').reduce((s, o) => s + Number(o.total_amount), 0);
-              const pendingRev = rows.filter(o => o.order_status === 'pending').reduce((s, o) => s + Number(o.total_amount), 0);
+            // Update stat cards
+            const paid = rows.filter(o => o.payment_status === 'completed').length;
+            const pending = rows.filter(o => o.order_status === 'pending').length;
+            const processing = rows.filter(o => o.order_status === 'processing').length;
+            const cancelled = rows.filter(o => o.order_status === 'cancelled').length;
+            const paidRev = rows.filter(o => o.payment_status === 'completed').reduce((s, o) => s + Number(o.total_amount), 0);
+            const pendingRev = rows.filter(o => o.order_status === 'pending').reduce((s, o) => s + Number(o.total_amount), 0);
 
-              const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-              setEl('ord-paid', paid);
-              setEl('ord-paid-meta', 'KES ' + paidRev.toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 }) + ' collected');
-              setEl('ord-pending', pending);
-              setEl('ord-pending-meta', 'KES ' + pendingRev.toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 }) + ' awaiting');
-              setEl('ord-processing', processing);
-              setEl('ord-cancelled', cancelled);
+            const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+            setEl('ord-paid', paid);
+            setEl('ord-paid-meta', 'KES ' + paidRev.toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 }) + ' collected');
+            setEl('ord-pending', pending);
+            setEl('ord-pending-meta', 'KES ' + pendingRev.toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 }) + ' awaiting');
+            setEl('ord-processing', processing);
+            setEl('ord-cancelled', cancelled);
 
-              const tbody = document.getElementById('orders-tbody');
-              if (!tbody) return;
-              if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="loading-state">No orders yet.</td></tr>'; return; }
-              tbody.innerHTML = rows.map(o => `
+            const tbody = document.getElementById('orders-tbody');
+            if (!tbody) return;
+            if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="loading-state">No orders yet.</td></tr>'; return; }
+            tbody.innerHTML = rows.map(o => `
       <tr onclick="openOrderDetailById(${o.id})">
         <td class="td-mono">${o.order_number}</td>
         <td class="td-primary">${o.customer_name}</td>
@@ -2576,17 +2576,17 @@
         <td style="text-align:right;color:var(--text-3);font-size:0.8rem">›</td>
       </tr>`).join('');
 
-              // Recent payments for mpesa tab
-              loadRecentPayments(rows);
-            } catch (e) { console.warn('Orders load failed:', e.message); }
-          }
+            // Recent payments for mpesa tab
+            loadRecentPayments(rows);
+          } catch (e) { console.warn('Orders load failed:', e.message); }
+        }
 
-          function loadRecentPayments(rows) {
-            const el = document.getElementById('recent-payments-list');
-            if (!el) return;
-            const recent = rows.filter(o => o.mpesa_checkout_id || o.manual_payment_ref).slice(0, 5);
-            if (!recent.length) { el.innerHTML = '<div class="loading-state">No payments yet.</div>'; return; }
-            el.innerHTML = `<table style="width:100%;border-collapse:collapse">
+        function loadRecentPayments(rows) {
+          const el = document.getElementById('recent-payments-list');
+          if (!el) return;
+          const recent = rows.filter(o => o.mpesa_checkout_id || o.manual_payment_ref).slice(0, 5);
+          if (!recent.length) { el.innerHTML = '<div class="loading-state">No payments yet.</div>'; return; }
+          el.innerHTML = `<table style="width:100%;border-collapse:collapse">
     <thead><tr>
       <th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;color:var(--text-3);text-align:left">Customer</th>
       <th style="padding:0.5rem 0.8rem;font-size:0.7rem;text-transform:uppercase;color:var(--text-3);text-align:left">Amount</th>
@@ -2602,20 +2602,20 @@
       </tr>`).join('')}
     </tbody>
   </table>`;
-          }
+        }
 
-          async function loadQuotes() {
-            try {
-              const [quotesData, pipelineData] = await Promise.all([
-                api('/quotes?limit=100'),
-                api('/quotes/pipeline'),
-              ]);
-              const rows = quotesData.data || [];
-              buildPipelineFromAPI(pipelineData.data, 'full-pipeline');
-              const tbody = document.getElementById('quotes-tbody');
-              if (!tbody) return;
-              if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="loading-state">No quotes yet.</td></tr>'; return; }
-              tbody.innerHTML = rows.map(q => `
+        async function loadQuotes() {
+          try {
+            const [quotesData, pipelineData] = await Promise.all([
+              api('/quotes?limit=100'),
+              api('/quotes/pipeline'),
+            ]);
+            const rows = quotesData.data || [];
+            buildPipelineFromAPI(pipelineData.data, 'full-pipeline');
+            const tbody = document.getElementById('quotes-tbody');
+            if (!tbody) return;
+            if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="loading-state">No quotes yet.</td></tr>'; return; }
+            tbody.innerHTML = rows.map(q => `
       <tr onclick="openQuoteDetailById(${q.id})">
         <td class="td-primary">${q.fullname}</td>
         <td>${q.property_type}</td>
@@ -2626,22 +2626,22 @@
         <td><span class="pill pill-${q.status}">${q.status.charAt(0).toUpperCase() + q.status.slice(1)}</span></td>
         <td style="color:var(--text-3);font-size:0.8rem">›</td>
       </tr>`).join('');
-            } catch (e) { console.warn('Quotes load failed:', e.message); }
-          }
+          } catch (e) { console.warn('Quotes load failed:', e.message); }
+        }
 
-          async function loadInventory() {
-            try {
-              const data = await api('/products');
-              const el = document.getElementById('inv-grid');
-              if (!el) return;
-              const rows = data.data || [];
-              if (!rows.length) { el.innerHTML = '<div class="loading-state" style="grid-column:1/-1">No products yet. Click + Add Product to get started.</div>'; return; }
-              const EMOJIS = { panel: '☀️', battery: '🔋', inverter: '⚡', charge_controller: '🔧', accessory: '📦' };
-              el.innerHTML = rows.map(item => {
-                const pct = Math.min(100, Math.round((item.stock_quantity / Math.max(item.stock_quantity, 50)) * 100));
-                const low = item.stock_quantity <= 3;
-                const barColor = low ? 'var(--red)' : pct < 50 ? 'var(--amber)' : 'var(--green)';
-                return `<div class="inv-card">
+        async function loadInventory() {
+          try {
+            const data = await api('/products');
+            const el = document.getElementById('inv-grid');
+            if (!el) return;
+            const rows = data.data || [];
+            if (!rows.length) { el.innerHTML = '<div class="loading-state" style="grid-column:1/-1">No products yet. Click + Add Product to get started.</div>'; return; }
+            const EMOJIS = { panel: '☀️', battery: '🔋', inverter: '⚡', charge_controller: '🔧', accessory: '📦' };
+            el.innerHTML = rows.map(item => {
+              const pct = Math.min(100, Math.round((item.stock_quantity / Math.max(item.stock_quantity, 50)) * 100));
+              const low = item.stock_quantity <= 3;
+              const barColor = low ? 'var(--red)' : pct < 50 ? 'var(--amber)' : 'var(--green)';
+              return `<div class="inv-card">
         <div class="inv-icon">${EMOJIS[item.category] || '📦'}</div>
         <div class="inv-name">${item.name}</div>
         <div class="inv-sku">${item.sku}</div>
@@ -2657,18 +2657,18 @@
           <button class="send-btn" style="flex:1;padding:0.5rem;font-size:0.78rem;background:#ef4444;" onclick="deleteProductConfirm(${item.id},'${item.name.replace(/'/g, "\\'")}')">🗑️ Delete</button>
         </div>
       </div>`;
-              }).join('');
-            } catch (e) { console.warn('Inventory load failed:', e.message); }
-          }
-          async function loadProductsTable() {
-            try {
-              const data = await api('/products');
-              const tbody = document.getElementById('products-table-body');
-              if (!tbody) return;
-              const EMOJIS = { panel: '☀️', battery: '🔋', inverter: '⚡', charge_controller: '🔧', accessory: '📦' };
-              tbody.innerHTML = (data.data || []).map(item => {
-                const low = item.stock_quantity <= 3;
-                return `<tr>
+            }).join('');
+          } catch (e) { console.warn('Inventory load failed:', e.message); }
+        }
+        async function loadProductsTable() {
+          try {
+            const data = await api('/products');
+            const tbody = document.getElementById('products-table-body');
+            if (!tbody) return;
+            const EMOJIS = { panel: '☀️', battery: '🔋', inverter: '⚡', charge_controller: '🔧', accessory: '📦' };
+            tbody.innerHTML = (data.data || []).map(item => {
+              const low = item.stock_quantity <= 3;
+              return `<tr>
             <td class="td-primary">${EMOJIS[item.category] || '📦'} ${item.name}</td>
             <td>${item.category}</td>
             <td class="td-amount">${Number(item.price).toLocaleString()}</td>
@@ -2679,39 +2679,39 @@
               <button class="sec-action" onclick="deleteProductConfirm(${item.id},'${item.name.replace(/'/g, "\\'")}')">Delete</button>
             </td>
           </tr>`;
-              }).join('');
-            } catch (e) { console.warn('Products table load failed:', e.message); }
-          }
+            }).join('');
+          } catch (e) { console.warn('Products table load failed:', e.message); }
+        }
 
-          async function loadAnalytics() {
-            try {
-              const [overview, revenue, topProds] = await Promise.all([
-                api('/analytics/overview'),
-                api('/analytics/revenue'),
-                api('/analytics/top-products'),
-              ]);
-              const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-              setEl('an-revenue', 'KES ' + Number(overview.revenue?.total_revenue || 0).toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 }));
-              setEl('an-orders', overview.orders?.total || 0);
-              setEl('an-quotes', overview.quotes?.total || 0);
-              setEl('an-lowstock', overview.low_stock?.count || 0);
-              if (revenue.data?.length) {
-                const el = document.getElementById('monthly-bars');
-                if (el) {
-                  const max = Math.max(...revenue.data.map(r => parseFloat(r.revenue)));
-                  el.innerHTML = revenue.data.map(r => `
+        async function loadAnalytics() {
+          try {
+            const [overview, revenue, topProds] = await Promise.all([
+              api('/analytics/overview'),
+              api('/analytics/revenue'),
+              api('/analytics/top-products'),
+            ]);
+            const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+            setEl('an-revenue', 'KES ' + Number(overview.revenue?.total_revenue || 0).toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 1 }));
+            setEl('an-orders', overview.orders?.total || 0);
+            setEl('an-quotes', overview.quotes?.total || 0);
+            setEl('an-lowstock', overview.low_stock?.count || 0);
+            if (revenue.data?.length) {
+              const el = document.getElementById('monthly-bars');
+              if (el) {
+                const max = Math.max(...revenue.data.map(r => parseFloat(r.revenue)));
+                el.innerHTML = revenue.data.map(r => `
               <div class="bar-col">
                 <div class="bar-val">${(parseFloat(r.revenue) / 1000000).toFixed(1)}M</div>
                 <div class="bar-fill" style="height:${Math.round((parseFloat(r.revenue) / max) * 100)}%;background:var(--green)"></div>
                 <div class="bar-label">${r.month?.split(' ')[0] || ''}</div>
               </div>`).join('');
-                }
               }
-              if (topProds.data?.length) {
-                const el = document.getElementById('top-products-list');
-                if (el) {
-                  const maxRev = Math.max(...topProds.data.map(p => parseFloat(p.revenue)));
-                  el.innerHTML = topProds.data.map((p, i) => `
+            }
+            if (topProds.data?.length) {
+              const el = document.getElementById('top-products-list');
+              if (el) {
+                const maxRev = Math.max(...topProds.data.map(p => parseFloat(p.revenue)));
+                el.innerHTML = topProds.data.map((p, i) => `
               <div class="tp-item">
                 <span class="tp-rank">${i + 1}</span>
                 <span class="tp-icon">📦</span>
@@ -2719,41 +2719,41 @@
                 <div class="tp-bar"><div class="tp-bar-fill" style="width:${Math.round((parseFloat(p.revenue) / maxRev) * 100)}%"></div></div></div>
                 <span class="tp-rev">${(parseFloat(p.revenue) / 1000).toFixed(0)}K</span>
               </div>`).join('');
-                }
               }
-            } catch (e) { console.warn('Analytics load failed:', e.message); }
-          }
+            }
+          } catch (e) { console.warn('Analytics load failed:', e.message); }
+        }
 
-          function buildPipelineFromAPI(stages, containerId) {
-            const STAGE_ORDER = ['new', 'contacted', 'site_visit_scheduled', 'invoice_sent'];
-            const STAGE_LABELS = { new: 'New', contacted: 'Contacted', site_visit_scheduled: 'Site Visit', invoice_sent: 'Invoice Sent' };
-            const STAGE_COLORS = { new: 'var(--blue)', contacted: 'var(--gold)', site_visit_scheduled: 'var(--amber)', invoice_sent: 'var(--green)' };
-            const stageMap = {};
-            (stages || []).forEach(s => stageMap[s.status] = s);
-            const el = document.getElementById(containerId);
-            if (!el) return;
-            el.innerHTML = STAGE_ORDER.map(sid => {
-              const s = stageMap[sid] || { count: 0, pipeline_value: 0 };
-              return `<div class="pipeline-col">
+        function buildPipelineFromAPI(stages, containerId) {
+          const STAGE_ORDER = ['new', 'contacted', 'site_visit_scheduled', 'invoice_sent'];
+          const STAGE_LABELS = { new: 'New', contacted: 'Contacted', site_visit_scheduled: 'Site Visit', invoice_sent: 'Invoice Sent' };
+          const STAGE_COLORS = { new: 'var(--blue)', contacted: 'var(--gold)', site_visit_scheduled: 'var(--amber)', invoice_sent: 'var(--green)' };
+          const stageMap = {};
+          (stages || []).forEach(s => stageMap[s.status] = s);
+          const el = document.getElementById(containerId);
+          if (!el) return;
+          el.innerHTML = STAGE_ORDER.map(sid => {
+            const s = stageMap[sid] || { count: 0, pipeline_value: 0 };
+            return `<div class="pipeline-col">
           <div class="pipe-head"><span style="color:${STAGE_COLORS[sid]}">${STAGE_LABELS[sid]}</span><span class="pipe-count">${s.count}</span></div>
           <div style="font-size:0.72rem;color:var(--text-3);padding:0.3rem 0">KES ${Number(s.pipeline_value || 0).toLocaleString('en-KE', { notation: 'compact', maximumFractionDigits: 0 })} pipeline</div>
         </div>`;
-            }).join('');
-          }
+          }).join('');
+        }
 
-          async function openOrderDetailById(id) {
-            try {
-              const o = await api(`/orders/${id}`);
-              openOrderDetail(o.order_number, o.customer_name, o.items?.map(i => i.product_name || i.package_name).join(', ') || '—',
-                Number(o.total_amount).toLocaleString(), o.payment_status === 'completed' ? 'paid' : o.order_status,
-                o.shipping_address || '—', o.customer_phone, new Date(o.created_at).toLocaleDateString('en-KE'));
-              document.getElementById('detail-drawer').dataset.orderId = id;
-            } catch (e) { showToast('Could not load order'); }
-          }
+        async function openOrderDetailById(id) {
+          try {
+            const o = await api(`/orders/${id}`);
+            openOrderDetail(o.order_number, o.customer_name, o.items?.map(i => i.product_name || i.package_name).join(', ') || '—',
+              Number(o.total_amount).toLocaleString(), o.payment_status === 'completed' ? 'paid' : o.order_status,
+              o.shipping_address || '—', o.customer_phone, new Date(o.created_at).toLocaleDateString('en-KE'));
+            document.getElementById('detail-drawer').dataset.orderId = id;
+          } catch (e) { showToast('Could not load order'); }
+        }
 
-          function openOrderDetail(id, name, product, amount, status, location, phone, date) {
-            document.getElementById('dd-title').textContent = id;
-            document.getElementById('dd-body').innerHTML = `
+        function openOrderDetail(id, name, product, amount, status, location, phone, date) {
+          document.getElementById('dd-title').textContent = id;
+          document.getElementById('dd-body').innerHTML = `
         <div class="dd-section">
           <div class="dd-sec-title">Customer</div>
           <div class="dd-row"><span class="dd-key">Name</span><span class="dd-val">${name}</span></div>
@@ -2767,18 +2767,18 @@
           <div class="dd-row"><span class="dd-key">Date</span><span class="dd-val">${date}</span></div>
           <div class="dd-row"><span class="dd-key">Status</span><span class="dd-val"><span class="pill pill-${status}">${status}</span></span></div>
         </div>`;
-            document.getElementById('dd-actions').innerHTML = `
+          document.getElementById('dd-actions').innerHTML = `
   <button class="dd-btn dd-btn-primary" onclick="sendMpesaToOrder('${id}','${phone}','${amount}')">💚 M-Pesa Link</button>
   <button class="dd-btn dd-btn-danger" onclick="deleteOrderConfirm()">🗑️ Delete</button>
   <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
-            openDrawer();
-          }
+          openDrawer();
+        }
 
-          async function openQuoteDetailById(id) {
-            try {
-              const q = await api(`/quotes/${id}`);
-              document.getElementById('dd-title').textContent = `Quote — ${q.fullname}`;
-              document.getElementById('dd-body').innerHTML = `
+        async function openQuoteDetailById(id) {
+          try {
+            const q = await api(`/quotes/${id}`);
+            document.getElementById('dd-title').textContent = `Quote — ${q.fullname}`;
+            document.getElementById('dd-body').innerHTML = `
           <div class="dd-section">
             <div class="dd-sec-title">Lead Details</div>
             <div class="dd-row"><span class="dd-key">Name</span><span class="dd-val">${q.fullname}</span></div>
@@ -2792,323 +2792,323 @@
             <div class="dd-row"><span class="dd-key">Value</span><span class="dd-val" style="color:var(--gold-light)">KES ${q.estimated_value ? Number(q.estimated_value).toLocaleString() : '—'}</span></div>
             <div class="dd-row"><span class="dd-key">Status</span><span class="dd-val"><span class="pill pill-${q.status}">${q.status}</span></span></div>
           </div>`;
-              const STAGE_FLOW = {
-                new: { next: 'contacted', label: '→ Mark Contacted' },
-                contacted: { next: 'site_visit_scheduled', label: '→ Schedule Site Visit' },
-                site_visit_scheduled: { next: 'invoice_sent', label: '→ Send Invoice' },
-                invoice_sent: null,
-              };
+            const STAGE_FLOW = {
+              new: { next: 'contacted', label: '→ Mark Contacted' },
+              contacted: { next: 'site_visit_scheduled', label: '→ Schedule Site Visit' },
+              site_visit_scheduled: { next: 'invoice_sent', label: '→ Send Invoice' },
+              invoice_sent: null,
+            };
 
-              const nextStage = STAGE_FLOW[q.status];
+            const nextStage = STAGE_FLOW[q.status];
 
-              document.getElementById('dd-actions').innerHTML = `
+            document.getElementById('dd-actions').innerHTML = `
   <button class="dd-btn dd-btn-primary" onclick="sendPaymentLinkFromQuote(${id})">💚 M-Pesa Link</button>
   ${nextStage ? `<button class="dd-btn dd-btn-secondary" onclick="updateQuoteStage(${id},'${nextStage.next}')">${nextStage.label}</button>` : ''}
   <button class="dd-btn dd-btn-danger" onclick="deleteQuoteConfirm(${id})">🗑️ Delete</button>
   <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
-              document.getElementById('detail-drawer').dataset.quoteId = id;
-              openDrawer();
-            } catch (e) { showToast('Could not load quote'); }
+            document.getElementById('detail-drawer').dataset.quoteId = id;
+            openDrawer();
+          } catch (e) { showToast('Could not load quote'); }
+        }
+
+        function openDrawer() {
+          document.getElementById('overlay').classList.add('open');
+          document.getElementById('detail-drawer').classList.add('open');
+        }
+
+        function closeDrawer() {
+          document.getElementById('overlay').classList.remove('open');
+          document.getElementById('detail-drawer').classList.remove('open');
+        }
+
+        async function advanceOrderStatus(orderId, newStatus) {
+          try {
+            await api(`/orders/${orderId}/status`, { method: 'PATCH', body: { status: newStatus } });
+            showToast(`Order moved to ${newStatus}`);
+            loadOrders();
+            closeDrawer();
+          } catch (e) { showToast(e.message); }
+        }
+
+        async function updateQuoteStage(quoteId, status) {
+          try {
+            await api(`/quotes/${quoteId}`, { method: 'PATCH', body: { status } });
+            showToast(`Quote moved to ${status}`);
+            loadQuotes();
+            closeDrawer();
+          } catch (e) { showToast(e.message); }
+        }
+        async function deleteQuoteConfirm(quoteId) {
+          if (!confirm('Permanently delete this quote? This cannot be undone.')) return;
+          try {
+            await api(`/quotes/${quoteId}`, { method: 'DELETE' });
+            showToast('Quote deleted');
+            closeDrawer();
+            loadQuotes();
+          } catch (e) { showToast(e.message); }
+        }
+        async function sendPaymentLinkFromQuote(quoteId) {
+          try {
+            const data = await api(`/quotes/${quoteId}/send-payment-link`, { method: 'POST' });
+            showToast(`STK Push sent — Order ${data.orderNumber}`);
+            closeDrawer();
+          } catch (e) { showToast(e.message); }
+        }
+
+        async function sendMpesaToOrder(orderId, phone, amount) {
+          showToast(`STK Push sent to ${phone}`);
+        }
+
+        async function deleteOrderConfirm() {
+          const orderId = document.getElementById('detail-drawer').dataset.orderId;
+          if (!orderId) { showToast('No order selected'); return; }
+          if (!confirm('Permanently delete this order? This cannot be undone.')) return;
+          try {
+            await api(`/orders/${orderId}`, { method: 'DELETE' });
+            showToast('Order deleted');
+            closeDrawer();
+            loadOrders();
+          } catch (e) { showToast(e.message); }
+        }
+        async function createNewAdmin() {
+          const name = document.getElementById('na-name').value.trim();
+          const username = document.getElementById('na-username').value.trim();
+          const email = document.getElementById('na-email').value.trim();
+          const role = document.getElementById('na-role').value;
+          const password = document.getElementById('na-password').value;
+          const errEl = document.getElementById('na-error');
+          errEl.style.display = 'none';
+
+          if (!name || !username || !email || !password) {
+            errEl.textContent = 'All fields are required';
+            errEl.style.display = 'block';
+            return;
+          }
+          if (password.length < 8) {
+            errEl.textContent = 'Password must be at least 8 characters';
+            errEl.style.display = 'block';
+            return;
           }
 
-          function openDrawer() {
-            document.getElementById('overlay').classList.add('open');
-            document.getElementById('detail-drawer').classList.add('open');
-          }
-
-          function closeDrawer() {
-            document.getElementById('overlay').classList.remove('open');
-            document.getElementById('detail-drawer').classList.remove('open');
-          }
-
-          async function advanceOrderStatus(orderId, newStatus) {
-            try {
-              await api(`/orders/${orderId}/status`, { method: 'PATCH', body: { status: newStatus } });
-              showToast(`Order moved to ${newStatus}`);
-              loadOrders();
-              closeDrawer();
-            } catch (e) { showToast(e.message); }
-          }
-
-          async function updateQuoteStage(quoteId, status) {
-            try {
-              await api(`/quotes/${quoteId}`, { method: 'PATCH', body: { status } });
-              showToast(`Quote moved to ${status}`);
-              loadQuotes();
-              closeDrawer();
-            } catch (e) { showToast(e.message); }
-          }
-          async function deleteQuoteConfirm(quoteId) {
-            if (!confirm('Permanently delete this quote? This cannot be undone.')) return;
-            try {
-              await api(`/quotes/${quoteId}`, { method: 'DELETE' });
-              showToast('Quote deleted');
-              closeDrawer();
-              loadQuotes();
-            } catch (e) { showToast(e.message); }
-          }
-          async function sendPaymentLinkFromQuote(quoteId) {
-            try {
-              const data = await api(`/quotes/${quoteId}/send-payment-link`, { method: 'POST' });
-              showToast(`STK Push sent — Order ${data.orderNumber}`);
-              closeDrawer();
-            } catch (e) { showToast(e.message); }
-          }
-
-          async function sendMpesaToOrder(orderId, phone, amount) {
-            showToast(`STK Push sent to ${phone}`);
-          }
-
-          async function deleteOrderConfirm() {
-            const orderId = document.getElementById('detail-drawer').dataset.orderId;
-            if (!orderId) { showToast('No order selected'); return; }
-            if (!confirm('Permanently delete this order? This cannot be undone.')) return;
-            try {
-              await api(`/orders/${orderId}`, { method: 'DELETE' });
-              showToast('Order deleted');
-              closeDrawer();
-              loadOrders();
-            } catch (e) { showToast(e.message); }
-          }
-          async function createNewAdmin() {
-            const name = document.getElementById('na-name').value.trim();
-            const username = document.getElementById('na-username').value.trim();
-            const email = document.getElementById('na-email').value.trim();
-            const role = document.getElementById('na-role').value;
-            const password = document.getElementById('na-password').value;
-            const errEl = document.getElementById('na-error');
-            errEl.style.display = 'none';
-
-            if (!name || !username || !email || !password) {
-              errEl.textContent = 'All fields are required';
-              errEl.style.display = 'block';
-              return;
-            }
-            if (password.length < 8) {
-              errEl.textContent = 'Password must be at least 8 characters';
-              errEl.style.display = 'block';
-              return;
-            }
-
-            try {
-              await api('/auth/create-admin', {
-                method: 'POST',
-                body: { name, username, email, password, role },
-              });
-              showToast(`Admin account created: ${username}`);
-              document.getElementById('na-name').value = '';
-              document.getElementById('na-username').value = '';
-              document.getElementById('na-email').value = '';
-              document.getElementById('na-password').value = '';
-            } catch (e) {
-              errEl.textContent = e.message || 'Failed to create admin account';
-              errEl.style.display = 'block';
-            }
-          }
-          async function restockProduct(id, name) {
-            const units = prompt(`How many units to add for "${name}"?`);
-            if (!units || isNaN(units)) return;
-            try {
-              await api(`/products/${id}/stock`, { method: 'PATCH', body: { units: parseInt(units) } });
-              showToast(`${units} units added`);
-              loadInventory();
-            } catch (e) { showToast(e.message); }
-          }
-
-          async function deleteProductConfirm(id, name) {
-            if (!confirm(`Permanently delete "${name}"?`)) return;
-            try {
-              await api(`/products/${id}`, { method: 'DELETE' });
-              showToast('Product deleted');
-              loadInventory();
-              loadProductsTable();
-            } catch (e) { showToast(e.message); }
-          }
-
-          function autoSlug() {
-            const slugField = document.getElementById('pf-slug');
-            if (slugField?.dataset.manual === 'true') return;
-            const name = document.getElementById('pf-name').value;
-            if (slugField) slugField.value = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-          }
-
-          function openProductModal(product) {
-            const overlay = document.getElementById('product-modal-overlay');
-            const err = document.getElementById('pf-error');
-            err.style.display = 'none';
-            const slugField = document.getElementById('pf-slug');
-            if (slugField) slugField.dataset.manual = 'false';
-            if (product) {
-              document.getElementById('product-modal-title').textContent = 'Edit Product';
-              document.getElementById('pf-id').value = product.id;
-              document.getElementById('pf-sku').value = product.sku || '';
-              document.getElementById('pf-name').value = product.name || '';
-              if (slugField) { slugField.value = product.slug || ''; slugField.dataset.manual = 'true'; }
-              document.getElementById('pf-category').value = product.category || 'panel';
-              document.getElementById('pf-price').value = product.price || '';
-              document.getElementById('pf-stock').value = product.stock_quantity || 0;
-              document.getElementById('pf-description').value = product.description || '';
-              let specs = product.specifications;
-              if (typeof specs === 'string') { try { specs = JSON.parse(specs); } catch (e) { specs = null; } }
-              document.getElementById('pf-specs').value = specs ? Object.entries(specs).map(([k, v]) => `${k}: ${v}`).join('\n') : '';
-            } else {
-              document.getElementById('product-modal-title').textContent = 'Add Product';
-              document.getElementById('product-form').reset();
-              document.getElementById('pf-id').value = '';
-              document.getElementById('pf-stock').value = 0;
-            }
-            overlay.style.display = 'flex';
-          }
-
-          function closeProductModal() {
-            document.getElementById('product-modal-overlay').style.display = 'none';
-          }
-
-          function parseSpecsText(text) {
-            if (!text?.trim()) return {};
-            const specs = {};
-            text.split('\n').forEach(line => {
-              const idx = line.indexOf(':');
-              if (idx > -1) { const k = line.slice(0, idx).trim(); const v = line.slice(idx + 1).trim(); if (k) specs[k] = v; }
+          try {
+            await api('/auth/create-admin', {
+              method: 'POST',
+              body: { name, username, email, password, role },
             });
-            return specs;
+            showToast(`Admin account created: ${username}`);
+            document.getElementById('na-name').value = '';
+            document.getElementById('na-username').value = '';
+            document.getElementById('na-email').value = '';
+            document.getElementById('na-password').value = '';
+          } catch (e) {
+            errEl.textContent = e.message || 'Failed to create admin account';
+            errEl.style.display = 'block';
           }
+        }
+        async function restockProduct(id, name) {
+          const units = prompt(`How many units to add for "${name}"?`);
+          if (!units || isNaN(units)) return;
+          try {
+            await api(`/products/${id}/stock`, { method: 'PATCH', body: { units: parseInt(units) } });
+            showToast(`${units} units added`);
+            loadInventory();
+          } catch (e) { showToast(e.message); }
+        }
 
-          async function submitProduct(event) {
-            event.preventDefault();
-            const submitBtn = document.getElementById('pf-submit-btn');
-            const err = document.getElementById('pf-error');
-            err.style.display = 'none';
-            const id = document.getElementById('pf-id').value;
-            const payload = {
-              sku: document.getElementById('pf-sku').value.trim(),
-              name: document.getElementById('pf-name').value.trim(),
-              slug: document.getElementById('pf-slug').value.trim(),
-              category: document.getElementById('pf-category').value,
-              price: Number(document.getElementById('pf-price').value),
-              stock_quantity: Number(document.getElementById('pf-stock').value) || 0,
-              description: document.getElementById('pf-description').value.trim() || null,
-              specifications: parseSpecsText(document.getElementById('pf-specs').value),
-            };
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Saving...';
-            try {
-              if (id) { await api(`/products/${id}`, { method: 'PATCH', body: payload }); showToast('Product updated ✓'); }
-              else { await api('/products', { method: 'POST', body: payload }); showToast('Product added ✓'); }
-              closeProductModal();
-              loadInventory();
-              loadProductsTable();
-            } catch (e) {
-              err.textContent = e.message || 'Failed to save product';
-              err.style.display = 'block';
-            } finally {
-              submitBtn.disabled = false;
-              submitBtn.textContent = 'Save Product';
-            }
+        async function deleteProductConfirm(id, name) {
+          if (!confirm(`Permanently delete "${name}"?`)) return;
+          try {
+            await api(`/products/${id}`, { method: 'DELETE' });
+            showToast('Product deleted');
+            loadInventory();
+            loadProductsTable();
+          } catch (e) { showToast(e.message); }
+        }
+
+        function autoSlug() {
+          const slugField = document.getElementById('pf-slug');
+          if (slugField?.dataset.manual === 'true') return;
+          const name = document.getElementById('pf-name').value;
+          if (slugField) slugField.value = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        }
+
+        function openProductModal(product) {
+          const overlay = document.getElementById('product-modal-overlay');
+          const err = document.getElementById('pf-error');
+          err.style.display = 'none';
+          const slugField = document.getElementById('pf-slug');
+          if (slugField) slugField.dataset.manual = 'false';
+          if (product) {
+            document.getElementById('product-modal-title').textContent = 'Edit Product';
+            document.getElementById('pf-id').value = product.id;
+            document.getElementById('pf-sku').value = product.sku || '';
+            document.getElementById('pf-name').value = product.name || '';
+            if (slugField) { slugField.value = product.slug || ''; slugField.dataset.manual = 'true'; }
+            document.getElementById('pf-category').value = product.category || 'panel';
+            document.getElementById('pf-price').value = product.price || '';
+            document.getElementById('pf-stock').value = product.stock_quantity || 0;
+            document.getElementById('pf-description').value = product.description || '';
+            let specs = product.specifications;
+            if (typeof specs === 'string') { try { specs = JSON.parse(specs); } catch (e) { specs = null; } }
+            document.getElementById('pf-specs').value = specs ? Object.entries(specs).map(([k, v]) => `${k}: ${v}`).join('\n') : '';
+          } else {
+            document.getElementById('product-modal-title').textContent = 'Add Product';
+            document.getElementById('product-form').reset();
+            document.getElementById('pf-id').value = '';
+            document.getElementById('pf-stock').value = 0;
           }
+          overlay.style.display = 'flex';
+        }
 
-          let MPESA_CATALOG = [];
+        function closeProductModal() {
+          document.getElementById('product-modal-overlay').style.display = 'none';
+        }
 
-          async function loadMpesaCatalog() {
-            const sel = document.getElementById('mpf-product');
-            try {
-              const [prodRes, pkgRes] = await Promise.all([
-                api('/products'),
-                api('/products/packages'),
-              ]);
-              const products = (prodRes.data || []).map(p => ({
-                label: `${p.name} — KES ${Number(p.price).toLocaleString()}`,
-                amount: Math.round(parseFloat(p.price)),
-                type: 'productId',
-                id: p.id,
-              }));
-              const packages = (pkgRes.data || []).map(pkg => ({
-                label: `${pkg.name} — KES ${Number(pkg.total_price).toLocaleString()}`,
-                amount: Math.round(pkg.total_price),
-                type: 'packageId',
-                id: pkg.id,
-              }));
-              MPESA_CATALOG = [...products, ...packages];
+        function parseSpecsText(text) {
+          if (!text?.trim()) return {};
+          const specs = {};
+          text.split('\n').forEach(line => {
+            const idx = line.indexOf(':');
+            if (idx > -1) { const k = line.slice(0, idx).trim(); const v = line.slice(idx + 1).trim(); if (k) specs[k] = v; }
+          });
+          return specs;
+        }
 
-              sel.innerHTML = '<option value="">Select product…</option>' +
-                MPESA_CATALOG.map((item, idx) => `<option value="${idx}">${item.label}</option>`).join('') +
-                '<option value="custom">Custom amount…</option>';
-            } catch (e) {
-              sel.innerHTML = '<option value="">Failed to load products</option>';
-              console.warn('Failed to load M-Pesa catalog:', e.message);
-            }
+        async function submitProduct(event) {
+          event.preventDefault();
+          const submitBtn = document.getElementById('pf-submit-btn');
+          const err = document.getElementById('pf-error');
+          err.style.display = 'none';
+          const id = document.getElementById('pf-id').value;
+          const payload = {
+            sku: document.getElementById('pf-sku').value.trim(),
+            name: document.getElementById('pf-name').value.trim(),
+            slug: document.getElementById('pf-slug').value.trim(),
+            category: document.getElementById('pf-category').value,
+            price: Number(document.getElementById('pf-price').value),
+            stock_quantity: Number(document.getElementById('pf-stock').value) || 0,
+            description: document.getElementById('pf-description').value.trim() || null,
+            specifications: parseSpecsText(document.getElementById('pf-specs').value),
+          };
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Saving...';
+          try {
+            if (id) { await api(`/products/${id}`, { method: 'PATCH', body: payload }); showToast('Product updated ✓'); }
+            else { await api('/products', { method: 'POST', body: payload }); showToast('Product added ✓'); }
+            closeProductModal();
+            loadInventory();
+            loadProductsTable();
+          } catch (e) {
+            err.textContent = e.message || 'Failed to save product';
+            err.style.display = 'block';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Save Product';
           }
+        }
 
-          function updateMpfAmount() {
-            const sel = document.getElementById('mpf-product');
-            const amountField = document.getElementById('mpf-amount');
-            if (sel.value === 'custom' || sel.value === '') {
-              amountField.value = '';
-              return;
-            }
+        let MPESA_CATALOG = [];
+
+        async function loadMpesaCatalog() {
+          const sel = document.getElementById('mpf-product');
+          try {
+            const [prodRes, pkgRes] = await Promise.all([
+              api('/products'),
+              api('/products/packages'),
+            ]);
+            const products = (prodRes.data || []).map(p => ({
+              label: `${p.name} — KES ${Number(p.price).toLocaleString()}`,
+              amount: Math.round(parseFloat(p.price)),
+              type: 'productId',
+              id: p.id,
+            }));
+            const packages = (pkgRes.data || []).map(pkg => ({
+              label: `${pkg.name} — KES ${Number(pkg.total_price).toLocaleString()}`,
+              amount: Math.round(pkg.total_price),
+              type: 'packageId',
+              id: pkg.id,
+            }));
+            MPESA_CATALOG = [...products, ...packages];
+
+            sel.innerHTML = '<option value="">Select product…</option>' +
+              MPESA_CATALOG.map((item, idx) => `<option value="${idx}">${item.label}</option>`).join('') +
+              '<option value="custom">Custom amount…</option>';
+          } catch (e) {
+            sel.innerHTML = '<option value="">Failed to load products</option>';
+            console.warn('Failed to load M-Pesa catalog:', e.message);
+          }
+        }
+
+        function updateMpfAmount() {
+          const sel = document.getElementById('mpf-product');
+          const amountField = document.getElementById('mpf-amount');
+          if (sel.value === 'custom' || sel.value === '') {
+            amountField.value = '';
+            return;
+          }
+          const item = MPESA_CATALOG[parseInt(sel.value)];
+          amountField.value = item ? item.amount : '';
+        }
+
+        async function simulateMpesaSend() {
+          const name = document.getElementById('mpf-name').value.trim();
+          const phone = document.getElementById('mpf-phone').value.trim();
+          const amount = document.getElementById('mpf-amount').value.trim();
+          const sel = document.getElementById('mpf-product');
+          if (!name || !phone || !amount) { showToast('Please fill in all fields'); return; }
+
+          let items;
+          if (sel.value === 'custom' || sel.value === '') {
+            showToast('Please select a real product/package, not custom amount, so we can link the correct item');
+            return;
+          } else {
             const item = MPESA_CATALOG[parseInt(sel.value)];
-            amountField.value = item ? item.amount : '';
+            if (!item) { showToast('Please select a valid product'); return; }
+            items = [{ [item.type]: item.id, quantity: 1 }];
           }
 
-          async function simulateMpesaSend() {
-            const name = document.getElementById('mpf-name').value.trim();
-            const phone = document.getElementById('mpf-phone').value.trim();
-            const amount = document.getElementById('mpf-amount').value.trim();
-            const sel = document.getElementById('mpf-product');
-            if (!name || !phone || !amount) { showToast('Please fill in all fields'); return; }
+          try {
+            const data = await api('/mpesa/stk-push', { method: 'POST', body: { phone, customerName: name, items } });
+            showToast(`STK Push sent — Order ${data.orderNumber}`);
+            loadOrders();
+          } catch (e) { showToast(e.message); }
+        }
 
-            let items;
-            if (sel.value === 'custom' || sel.value === '') {
-              showToast('Please select a real product/package, not custom amount, so we can link the correct item');
-              return;
-            } else {
-              const item = MPESA_CATALOG[parseInt(sel.value)];
-              if (!item) { showToast('Please select a valid product'); return; }
-              items = [{ [item.type]: item.id, quantity: 1 }];
-            }
+        let smsRecipients = 0;
+        function updateSmsCount(sel) { smsRecipients = parseInt(sel.value) || 0; updateSmsCost(); }
+        function loadTemplate(sel) { if (sel.value) document.getElementById('sms-body').value = sel.value; updateSmsChars(document.getElementById('sms-body')); }
+        function updateSmsChars(ta) { document.getElementById('sms-chars').textContent = `${ta.value.length} / 160 chars`; updateSmsCost(); }
+        function updateSmsCost() { document.getElementById('sms-cost').textContent = `Recipients: ${smsRecipients} · Cost: ~KES ${(smsRecipients * 1.2).toFixed(0)}`; }
+        async function simulateSmsSend() {
+          if (!smsRecipients) { showToast('Select a recipient segment'); return; }
+          if (!document.getElementById('sms-body').value.trim()) { showToast('Enter a message'); return; }
+          showToast(`SMS queued for ${smsRecipients} recipients`);
+        }
 
-            try {
-              const data = await api('/mpesa/stk-push', { method: 'POST', body: { phone, customerName: name, items } });
-              showToast(`STK Push sent — Order ${data.orderNumber}`);
-              loadOrders();
-            } catch (e) { showToast(e.message); }
-          }
+        function filterTable(input, tbodyId) {
+          const q = input.value.toLowerCase();
+          document.querySelectorAll(`#${tbodyId} tr`).forEach(row => { row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+        }
 
-          let smsRecipients = 0;
-          function updateSmsCount(sel) { smsRecipients = parseInt(sel.value) || 0; updateSmsCost(); }
-          function loadTemplate(sel) { if (sel.value) document.getElementById('sms-body').value = sel.value; updateSmsChars(document.getElementById('sms-body')); }
-          function updateSmsChars(ta) { document.getElementById('sms-chars').textContent = `${ta.value.length} / 160 chars`; updateSmsCost(); }
-          function updateSmsCost() { document.getElementById('sms-cost').textContent = `Recipients: ${smsRecipients} · Cost: ~KES ${(smsRecipients * 1.2).toFixed(0)}`; }
-          async function simulateSmsSend() {
-            if (!smsRecipients) { showToast('Select a recipient segment'); return; }
-            if (!document.getElementById('sms-body').value.trim()) { showToast('Enter a message'); return; }
-            showToast(`SMS queued for ${smsRecipients} recipients`);
-          }
+        function filterTableStatus(sel, tbodyId) {
+          const q = sel.value.toLowerCase();
+          document.querySelectorAll(`#${tbodyId} tr`).forEach(row => { row.style.display = !q || row.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+        }
 
-          function filterTable(input, tbodyId) {
-            const q = input.value.toLowerCase();
-            document.querySelectorAll(`#${tbodyId} tr`).forEach(row => { row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none'; });
-          }
+        function exportOrders() { showToast('Export feature coming soon'); }
 
-          function filterTableStatus(sel, tbodyId) {
-            const q = sel.value.toLowerCase();
-            document.querySelectorAll(`#${tbodyId} tr`).forEach(row => { row.style.display = !q || row.textContent.toLowerCase().includes(q) ? '' : 'none'; });
-          }
+        function showToast(msg) {
+          const t = document.getElementById('toast');
+          t.textContent = msg;
+          t.classList.add('show');
+          setTimeout(() => t.classList.remove('show'), 2600);
+        }
 
-          function exportOrders() { showToast('Export feature coming soon'); }
+        // ── INIT ──────────────────────────────────────────────────────────────────
+        checkAuth();
+        loadOverview();
+        loadOrders();
+      </script>
+      </body>
 
-          function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 2600);
-          }
-
-          // ── INIT ──────────────────────────────────────────────────────────────────
-          checkAuth();
-          loadOverview();
-          loadOrders();
-        </script>
-</body>
-
-</html>
+      </html>
