@@ -3429,7 +3429,8 @@
         </div>
         <div class="phone-input-group">
           <span class="phone-prefix">+254</span>
-          <input type="tel" class="phone-input" id="mpesa-phone" placeholder="7XX XXX XXX" maxlength="9">
+          <input type="tel" class="phone-input" id="mpesa-phone" placeholder="7XX XXX XXX or 07XX XXX XXX"
+            maxlength="13">
         </div>
         <div
           style="background:var(--off-white);border-radius:var(--radius);padding:0.9rem;margin-bottom:1.2rem;font-size:0.88rem;color:var(--text-mid);text-align:left">
@@ -3585,13 +3586,17 @@
     }
 
     async function initiateMpesa() {
-      const phone = document.getElementById('mpesa-phone').value.replace(/\s/g, '');
+      let phone = document.getElementById('mpesa-phone').value.replace(/\s/g, '');
       const name = document.getElementById('mpesa-name').value.trim();
       const sendBtn = document.getElementById('mpesa-send-btn');
 
       if (!name) { alert('Please enter your name'); return; }
-      if (phone.length < 9 || !/^[7][0-9]{8}$/.test(phone)) {
-        alert('Please enter a valid Safaricom number (e.g. 712 345 678)');
+
+      // Strip leading 0 or +254/254 if the user typed the full number
+      phone = phone.replace(/^\+?254/, '').replace(/^0/, '');
+
+      if (!/^[71][0-9]{8}$/.test(phone)) {
+        alert('Please enter a valid Safaricom number (e.g. 712 345 678 or 0712 345 678)');
         return;
       }
 
