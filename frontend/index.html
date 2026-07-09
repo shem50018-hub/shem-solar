@@ -3592,21 +3592,15 @@
         return;
       }
 
-      // Build items payload — map cart to API shape
-      // Products are matched by name to their DB slugs
-      const SLUG_MAP = {
-        'MonoPerc 400W Panel': { productId: 1 },
-        'LiFePO4 100Ah Battery': { productId: 2 },
-        'Hybrid Inverter 5kW': { productId: 3 },
-        'Home Starter Kit 2kW': { packageId: 1 },
-        'Gel Lead-Acid 200Ah': { productId: 4 },
-        'Business Pro System 10kW': { packageId: 2 },
-      };
-
-      const items = cart.map(i => ({
-        ...(SLUG_MAP[i.name] || { productId: null }),
-        quantity: i.qty,
-      })).filter(i => i.productId || i.packageId);
+      // Build items payload — map cart to API shape by looking up live PRODUCTS_DATA
+      const items = cart.map(i => {
+        const match = PRODUCTS_DATA.find(p => p.name === i.name);
+        if (!match) return null;
+        return {
+          ...(match.isPackage ? { packageId: match.id } : { productId: match.id }),
+          quantity: i.qty,
+        };
+      }).filter(Boolean);
 
       sendBtn.disabled = true;
       sendBtn.textContent = 'Sending…';
