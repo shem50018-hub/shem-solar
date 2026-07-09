@@ -2664,8 +2664,9 @@
           <div class="dd-row"><span class="dd-key">Status</span><span class="dd-val"><span class="pill pill-${status}">${status}</span></span></div>
         </div>`;
       document.getElementById('dd-actions').innerHTML = `
-        <button class="dd-btn dd-btn-primary" onclick="sendMpesaToOrder('${id}','${phone}','${amount}')">💚 M-Pesa Link</button>
-        <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
+  <button class="dd-btn dd-btn-primary" onclick="sendMpesaToOrder('${id}','${phone}','${amount}')">💚 M-Pesa Link</button>
+  <button class="dd-btn dd-btn-danger" onclick="deleteOrderConfirm()">🗑️ Delete</button>
+  <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
       openDrawer();
     }
 
@@ -2752,6 +2753,18 @@
 
     async function sendMpesaToOrder(orderId, phone, amount) {
       showToast(`STK Push sent to ${phone}`);
+    }
+
+    async function deleteOrderConfirm() {
+      const orderId = document.getElementById('detail-drawer').dataset.orderId;
+      if (!orderId) { showToast('No order selected'); return; }
+      if (!confirm('Permanently delete this order? This cannot be undone.')) return;
+      try {
+        await api(`/orders/${orderId}`, { method: 'DELETE' });
+        showToast('Order deleted');
+        closeDrawer();
+        loadOrders();
+      } catch (e) { showToast(e.message); }
     }
 
     async function restockProduct(id, name) {

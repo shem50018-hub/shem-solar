@@ -1,5 +1,5 @@
 // src/controllers/orders.controller.js
-const pool  = require('../db/pool');
+const pool = require('../db/pool');
 const queue = require('../services/queue.service');
 
 // ── GET /api/v1/orders ────────────────────────────────────────────────────────
@@ -13,7 +13,7 @@ exports.listOrders = async (req, res, next) => {
 
     const offset = (parseInt(page) - 1) * parseInt(limit);
     const conditions = [];
-    const params     = [];
+    const params = [];
 
     if (status) {
       params.push(status);
@@ -51,7 +51,7 @@ exports.listOrders = async (req, res, next) => {
     );
 
     res.json({
-      data:       rows,
+      data: rows,
       pagination: { page: parseInt(page), limit: parseInt(limit), total: parseInt(count) },
     });
   } catch (err) { next(err); }
@@ -84,12 +84,12 @@ exports.getOrder = async (req, res, next) => {
 // Admin: advance order through the state machine
 exports.updateStatus = async (req, res, next) => {
   const VALID_TRANSITIONS = {
-    pending:    ['paid', 'cancelled'],
-    paid:       ['processing', 'cancelled'],
+    pending: ['paid', 'cancelled'],
+    paid: ['processing', 'cancelled'],
     processing: ['dispatched'],
     dispatched: ['completed'],
-    completed:  [],
-    cancelled:  [],
+    completed: [],
+    cancelled: [],
   };
 
   try {
@@ -114,10 +114,10 @@ exports.updateStatus = async (req, res, next) => {
     // Send SMS on key transitions
     if (status === 'processing') {
       await queue.queueInstallationReminder({
-        name:  order.customer_name,
+        name: order.customer_name,
         phone: order.customer_phone,
-        date:  req.body.installDate || 'to be confirmed',
-        time:  req.body.installTime || '8:00 AM',
+        date: req.body.installDate || 'to be confirmed',
+        time: req.body.installTime || '8:00 AM',
       });
     }
 
@@ -159,4 +159,20 @@ exports.sendQuickSMS = async (req, res, next) => {
 
     res.json({ success: true, message: `SMS '${type}' queued for ${order.customer_phone}` });
   } catch (err) { next(err); }
+};
+// ── DELETE /api/v1/orders/:id (admin) ─────────────────────────────────────────
+exports.deleteOrder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { rowCount } = await pool.query(
+      `DELETE FROM orders WHERE id = $1`,
+      [id]
+    );
+    if (rowCount === 0) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    res.json({ success: true, deleted: id });
+  } catch (err) {
+    next(err);
+  }
 };
