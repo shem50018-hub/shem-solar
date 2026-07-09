@@ -2451,8 +2451,8 @@
       document.getElementById('page-title').textContent = titles[id] || id;
       const loaders = { overview: () => { loadOverview(); loadOrders(); }, orders: loadOrders, quotes: loadQuotes, inventory: loadInventory, analytics: loadAnalytics, products: loadProductsTable, mpesa: loadMpesaCatalog };
       loaders[id]?.();
+      document.querySelector('.content').scrollTop = 0;
     }
-
     // ── LIVE DATA LOADERS ─────────────────────────────────────────────────────────
     async function loadOverview() {
       try {
