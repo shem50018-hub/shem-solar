@@ -1,23 +1,18 @@
 require('dotenv').config();
 const pool = require('./pool');
 
-async function checkAdmins() {
+async function checkTables() {
     try {
-        const { rows } = await pool.query(
-            `SELECT id, username, email, name, role, is_active, created_at
-       FROM admin_users
-       ORDER BY id`
-        );
-        console.log(`\n📋 Found ${rows.length} admin account(s):\n`);
-        rows.forEach(u => {
-            console.log(`  [${u.id}] ${u.username} (${u.name}) — role: ${u.role} — active: ${u.is_active} — email: ${u.email}`);
-        });
-        console.log('');
+        const res = await pool.query(`
+      SELECT table_name 
+      FROM information_schema.tables 
+      WHERE table_schema = 'public';
+    `);
+        console.log("📊 Real Live Tables:", res.rows.map(r => r.table_name));
     } catch (err) {
-        console.error('❌ Query failed:', err.message);
+        console.error("❌ Error reading tables:", err.message);
     } finally {
         pool.end();
     }
 }
-
-checkAdmins();
+checkTables();
