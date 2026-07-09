@@ -1,8 +1,8 @@
-// src/routes/auth.routes.js
 const express = require('express');
 const router = express.Router();
 const ctrl = require('../controllers/auth.controller');
 const jwt = require('jsonwebtoken');
+const adminAuth = require('../middleware/adminAuth'); // 👈 Added this line
 
 // Middleware to verify JWT token
 function verifyToken(req, res, next) {
