@@ -5,7 +5,7 @@ let _at = null;
 function getSMSClient() {
   if (!_at) {
     _at = AfricasTalking({
-      apiKey:   process.env.AT_API_KEY,
+      apiKey: process.env.AT_API_KEY,
       username: process.env.AT_USERNAME,
     });
   }
@@ -19,12 +19,15 @@ async function sendSMS({ to, message }) {
 
   const sms = getSMSClient();
   const result = await sms.send({
-    to:      [phone],
+    to: [phone],
     message,
-    from:    process.env.AT_SENDER_ID,
+    from: process.env.AT_SENDER_ID,
   });
 
-  const recipient = result.SMSMessageData.Recipients[0];
+  const recipient = result?.SMSMessageData?.Recipients?.[0];
+  if (!recipient) {
+    throw new Error(`SMS failed to ${phone}: no response from Africa's Talking (check API key/username/balance)`);
+  }
   if (recipient.status !== 'Success') {
     throw new Error(`SMS failed to ${phone}: ${recipient.status}`);
   }
@@ -42,7 +45,7 @@ function orderConfirmation({ name, orderNumber, product, amount, phone }) {
       `Product: ${product}. ` +
       `Amount paid: KES ${Number(amount).toLocaleString()}. ` +
       `Our team will contact you within 24hrs to schedule installation. ` +
-      `Questions? Call 0. ShemSolar`,
+      `Questions? Call 0717644520. ShemSolar`,
   });
 }
 
