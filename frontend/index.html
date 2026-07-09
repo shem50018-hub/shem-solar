@@ -3578,6 +3578,9 @@
         document.getElementById('mpesa-step-3').style.display = 'none';
         document.getElementById('mpesa-phone').value = '';
         document.getElementById('mpesa-name').value = '';
+        const sendBtn = document.getElementById('mpesa-send-btn');
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send STK Push →';
       }, 400);
     }
 
