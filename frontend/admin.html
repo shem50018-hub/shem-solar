@@ -2687,10 +2687,19 @@
             <div class="dd-row"><span class="dd-key">Value</span><span class="dd-val" style="color:var(--gold-light)">KES ${q.estimated_value ? Number(q.estimated_value).toLocaleString() : '—'}</span></div>
             <div class="dd-row"><span class="dd-key">Status</span><span class="dd-val"><span class="pill pill-${q.status}">${q.status}</span></span></div>
           </div>`;
+        const STAGE_FLOW = {
+          new: { next: 'contacted', label: '→ Mark Contacted' },
+          contacted: { next: 'site_visit_scheduled', label: '→ Schedule Site Visit' },
+          site_visit_scheduled: { next: 'invoice_sent', label: '→ Send Invoice' },
+          invoice_sent: null,
+        };
+
+        const nextStage = STAGE_FLOW[q.status];
+
         document.getElementById('dd-actions').innerHTML = `
-          <button class="dd-btn dd-btn-primary" onclick="sendPaymentLinkFromQuote(${id})">💚 M-Pesa Link</button>
-          <button class="dd-btn dd-btn-secondary" onclick="updateQuoteStage(${id},'contacted')">→ Contacted</button>
-          <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
+  <button class="dd-btn dd-btn-primary" onclick="sendPaymentLinkFromQuote(${id})">💚 M-Pesa Link</button>
+  ${nextStage ? `<button class="dd-btn dd-btn-secondary" onclick="updateQuoteStage(${id},'${nextStage.next}')">${nextStage.label}</button>` : ''}
+  <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
         document.getElementById('detail-drawer').dataset.quoteId = id;
         openDrawer();
       } catch (e) { showToast('Could not load quote'); }
