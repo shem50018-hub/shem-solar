@@ -1,5 +1,5 @@
 // src/controllers/quotes.controller.js
-const pool  = require('../db/pool');
+const pool = require('../db/pool');
 const queue = require('../services/queue.service');
 const mpesa = require('../services/mpesa.service');
 
@@ -33,10 +33,10 @@ exports.createQuote = async (req, res, next) => {
 
     // Notify admin via SMS that a new lead came in
     await queue.queueQuoteFollowUp({
-      name:           fullname,
-      phone:          phone_number,
-      system:         recommended_system || 'solar system',
-      estimatedValue: estimated_value   || 0,
+      name: fullname,
+      phone: phone_number,
+      system: recommended_system || 'solar system',
+      estimatedValue: estimated_value || 0,
     });
 
     res.status(201).json({
@@ -99,7 +99,7 @@ exports.getQuote = async (req, res, next) => {
 // ── PATCH /api/v1/quotes/:id ──────────────────────────────────────────────────
 // Admin: update stage, call notes, assigned staff, estimated value
 exports.updateQuote = async (req, res, next) => {
-  const VALID_STATUSES = ['new','contacted','site_visit_scheduled','invoice_sent','closed_won','closed_lost'];
+  const VALID_STATUSES = ['new', 'contacted', 'site_visit_scheduled', 'invoice_sent', 'closed_won', 'closed_lost'];
 
   try {
     const { status, call_log, assigned_to_staff_id, estimated_value, recommended_system } = req.body;
@@ -108,9 +108,9 @@ exports.updateQuote = async (req, res, next) => {
       return res.status(400).json({ error: `Invalid status. Must be one of: ${VALID_STATUSES.join(', ')}` });
     }
 
-    const fields  = { status, call_log, assigned_to_staff_id, estimated_value, recommended_system };
+    const fields = { status, call_log, assigned_to_staff_id, estimated_value, recommended_system };
     const updates = [];
-    const params  = [];
+    const params = [];
     for (const [key, val] of Object.entries(fields)) {
       if (val !== undefined) {
         params.push(val);
@@ -144,7 +144,7 @@ exports.sendPaymentLink = async (req, res, next) => {
     }
 
     // 1. Create an order from the quote
-    const orderNumber = `SOLAR-${new Date().getFullYear()}-${Math.random().toString(36).substr(2,4).toUpperCase()}`;
+    const orderNumber = `SOLAR-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
 
     const { rows: [order] } = await pool.query(`
       INSERT INTO orders
@@ -159,8 +159,8 @@ exports.sendPaymentLink = async (req, res, next) => {
 
     // 2. Initiate STK push directly to customer's phone
     const { checkoutRequestId } = await mpesa.initiateSTKPush({
-      phone:       quote.phone_number,
-      amount:      quote.estimated_value,
+      phone: quote.phone_number,
+      amount: quote.estimated_value,
       orderNumber: order.order_number,
       description: quote.recommended_system || `Shem Solar – ${order.order_number}`,
     });
@@ -179,18 +179,18 @@ exports.sendPaymentLink = async (req, res, next) => {
 
     // 5. Notify customer via SMS as well
     await queue.queuePaymentLinkNotification({
-      name:        quote.fullname,
-      phone:       quote.phone_number,
+      name: quote.fullname,
+      phone: quote.phone_number,
       orderNumber: order.order_number,
-      amount:      quote.estimated_value,
+      amount: quote.estimated_value,
       productName: quote.recommended_system || 'Solar system',
     });
 
     res.json({
-      success:     true,
-      orderId:     order.id,
+      success: true,
+      orderId: order.id,
       orderNumber: order.order_number,
-      message:     `STK Push sent to ${quote.phone_number}. SMS confirmation also queued.`,
+      message: `STK Push sent to ${quote.phone_number}. SMS confirmation also queued.`,
     });
   } catch (err) { next(err); }
 };
@@ -207,4 +207,21 @@ exports.pipeline = async (req, res, next) => {
     `);
     res.json({ data: rows });
   } catch (err) { next(err); }
+};
+
+// ── DELETE /api/v1/quotes/:id (admin) ─────────────────────────────────────────
+exports.deleteQuote = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { rowCount } = await pool.query(
+      `DELETE FROM consultation_requests WHERE id = $1`,
+      [id]
+    );
+    if (rowCount === 0) {
+      return res.status(404).json({ error: 'Quote not found' });
+    }
+    res.json({ success: true, deleted: id });
+  } catch (err) {
+    next(err);
+  }
 };

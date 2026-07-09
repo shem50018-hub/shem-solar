@@ -2699,6 +2699,7 @@
         document.getElementById('dd-actions').innerHTML = `
   <button class="dd-btn dd-btn-primary" onclick="sendPaymentLinkFromQuote(${id})">💚 M-Pesa Link</button>
   ${nextStage ? `<button class="dd-btn dd-btn-secondary" onclick="updateQuoteStage(${id},'${nextStage.next}')">${nextStage.label}</button>` : ''}
+  <button class="dd-btn dd-btn-danger" onclick="deleteQuoteConfirm(${id})">🗑️ Delete</button>
   <button class="dd-btn dd-btn-secondary" onclick="closeDrawer()">Close</button>`;
         document.getElementById('detail-drawer').dataset.quoteId = id;
         openDrawer();
@@ -2732,7 +2733,15 @@
         closeDrawer();
       } catch (e) { showToast(e.message); }
     }
-
+    async function deleteQuoteConfirm(quoteId) {
+      if (!confirm('Permanently delete this quote? This cannot be undone.')) return;
+      try {
+        await api(`/quotes/${quoteId}`, { method: 'DELETE' });
+        showToast('Quote deleted');
+        closeDrawer();
+        loadQuotes();
+      } catch (e) { showToast(e.message); }
+    }
     async function sendPaymentLinkFromQuote(quoteId) {
       try {
         const data = await api(`/quotes/${quoteId}/send-payment-link`, { method: 'POST' });
