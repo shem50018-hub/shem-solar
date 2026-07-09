@@ -80,3 +80,35 @@ exports.login = async (req, res, next) => {
 exports.me = async (req, res) => {
     res.json({ data: req.admin });
 };
+// POST /api/v1/auth/create-admin (super_admin only, requires login)
+exports.createAdmin = async (req, res, next) => {
+    try {
+        if (req.admin?.role !== 'super_admin') {
+            return res.status(403).json({ error: 'Only super_admin can create new admin accounts' });
+        }
+
+        const { username, email, password, name, role } = req.body;
+        if (!username || !email || !password || !name) {
+            return res.status(400).json({ error: 'username, email, password and name are required' });
+        }
+        if (password.length < 8) {
+            return res.status(400).json({ error: 'Password must be at least 8 characters' });
+        }
+
+        const password_hash = await bcrypt.hash(password, 12);
+
+        const { rows } = await pool.query(
+            `INSERT INTO admin_users (username, email, password_hash, name, role)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING id, username, email, name, role, created_at`,
+            [username, email, password_hash, name, role || 'staff']
+        );
+
+        res.status(201).json({ data: rows[0] });
+    } catch (err) {
+        if (err.code === '23505') {
+            return res.status(409).json({ error: 'Username or email already exists' });
+        }
+        next(err);
+    }
+};

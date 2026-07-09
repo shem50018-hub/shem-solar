@@ -85,7 +85,7 @@ function quoteFollowUp({ name, phone, system, estimatedValue }) {
     message:
       `Hi ${name}, thanks for your interest in solar! ` +
       `We've prepared a quote for a ${system} system worth KES ${Number(estimatedValue).toLocaleString()}. ` +
-      `Call 0700 123 456 or reply YES to receive it. ShemSolar`,
+      `Call 0717644520 or reply YES to receive it. ShemSolar`,
   });
 }
 
@@ -95,7 +95,7 @@ function siteVisitReminder({ name, phone, date }) {
     message:
       `Hi ${name}, reminder: Shem Solar engineers will visit your property tomorrow, ${date}, ` +
       `for a FREE solar site assessment. Please ensure someone is home. ` +
-      `Call 0700 123 456 to reschedule. ShemSolar`,
+      `Call 0717644520 to reschedule. ShemSolar`,
   });
 }
 

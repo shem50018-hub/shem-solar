@@ -19,5 +19,6 @@ function verifyToken(req, res, next) {
 router.post('/register', ctrl.register);
 router.post('/login', ctrl.login);
 router.get('/me', verifyToken, ctrl.me);
+router.post('/create-admin', adminAuth, ctrl.createAdmin);
 
 module.exports = router;
