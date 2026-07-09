@@ -2164,112 +2164,118 @@
           </div>
         </div>
 
+
+
+        <div class="view" id="view-settings">
+          <div style="max-width:600px; display: flex; flex-direction: column; gap: 1.5rem; padding: 1.5rem;">
+
+            <div style="font-size:1rem; font-weight:700; color:var(--text-1); margin-bottom:0.2rem">System Settings
+            </div>
+
+            <div class="mpesa-form">
+              <div class="mpf-title">M-Pesa / Daraja API</div>
+              <div class="mpf-sub">Safaricom Daraja API credentials for STK Push</div>
+              <div class="mpf-row">
+                <div class="mpf-group">
+                  <label>API Key</label>
+                  <input class="mpf-input" type="password" placeholder="Managed via Railway .env" disabled>
+                </div>
+                <div class="mpf-group">
+                  <label>Username</label>
+                  <input class="mpf-input" value="sandbox">
+                </div>
+              </div>
+              <div class="mpf-group" style="margin-bottom:0.7rem">
+                <label>Callback URL</label>
+                <input class="mpf-input" id="setting-callback"
+                  value="https://shem-solar-production.up.railway.app/api/v1/mpesa/callback">
+              </div>
+              <div class="mpf-group" style="margin-bottom:0.7rem">
+                <label>Paybill / Till Number</label>
+                <input class="mpf-input" value="6429266">
+              </div>
+              <div class="mpf-row">
+                <div class="mpf-group">
+                  <label>Environment</label>
+                  <select class="mpf-select">
+                    <option>Sandbox</option>
+                    <option>Production</option>
+                  </select>
+                </div>
+                <div class="mpf-group">
+                  <label>Shortcode</label>
+                  <input class="mpf-input" value="174379">
+                </div>
+              </div>
+              <button class="send-btn" style="margin-top:0.5rem;">Save Daraja Settings</button>
+            </div>
+
+            <div class="mpesa-form">
+              <div class="mpf-title">Africa's Talking SMS</div>
+              <div class="mpf-sub">SMS Gateway credentials</div>
+              <div class="mpf-row">
+                <div class="mpf-group">
+                  <label>API Key</label>
+                  <input class="mpf-input" type="password" value="your_api_key_here">
+                </div>
+                <div class="mpf-group">
+                  <label>Username</label>
+                  <input class="mpf-input" value="sandbox">
+                </div>
+              </div>
+              <div class="mpf-group" style="margin-bottom:0.7rem">
+                <label>Sender ID</label>
+                <input class="mpf-input" value="ShemSolar">
+              </div>
+              <button class="send-btn">Save SMS Settings</button>
+            </div>
+
+            <div class="mpesa-form">
+              <div class="mpf-title">Add New Admin User</div>
+              <div class="mpf-sub">Create a login for another staff member (super_admin only)</div>
+              <div class="mpf-row">
+                <div class="mpf-group">
+                  <label>Full Name</label>
+                  <input class="mpf-input" id="na-name" placeholder="Jane Wanjiru">
+                </div>
+                <div class="mpf-group">
+                  <label>Username</label>
+                  <input class="mpf-input" id="na-username" placeholder="jane.sales">
+                </div>
+              </div>
+              <div class="mpf-row">
+                <div class="mpf-group">
+                  <label>Email</label>
+                  <input class="mpf-input" id="na-email" type="email" placeholder="jane@shemsolar.co.ke">
+                </div>
+                <div class="mpf-group">
+                  <label>Role</label>
+                  <select class="mpf-select" id="na-role">
+                    <option value="staff">Staff</option>
+                    <option value="sales">Sales</option>
+                    <option value="finance">Finance</option>
+                    <option value="support">Support</option>
+                    <option value="manager">Manager</option>
+                    <option value="super_admin">Super Admin</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mpf-group" style="margin-bottom:0.7rem">
+                <label>Password</label>
+                <input class="mpf-input" id="na-password" type="password" placeholder="At least 8 characters">
+              </div>
+              <div id="na-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.7rem;"></div>
+              <button class="send-btn" onclick="createNewAdmin()">➕ Create Admin Account</button>
+            </div>
+
+
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="view" id="view-settings">
-    <div style="max-width:600px; display: flex; flex-direction: column; gap: 1.5rem; padding: 1.5rem;">
 
-      <div style="font-size:1rem; font-weight:700; color:var(--text-1); margin-bottom:0.2rem">System Settings</div>
-
-      <div class="mpesa-form">
-        <div class="mpf-title">M-Pesa / Daraja API</div>
-        <div class="mpf-sub">Safaricom Daraja API credentials for STK Push</div>
-        <div class="mpf-row">
-          <div class="mpf-group">
-            <label>API Key</label>
-            <input class="mpf-input" type="password" placeholder="Managed via Railway .env" disabled>
-          </div>
-          <div class="mpf-group">
-            <label>Username</label>
-            <input class="mpf-input" value="sandbox">
-          </div>
-        </div>
-        <div class="mpf-group" style="margin-bottom:0.7rem">
-          <label>Callback URL</label>
-          <input class="mpf-input" id="setting-callback"
-            value="https://shem-solar-production.up.railway.app/api/v1/mpesa/callback">
-        </div>
-        <div class="mpf-group" style="margin-bottom:0.7rem">
-          <label>Paybill / Till Number</label>
-          <input class="mpf-input" value="6429266">
-        </div>
-        <div class="mpf-row">
-          <div class="mpf-group">
-            <label>Environment</label>
-            <select class="mpf-select">
-              <option>Sandbox</option>
-              <option>Production</option>
-            </select>
-          </div>
-          <div class="mpf-group">
-            <label>Shortcode</label>
-            <input class="mpf-input" value="174379">
-          </div>
-        </div>
-        <button class="send-btn" style="margin-top:0.5rem;">Save Daraja Settings</button>
-      </div>
-
-      <div class="mpesa-form">
-        <div class="mpf-title">Africa's Talking SMS</div>
-        <div class="mpf-sub">SMS Gateway credentials</div>
-        <div class="mpf-row">
-          <div class="mpf-group">
-            <label>API Key</label>
-            <input class="mpf-input" type="password" value="your_api_key_here">
-          </div>
-          <div class="mpf-group">
-            <label>Username</label>
-            <input class="mpf-input" value="sandbox">
-          </div>
-        </div>
-        <div class="mpf-group" style="margin-bottom:0.7rem">
-          <label>Sender ID</label>
-          <input class="mpf-input" value="ShemSolar">
-        </div>
-        <button class="send-btn">Save SMS Settings</button>
-      </div>
-
-      <div class="mpesa-form">
-        <div class="mpf-title">Add New Admin User</div>
-        <div class="mpf-sub">Create a login for another staff member (super_admin only)</div>
-        <div class="mpf-row">
-          <div class="mpf-group">
-            <label>Full Name</label>
-            <input class="mpf-input" id="na-name" placeholder="Jane Wanjiru">
-          </div>
-          <div class="mpf-group">
-            <label>Username</label>
-            <input class="mpf-input" id="na-username" placeholder="jane.sales">
-          </div>
-        </div>
-        <div class="mpf-row">
-          <div class="mpf-group">
-            <label>Email</label>
-            <input class="mpf-input" id="na-email" type="email" placeholder="jane@shemsolar.co.ke">
-          </div>
-          <div class="mpf-group">
-            <label>Role</label>
-            <select class="mpf-select" id="na-role">
-              <option value="staff">Staff</option>
-              <option value="sales">Sales</option>
-              <option value="finance">Finance</option>
-              <option value="support">Support</option>
-              <option value="manager">Manager</option>
-              <option value="super_admin">Super Admin</option>
-            </select>
-          </div>
-        </div>
-        <div class="mpf-group" style="margin-bottom:0.7rem">
-          <label>Password</label>
-          <input class="mpf-input" id="na-password" type="password" placeholder="At least 8 characters">
-        </div>
-        <div id="na-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.7rem;"></div>
-        <button class="send-btn" onclick="createNewAdmin()">➕ Create Admin Account</button>
-      </div>
-
-    </div>
-  </div>
 
   <!-- Product Modal -->
 
