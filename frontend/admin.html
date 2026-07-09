@@ -2189,10 +2189,11 @@
   </div>
   </div>
   </div>
-  <div class="view" id="view-settings">
-    <div style="max-width:600px; display: flex; flex-direction: column; gap: 1.5rem;">
 
-      <div style="font-size:1rem;font-weight:700;color:var(--text-1);margin-bottom:0.2rem">System Settings</div>
+  <div class="view" id="view-settings">
+    <div style="max-width:600px; display: flex; flex-direction: column; gap: 1.5rem; padding: 1rem;">
+
+      <div style="font-size:1rem; font-weight:700; color:var(--text-1); margin-bottom:0.2rem">System Settings</div>
 
       <div class="mpesa-form">
         <div class="mpf-title">M-Pesa / Daraja API</div>
@@ -2229,6 +2230,28 @@
             <input class="mpf-input" value="174379">
           </div>
         </div>
+        <button class="send-btn" style="margin-top:0.5rem; background:var(--accent-1, #10b981);">Save Daraja
+          Settings</button>
+      </div>
+
+      <div class="mpesa-form">
+        <div class="mpf-title">Africa's Talking SMS</div>
+        <div class="mpf-sub">SMS Gateway credentials</div>
+        <div class="mpf-row">
+          <div class="mpf-group">
+            <label>API KEY</label>
+            <input class="mpf-input" type="password" value="your_api_key_here">
+          </div>
+          <div class="mpf-group">
+            <label>USERNAME</label>
+            <input class="mpf-input" value="sandbox">
+          </div>
+        </div>
+        <div class="mpf-group" style="margin-bottom:0.7rem">
+          <label>SENDER ID</label>
+          <input class="mpf-input" value="ShemSolar">
+        </div>
+        <button class="send-btn" style="background:var(--accent-1, #10b981);">Save SMS Settings</button>
       </div>
 
       <div class="mpesa-form">
@@ -2263,18 +2286,15 @@
         </div>
         <div class="mpf-group" style="margin-bottom:0.7rem">
           <label>Password</label>
-          <div class="mpf-group" style="margin-bottom:0.7rem">
-            <label>Password</label>
-            <input class="mpf-input" id="na-password" type="password" placeholder="At least 8 characters">
-          </div>
-          <div id="na-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.7rem;"></div>
-          <button class="send-btn" onclick="createNewAdmin()">➕ Create Admin Account</button>
+          <input class="mpf-input" id="na-password" type="password" placeholder="At least 8 characters">
         </div>
+        <div id="na-error" style="display:none;color:#ef4444;font-size:0.85rem;margin-bottom:0.7rem;"></div>
+        <button class="send-btn" onclick="createNewAdmin()">➕ Create Admin Account</button>
       </div>
+
     </div>
   </div>
-  </div>
-  </div>
+
   <!-- SETTINGS -->
   <div class="view" id="view-settings">
     <div style="max-width:600px">
