@@ -3050,7 +3050,7 @@
                 <!-- rendered by JS -->
               </div>
               <div class="bill-row">
-                <div class="bill-label">Daily usage hours (how many hours per day?)</div>
+                <label for="hours-slider" class="bill-label">Daily usage hours (how many hours per day?)</label>
                 <input type="range" class="bill-slider" id="hours-slider" min="4" max="24" value="10"
                   oninput="calcUpdate()">
                 <div style="display:flex;justify-content:space-between;align-items:center">
@@ -3058,58 +3058,61 @@
                   <span style="font-size:0.78rem;color:rgba(255,255,255,0.35)">4h → 24h</span>
                 </div>
               </div>
-            </div>
-            <!-- RIGHT: Recommendation -->
-            <div class="calc-right">
-              <div class="calc-right-title">☀️ System recommendation</div>
-              <div class="load-meter">
-                <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem">
-                  <span style="font-size:0.82rem;color:rgba(255,255,255,0.55)">Total load</span>
-                  <span style="font-size:1.1rem;font-weight:700;color:var(--white)"><span id="total-watts">0</span>
-                    W</span>
+              <!-- RIGHT: Recommendation -->
+              <div class="calc-right">
+                <div class="calc-right-title">☀️ System recommendation</div>
+                <div class="load-meter">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem">
+                    <span style="font-size:0.82rem;color:rgba(255,255,255,0.55)">Total load</span>
+                    <span style="font-size:1.1rem;font-weight:700;color:var(--white)"><span id="total-watts">0</span>
+                      W</span>
+                  </div>
+                  <div class="load-bar-track">
+                    <div class="load-bar-fill" id="load-bar" style="width:0%"></div>
+                  </div>
+                  <div class="load-nums"><span>0 W</span><span>1,000 W</span><span>3,000 W</span><span>5,000+ W</span>
+                  </div>
                 </div>
-                <div class="load-bar-track">
-                  <div class="load-bar-fill" id="load-bar" style="width:0%"></div>
-                </div>
-                <div class="load-nums"><span>0 W</span><span>1,000 W</span><span>3,000 W</span><span>5,000+ W</span>
+                <div id="rec-area">
+                  <div class="rec-none">🌤️<br>Select appliances above<br>to see your recommendation</div>
                 </div>
               </div>
-              <div id="rec-area">
-                <div class="rec-none">🌤️<br>Select appliances above<br>to see your recommendation</div>
+            </div>
+            <div class="calc-bottom">
+              <div>
+                <div class="calc-summary">Estimated daily energy: <strong id="kwh-day">0 kWh</strong> &nbsp;·&nbsp;
+                  System
+                  size needed: <strong id="sys-kw">—</strong></div>
+                <div style="margin-top:0.4rem;font-size:0.8rem;color:rgba(255,255,255,0.35)">Calculation includes 20%
+                  efficiency buffer and Kenya's avg. 5.5 peak sun hours</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+                <div class="savings-pill" id="savings-pill" style="display:none">💰 Save up to <span
+                    id="savings-est">KES
+                    0</span>/mo</div>
+                <button class="btn btn-gold" id="calc-cta" style="display:none" onclick="calcAddToCart()">Add
+                  Recommended
+                  System →</button>
+                <button class="btn btn-green btn-sm" id="calc-quote-cta" style="display:none"
+                  onclick="toggleCalcQuote()">Request Consultation →</button>
               </div>
             </div>
-          </div>
-          <div class="calc-bottom">
-            <div>
-              <div class="calc-summary">Estimated daily energy: <strong id="kwh-day">0 kWh</strong> &nbsp;·&nbsp; System
-                size needed: <strong id="sys-kw">—</strong></div>
-              <div style="margin-top:0.4rem;font-size:0.8rem;color:rgba(255,255,255,0.35)">Calculation includes 20%
-                efficiency buffer and Kenya's avg. 5.5 peak sun hours</div>
+            <!-- Quote handoff for large systems -->
+            <div class="calc-quote-box" id="calc-quote-box" style="margin:0 2.5rem 1.5rem;display:none">
+              <div class="cqb-title">🔧 Large system — let's talk first</div>
+              <div class="cqb-desc">Systems 5kW and above are designed to your exact site requirements. Our engineers
+                will
+                visit, assess your load, and build a custom proposal — free of charge.</div>
+              <div class="cqb-fields">
+                <input class="cqb-input" id="cqb-name" placeholder="Your name">
+                <input class="cqb-input" id="cqb-phone" placeholder="Phone / WhatsApp" type="tel">
+              </div>
+              <button class="btn btn-green" style="width:100%;justify-content:center" onclick="submitCalcQuote()">Book
+                Free
+                Site Assessment →</button>
             </div>
-            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-              <div class="savings-pill" id="savings-pill" style="display:none">💰 Save up to <span id="savings-est">KES
-                  0</span>/mo</div>
-              <button class="btn btn-gold" id="calc-cta" style="display:none" onclick="calcAddToCart()">Add Recommended
-                System →</button>
-              <button class="btn btn-green btn-sm" id="calc-quote-cta" style="display:none"
-                onclick="toggleCalcQuote()">Request Consultation →</button>
-            </div>
-          </div>
-          <!-- Quote handoff for large systems -->
-          <div class="calc-quote-box" id="calc-quote-box" style="margin:0 2.5rem 1.5rem;display:none">
-            <div class="cqb-title">🔧 Large system — let's talk first</div>
-            <div class="cqb-desc">Systems 5kW and above are designed to your exact site requirements. Our engineers will
-              visit, assess your load, and build a custom proposal — free of charge.</div>
-            <div class="cqb-fields">
-              <input class="cqb-input" id="cqb-name" placeholder="Your name">
-              <input class="cqb-input" id="cqb-phone" placeholder="Phone / WhatsApp" type="tel">
-            </div>
-            <button class="btn btn-green" style="width:100%;justify-content:center" onclick="submitCalcQuote()">Book
-              Free
-              Site Assessment →</button>
           </div>
         </div>
-      </div>
       </div>
     </section>
 
