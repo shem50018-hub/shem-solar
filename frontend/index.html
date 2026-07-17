@@ -1369,7 +1369,7 @@
       border-left: 3px solid var(--gold)
     }
 
-    .pillar h4 {
+    .pillar h3 {
       font-size: 0.9rem;
       font-weight: 700;
       margin-bottom: 0.3rem
@@ -2918,443 +2918,453 @@
       </div>
     </div>
   </nav>
-
-  <!-- ── HERO ── -->
-  <section id="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div>
-          <div class="hero-tag fade-in"><span></span> Kenya's #1 Solar Provider</div>
-          <h1 class="display hero-title fade-in-2">Power Your Future with <em>Clean Energy</em></h1>
-          <p class="hero-subtitle fade-in-3">From homes in Nairobi to schools in rural Kenya — we deliver reliable solar
-            solutions with transparent pricing and expert installation.</p>
-          <div class="hero-actions fade-in-4">
-            <a href="#products" class="btn btn-gold">Shop Products</a>
-            <a href="#contact" class="btn btn-outline">Free Consultation</a>
-          </div>
-          <div class="hero-stats fade-in-4">
-            <div class="stat-card">
-              <div class="stat-num">2,400+</div>
-              <div class="stat-label">Installations</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">99.2%</div>
-              <div class="stat-label">Uptime</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">25yr</div>
-              <div class="stat-label">Panel Warranty</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-num">24/7</div>
-              <div class="stat-label">Support</div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual fade-in-3">
-          <div class="hero-img-frame">
-            <div style="position:relative">
-              <div class="hero-sun"></div>
-            </div>
-            <div class="floating-card fc-1">
-              <span class="fc-dot dot-green"></span>System Active · 4.2 kW
-            </div>
-            <div class="floating-card fc-2">
-              <span class="fc-dot dot-gold"></span>Savings: KES 8,400/mo
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── WHO WE SERVE ── -->
-  <section id="serve">
-    <div class="container">
-      <div class="section-header">
-        <div class="caption section-label">Who We Serve</div>
-        <h2 class="heading-xl">Solar for Every Kenyan</h2>
-        <p>Whether you're a homeowner tired of power outages or a school seeking energy independence, we have a solution
-          built for you.</p>
-      </div>
-      <div class="serve-grid">
-        <div class="serve-card">
-          <div class="serve-icon serve-icon-1">🏠</div>
-          <h3>Homeowners</h3>
-          <p>Cut your electricity bill by up to 80%. Reliable power for appliances, lighting, and EV charging.</p>
-          <div class="serve-tag">→ Residential packages</div>
-        </div>
-        <div class="serve-card">
-          <div class="serve-icon serve-icon-2">🏢</div>
-          <h3>Businesses</h3>
-          <p>Eliminate KPLC dependency. Solar reduces operational costs and powers growth for SMEs and enterprises.</p>
-          <div class="serve-tag">→ Commercial systems</div>
-        </div>
-        <div class="serve-card">
-          <div class="serve-icon serve-icon-3">🏫</div>
-          <h3>Schools</h3>
-          <p>Keep the lights on and labs powered. Affordable financing options for educational institutions.</p>
-          <div class="serve-tag">→ Education packages</div>
-        </div>
-        <div class="serve-card">
-          <div class="serve-icon serve-icon-4">🌿</div>
-          <h3>Rural Communities</h3>
-          <p>Off-grid solutions that bring reliable electricity to areas beyond the national grid.</p>
-          <div class="serve-tag">→ Off-grid systems</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PRODUCTS ── -->
-  <section id="products">
-    <div class="container">
-      <div class="section-header">
-        <div class="caption section-label">Our Products</div>
-        <h2 class="heading-xl">Solar Equipment Catalog</h2>
-        <p>Premium solar components sourced from globally certified manufacturers — available for delivery across Kenya.
-        </p>
-      </div>
-      <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterProducts('all',this)">All Products</button>
-        <button class="filter-btn" onclick="filterProducts('panels',this)">Solar Panels</button>
-        <button class="filter-btn" onclick="filterProducts('batteries',this)">Batteries</button>
-        <button class="filter-btn" onclick="filterProducts('inverters',this)">Inverters</button>
-        <button class="filter-btn" onclick="filterProducts('packages',this)">Packages</button>
-      </div>
-
-      <div class="products-grid" id="products-grid">
-        <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-light)">Loading products…</div>
-      </div>
-
-  </section>
-
-  <!-- ── LOAD CALCULATOR ── -->
-  <section id="calculator">
-    <div class="container">
-      <div class="section-header">
-        <div class="caption section-label">Solar Sizing Tool</div>
-        <h2 class="heading-xl" style="color:var(--white)">What Size System Do You Need?</h2>
-        <p>Select your appliances and we'll instantly recommend the right solar package for your home or business.</p>
-      </div>
-      <div class="calc-shell">
-        <div class="calc-top">
-          <!-- LEFT: Appliance picker -->
-          <div class="calc-left">
-            <div class="calc-left-title">⚡ Select your appliances</div>
-            <div class="appliance-grid" id="appliance-grid">
-              <!-- rendered by JS -->
-            </div>
-            <div class="bill-row">
-              <div class="bill-label">Daily usage hours (how many hours per day?)</div>
-              <input type="range" class="bill-slider" id="hours-slider" min="4" max="24" value="10"
-                oninput="calcUpdate()">
-              <div style="display:flex;justify-content:space-between;align-items:center">
-                <span class="bill-val"><span id="hours-val">10</span> hrs / day</span>
-                <span style="font-size:0.78rem;color:rgba(255,255,255,0.35)">4h → 24h</span>
-              </div>
-            </div>
-          </div>
-          <!-- RIGHT: Recommendation -->
-          <div class="calc-right">
-            <div class="calc-right-title">☀️ System recommendation</div>
-            <div class="load-meter">
-              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem">
-                <span style="font-size:0.82rem;color:rgba(255,255,255,0.55)">Total load</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--white)"><span id="total-watts">0</span>
-                  W</span>
-              </div>
-              <div class="load-bar-track">
-                <div class="load-bar-fill" id="load-bar" style="width:0%"></div>
-              </div>
-              <div class="load-nums"><span>0 W</span><span>1,000 W</span><span>3,000 W</span><span>5,000+ W</span></div>
-            </div>
-            <div id="rec-area">
-              <div class="rec-none">🌤️<br>Select appliances above<br>to see your recommendation</div>
-            </div>
-          </div>
-        </div>
-        <div class="calc-bottom">
+  <main>
+    <!-- ── HERO ── -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-grid">
           <div>
-            <div class="calc-summary">Estimated daily energy: <strong id="kwh-day">0 kWh</strong> &nbsp;·&nbsp; System
-              size needed: <strong id="sys-kw">—</strong></div>
-            <div style="margin-top:0.4rem;font-size:0.8rem;color:rgba(255,255,255,0.35)">Calculation includes 20%
-              efficiency buffer and Kenya's avg. 5.5 peak sun hours</div>
+            <div class="hero-tag fade-in"><span></span> Kenya's #1 Solar Provider</div>
+            <h1 class="display hero-title fade-in-2">Power Your Future with <em>Clean Energy</em></h1>
+            <p class="hero-subtitle fade-in-3">From homes in Nairobi to schools in rural Kenya — we deliver reliable
+              solar
+              solutions with transparent pricing and expert installation.</p>
+            <div class="hero-actions fade-in-4">
+              <a href="#products" class="btn btn-gold">Shop Products</a>
+              <a href="#contact" class="btn btn-outline">Free Consultation</a>
+            </div>
+            <div class="hero-stats fade-in-4">
+              <div class="stat-card">
+                <div class="stat-num">2,400+</div>
+                <div class="stat-label">Installations</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">99.2%</div>
+                <div class="stat-label">Uptime</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">25yr</div>
+                <div class="stat-label">Panel Warranty</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">24/7</div>
+                <div class="stat-label">Support</div>
+              </div>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-            <div class="savings-pill" id="savings-pill" style="display:none">💰 Save up to <span id="savings-est">KES
-                0</span>/mo</div>
-            <button class="btn btn-gold" id="calc-cta" style="display:none" onclick="calcAddToCart()">Add Recommended
-              System →</button>
-            <button class="btn btn-green btn-sm" id="calc-quote-cta" style="display:none"
-              onclick="toggleCalcQuote()">Request Consultation →</button>
+          <div class="hero-visual fade-in-3">
+            <div class="hero-img-frame">
+              <div style="position:relative">
+                <div class="hero-sun"></div>
+              </div>
+              <div class="floating-card fc-1">
+                <span class="fc-dot dot-green"></span>System Active · 4.2 kW
+              </div>
+              <div class="floating-card fc-2">
+                <span class="fc-dot dot-gold"></span>Savings: KES 8,400/mo
+              </div>
+            </div>
           </div>
-        </div>
-        <!-- Quote handoff for large systems -->
-        <div class="calc-quote-box" id="calc-quote-box" style="margin:0 2.5rem 1.5rem;display:none">
-          <div class="cqb-title">🔧 Large system — let's talk first</div>
-          <div class="cqb-desc">Systems 5kW and above are designed to your exact site requirements. Our engineers will
-            visit, assess your load, and build a custom proposal — free of charge.</div>
-          <div class="cqb-fields">
-            <input class="cqb-input" id="cqb-name" placeholder="Your name">
-            <input class="cqb-input" id="cqb-phone" placeholder="Phone / WhatsApp" type="tel">
-          </div>
-          <button class="btn btn-green" style="width:100%;justify-content:center" onclick="submitCalcQuote()">Book Free
-            Site Assessment →</button>
         </div>
       </div>
-    </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── SERVICES ── -->
-  <section id="services">
-    <div class="container">
-      <div class="section-header">
-        <div class="caption section-label">Our Services</div>
-        <h2 class="heading-xl">End-to-End Solar Solutions</h2>
-        <p>We don't just sell equipment — we walk with you from site survey to system monitoring.</p>
+    <!-- ── WHO WE SERVE ── -->
+    <section id="serve">
+      <div class="container">
+        <div class="section-header">
+          <div class="caption section-label">Who We Serve</div>
+          <h2 class="heading-xl">Solar for Every Kenyan</h2>
+          <p>Whether you're a homeowner tired of power outages or a school seeking energy independence, we have a
+            solution
+            built for you.</p>
+        </div>
+        <div class="serve-grid">
+          <div class="serve-card">
+            <div class="serve-icon serve-icon-1">🏠</div>
+            <h3>Homeowners</h3>
+            <p>Cut your electricity bill by up to 80%. Reliable power for appliances, lighting, and EV charging.</p>
+            <div class="serve-tag">→ Residential packages</div>
+          </div>
+          <div class="serve-card">
+            <div class="serve-icon serve-icon-2">🏢</div>
+            <h3>Businesses</h3>
+            <p>Eliminate KPLC dependency. Solar reduces operational costs and powers growth for SMEs and enterprises.
+            </p>
+            <div class="serve-tag">→ Commercial systems</div>
+          </div>
+          <div class="serve-card">
+            <div class="serve-icon serve-icon-3">🏫</div>
+            <h3>Schools</h3>
+            <p>Keep the lights on and labs powered. Affordable financing options for educational institutions.</p>
+            <div class="serve-tag">→ Education packages</div>
+          </div>
+          <div class="serve-card">
+            <div class="serve-icon serve-icon-4">🌿</div>
+            <h3>Rural Communities</h3>
+            <p>Off-grid solutions that bring reliable electricity to areas beyond the national grid.</p>
+            <div class="serve-tag">→ Off-grid systems</div>
+          </div>
+        </div>
       </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-num">01</div>
-          <h3>Site Survey & Design</h3>
-          <p>Our engineers visit your property, assess your load requirements, and design a custom system sized exactly
-            for your needs.</p>
-          <span class="tag">Free assessment</span>
-        </div>
-        <div class="service-card">
-          <div class="service-num">02</div>
-          <h3>Supply & Installation</h3>
-          <p>Certified technicians handle procurement, mounting, wiring, and commissioning — fully compliant with
-            Kenya's energy regulations.</p>
-          <span class="tag">Certified installers</span>
-        </div>
-        <div class="service-card">
-          <div class="service-num">03</div>
-          <h3>System Monitoring</h3>
-          <p>Real-time Wi-Fi monitoring dashboard tracks energy production, consumption, and battery health from your
-            phone.</p>
-          <span class="tag">Mobile app included</span>
-        </div>
-        <div class="service-card">
-          <div class="service-num">04</div>
-          <h3>Maintenance & Support</h3>
-          <p>Annual servicing contracts, emergency callouts, and component replacement warranties for peace of mind
-            long-term.</p>
-          <span class="tag">24/7 support line</span>
-        </div>
-        <div class="service-card">
-          <div class="service-num">05</div>
-          <h3>Financing Options</h3>
-          <p>Flexible payment plans including M-Pesa monthly instalments, bank loan partnerships, and SACCO-linked
-            financing.</p>
-          <span class="tag">From KES 5,000/mo</span>
-        </div>
-        <div class="service-card">
-          <div class="service-num">06</div>
-          <h3>Grid-Tie & Net Metering</h3>
-          <p>Sell excess power back to KPLC with our licensed grid-tied installations — earning while the sun shines.
+    </section>
+
+    <!-- ── PRODUCTS ── -->
+    <section id="products">
+      <div class="container">
+        <div class="section-header">
+          <div class="caption section-label">Our Products</div>
+          <h2 class="heading-xl">Solar Equipment Catalog</h2>
+          <p>Premium solar components sourced from globally certified manufacturers — available for delivery across
+            Kenya.
           </p>
-          <span class="tag">KPLC approved</span>
         </div>
-      </div>
-    </div>
-  </section>
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterProducts('all',this)">All Products</button>
+          <button class="filter-btn" onclick="filterProducts('panels',this)">Solar Panels</button>
+          <button class="filter-btn" onclick="filterProducts('batteries',this)">Batteries</button>
+          <button class="filter-btn" onclick="filterProducts('inverters',this)">Inverters</button>
+          <button class="filter-btn" onclick="filterProducts('packages',this)">Packages</button>
+        </div>
 
-  <!-- ── TESTIMONIALS ── -->
-  <section id="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <div class="caption section-label">Testimonials</div>
-        <h2 class="heading-xl">Kenyans Who Made the Switch</h2>
-        <p>Real results from real customers across the country.</p>
-      </div>
-      <div class="testi-grid">
-        <div class="testi-card">
-          <div class="stars">★★★★★</div>
-          <div class="testi-quote">"Shem Solar installed a 3kW system for our Kiambu home. Our electricity bill dropped
-            from KES 12,000 to under KES 800 a month. The installation team was professional and completed everything in
-            one day."</div>
-          <div class="testi-author">
-            <div class="author-avatar av-green">JM</div>
-            <div>
-              <div class="author-name">James Mwangi</div>
-              <div class="author-role">Homeowner, Kiambu</div>
-            </div>
-          </div>
+        <div class="products-grid" id="products-grid">
+          <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-light)">Loading products…</div>
         </div>
-        <div class="testi-card">
-          <div class="stars">★★★★★</div>
-          <div class="testi-quote">"We run a cold storage facility in Eldoret. The 15kW commercial system paid for
-            itself in 2.5 years. No more diesel generator costs. The monitoring app shows everything in real time."
-          </div>
-          <div class="testi-author">
-            <div class="author-avatar av-navy">AO</div>
-            <div>
-              <div class="author-name">Aisha Omondi</div>
-              <div class="author-role">SME Owner, Eldoret</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="stars">★★★★★</div>
-          <div class="testi-quote">"Our school in Turkana now has reliable power for computer labs and lighting.
-            Students study after dark. The off-grid package with battery backup was exactly what we needed. Thank you
-            Shem Solar!"</div>
-          <div class="testi-author">
-            <div class="author-avatar av-gold">PK</div>
-            <div>
-              <div class="author-name">Peter Kalei</div>
-              <div class="author-role">Head Teacher, Turkana County</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── ABOUT ── -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visual">
-          <div class="about-pattern"></div>
-          <div class="about-sun-sm"></div>
-        </div>
-        <div class="about-text">
-          <span class="badge badge-gold">About Shem Solar</span>
-          <h2 class="heading-xl" style="margin-top:0.8rem;margin-bottom:1rem">Powering Kenya Since 2016</h2>
-          <p>Founded in Nairobi, Shem Solar has grown to become Kenya's most trusted solar energy company — with
-            installations in all 47 counties and a team of over 120 certified engineers.</p>
-          <p>We believe clean energy is not a luxury. Our mission is to make solar accessible, affordable, and reliable
-            for every Kenyan — from Westlands to Wajir.</p>
-          <div class="about-pillars">
-            <div class="pillar">
-              <h4>🌍 Local Expertise</h4>
-              <p>Deep understanding of Kenya's grid challenges and climate conditions.</p>
-            </div>
-            <div class="pillar">
-              <h4>🔧 Certified Team</h4>
-              <p>EPRA-licensed engineers trained to international standards.</p>
-            </div>
-            <div class="pillar">
-              <h4>📱 Smart Tech</h4>
-              <p>IoT-enabled monitoring and M-Pesa native payments.</p>
-            </div>
-            <div class="pillar">
-              <h4>♻️ Sustainability</h4>
-              <p>Panel recycling programme and carbon credit partnerships.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── CONTACT ── -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-header">
-        <div class="caption section-label">Get in Touch</div>
-        <h2 class="heading-xl" style="color:var(--white)">Request a Free Quote</h2>
-        <p>Tell us about your energy needs and we'll design a custom solar solution within 24 hours.</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <h3 class="heading-lg" style="color:var(--white)">We're Here to Help</h3>
-          <p>Our solar consultants are available Monday–Saturday, 8am–6pm. Or drop us a message any time.</p>
-          <div class="contact-detail">
-            <div class="cd-icon">📞</div>
-            <div>
-              <div class="cd-label">Phone / WhatsApp</div>
-              <div class="cd-text">+254 717644520</div>
-            </div>
-          </div>
-          <div class="contact-detail">
-            <div class="cd-icon">✉️</div>
-            <div>
-              <div class="cd-label">Email</div>
-              <div class="cd-text">kyalotech1@mail.com</div>
-            </div>
-          </div>
-          <div class="contact-detail">
-            <div class="cd-icon">📍</div>
-            <div>
-              <div class="cd-label">Head Office</div>
-              <div class="cd-text">Westlands, Nairobi — Vision Plaza, 3rd Floor</div>
-            </div>
-          </div>
-          <div class="contact-detail">
-            <div class="cd-icon">🕐</div>
-            <div>
-              <div class="cd-label">Hours</div>
-              <div class="cd-text">Mon–Sat: 8:00am – 6:00pm</div>
-            </div>
-          </div>
+    <!-- ── LOAD CALCULATOR ── -->
+    <section id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <div class="caption section-label">Solar Sizing Tool</div>
+          <h2 class="heading-xl" style="color:var(--white)">What Size System Do You Need?</h2>
+          <p>Select your appliances and we'll instantly recommend the right solar package for your home or business.</p>
         </div>
-        <div>
-          <div class="quote-form">
-            <div id="form-content">
-              <h3 class="form-title">Request a Quote</h3>
-              <p class="form-subtitle">We respond within 24 hours with a custom proposal</p>
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Full Name</label>
-                  <input type="text" placeholder="Jane Wanjiru">
-                </div>
-                <div class="form-group">
-                  <label>Phone Number</label>
-                  <input type="tel" placeholder="0712 345 678">
+        <div class="calc-shell">
+          <div class="calc-top">
+            <!-- LEFT: Appliance picker -->
+            <div class="calc-left">
+              <div class="calc-left-title">⚡ Select your appliances</div>
+              <div class="appliance-grid" id="appliance-grid">
+                <!-- rendered by JS -->
+              </div>
+              <div class="bill-row">
+                <div class="bill-label">Daily usage hours (how many hours per day?)</div>
+                <input type="range" class="bill-slider" id="hours-slider" min="4" max="24" value="10"
+                  oninput="calcUpdate()">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span class="bill-val"><span id="hours-val">10</span> hrs / day</span>
+                  <span style="font-size:0.78rem;color:rgba(255,255,255,0.35)">4h → 24h</span>
                 </div>
               </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Location</label>
-                  <input type="text" placeholder="Nairobi, Kiambu…">
-                </div>
-                <div class="form-group">
-                  <label>Customer Type</label>
-                  <select>
-                    <option>Homeowner</option>
-                    <option>Business</option>
-                    <option>School / NGO</option>
-                    <option>Rural / Off-grid</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Monthly Power Bill (KES)</label>
-                <select>
-                  <option>Under 3,000</option>
-                  <option>3,000 – 8,000</option>
-                  <option>8,000 – 20,000</option>
-                  <option>Over 20,000</option>
-                  <option>I'm off-grid</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Tell us about your energy needs</label>
-                <textarea
-                  placeholder="e.g. I want to power my 3-bedroom house with fridge, TV, and 10 lights…"></textarea>
-              </div>
-              <button class="btn btn-gold" style="width:100%;justify-content:center;font-size:1rem"
-                onclick="submitQuote()">Submit Quote Request →</button>
             </div>
-            <div class="form-success" id="form-success">
-              <div class="form-success-icon">✅</div>
-              <h3>Quote Request Received!</h3>
-              <p>Thank you! Our team will review your requirements and contact you within 24 hours with a custom solar
-                proposal.</p>
-              <button class="btn btn-navy btn-sm" style="margin-top:1.2rem" onclick="resetForm()">Submit
-                Another</button>
+            <!-- RIGHT: Recommendation -->
+            <div class="calc-right">
+              <div class="calc-right-title">☀️ System recommendation</div>
+              <div class="load-meter">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.3rem">
+                  <span style="font-size:0.82rem;color:rgba(255,255,255,0.55)">Total load</span>
+                  <span style="font-size:1.1rem;font-weight:700;color:var(--white)"><span id="total-watts">0</span>
+                    W</span>
+                </div>
+                <div class="load-bar-track">
+                  <div class="load-bar-fill" id="load-bar" style="width:0%"></div>
+                </div>
+                <div class="load-nums"><span>0 W</span><span>1,000 W</span><span>3,000 W</span><span>5,000+ W</span>
+                </div>
+              </div>
+              <div id="rec-area">
+                <div class="rec-none">🌤️<br>Select appliances above<br>to see your recommendation</div>
+              </div>
+            </div>
+          </div>
+          <div class="calc-bottom">
+            <div>
+              <div class="calc-summary">Estimated daily energy: <strong id="kwh-day">0 kWh</strong> &nbsp;·&nbsp; System
+                size needed: <strong id="sys-kw">—</strong></div>
+              <div style="margin-top:0.4rem;font-size:0.8rem;color:rgba(255,255,255,0.35)">Calculation includes 20%
+                efficiency buffer and Kenya's avg. 5.5 peak sun hours</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+              <div class="savings-pill" id="savings-pill" style="display:none">💰 Save up to <span id="savings-est">KES
+                  0</span>/mo</div>
+              <button class="btn btn-gold" id="calc-cta" style="display:none" onclick="calcAddToCart()">Add Recommended
+                System →</button>
+              <button class="btn btn-green btn-sm" id="calc-quote-cta" style="display:none"
+                onclick="toggleCalcQuote()">Request Consultation →</button>
+            </div>
+          </div>
+          <!-- Quote handoff for large systems -->
+          <div class="calc-quote-box" id="calc-quote-box" style="margin:0 2.5rem 1.5rem;display:none">
+            <div class="cqb-title">🔧 Large system — let's talk first</div>
+            <div class="cqb-desc">Systems 5kW and above are designed to your exact site requirements. Our engineers will
+              visit, assess your load, and build a custom proposal — free of charge.</div>
+            <div class="cqb-fields">
+              <input class="cqb-input" id="cqb-name" placeholder="Your name">
+              <input class="cqb-input" id="cqb-phone" placeholder="Phone / WhatsApp" type="tel">
+            </div>
+            <button class="btn btn-green" style="width:100%;justify-content:center" onclick="submitCalcQuote()">Book
+              Free
+              Site Assessment →</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES ── -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="caption section-label">Our Services</div>
+          <h2 class="heading-xl">End-to-End Solar Solutions</h2>
+          <p>We don't just sell equipment — we walk with you from site survey to system monitoring.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-num">01</div>
+            <h3>Site Survey & Design</h3>
+            <p>Our engineers visit your property, assess your load requirements, and design a custom system sized
+              exactly
+              for your needs.</p>
+            <span class="tag">Free assessment</span>
+          </div>
+          <div class="service-card">
+            <div class="service-num">02</div>
+            <h3>Supply & Installation</h3>
+            <p>Certified technicians handle procurement, mounting, wiring, and commissioning — fully compliant with
+              Kenya's energy regulations.</p>
+            <span class="tag">Certified installers</span>
+          </div>
+          <div class="service-card">
+            <div class="service-num">03</div>
+            <h3>System Monitoring</h3>
+            <p>Real-time Wi-Fi monitoring dashboard tracks energy production, consumption, and battery health from your
+              phone.</p>
+            <span class="tag">Mobile app included</span>
+          </div>
+          <div class="service-card">
+            <div class="service-num">04</div>
+            <h3>Maintenance & Support</h3>
+            <p>Annual servicing contracts, emergency callouts, and component replacement warranties for peace of mind
+              long-term.</p>
+            <span class="tag">24/7 support line</span>
+          </div>
+          <div class="service-card">
+            <div class="service-num">05</div>
+            <h3>Financing Options</h3>
+            <p>Flexible payment plans including M-Pesa monthly instalments, bank loan partnerships, and SACCO-linked
+              financing.</p>
+            <span class="tag">From KES 5,000/mo</span>
+          </div>
+          <div class="service-card">
+            <div class="service-num">06</div>
+            <h3>Grid-Tie & Net Metering</h3>
+            <p>Sell excess power back to KPLC with our licensed grid-tied installations — earning while the sun shines.
+            </p>
+            <span class="tag">KPLC approved</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TESTIMONIALS ── -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <div class="caption section-label">Testimonials</div>
+          <h2 class="heading-xl">Kenyans Who Made the Switch</h2>
+          <p>Real results from real customers across the country.</p>
+        </div>
+        <div class="testi-grid">
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <div class="testi-quote">"Shem Solar installed a 3kW system for our Kiambu home. Our electricity bill
+              dropped
+              from KES 12,000 to under KES 800 a month. The installation team was professional and completed everything
+              in
+              one day."</div>
+            <div class="testi-author">
+              <div class="author-avatar av-green">JM</div>
+              <div>
+                <div class="author-name">James Mwangi</div>
+                <div class="author-role">Homeowner, Kiambu</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <div class="testi-quote">"We run a cold storage facility in Eldoret. The 15kW commercial system paid for
+              itself in 2.5 years. No more diesel generator costs. The monitoring app shows everything in real time."
+            </div>
+            <div class="testi-author">
+              <div class="author-avatar av-navy">AO</div>
+              <div>
+                <div class="author-name">Aisha Omondi</div>
+                <div class="author-role">SME Owner, Eldoret</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <div class="testi-quote">"Our school in Turkana now has reliable power for computer labs and lighting.
+              Students study after dark. The off-grid package with battery backup was exactly what we needed. Thank you
+              Shem Solar!"</div>
+            <div class="testi-author">
+              <div class="author-avatar av-gold">PK</div>
+              <div>
+                <div class="author-name">Peter Kalei</div>
+                <div class="author-role">Head Teacher, Turkana County</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ── ABOUT ── -->
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-visual">
+            <div class="about-pattern"></div>
+            <div class="about-sun-sm"></div>
+          </div>
+          <div class="about-text">
+            <span class="badge badge-gold">About Shem Solar</span>
+            <h2 class="heading-xl" style="margin-top:0.8rem;margin-bottom:1rem">Powering Kenya Since 2016</h2>
+            <p>Founded in Nairobi, Shem Solar has grown to become Kenya's most trusted solar energy company — with
+              installations in all 47 counties and a team of over 120 certified engineers.</p>
+            <p>We believe clean energy is not a luxury. Our mission is to make solar accessible, affordable, and
+              reliable
+              for every Kenyan — from Westlands to Wajir.</p>
+            <div class="about-pillars">
+              <div class="pillar">
+                <h4>🌍 Local Expertise</h3>
+                  <p>Deep understanding of Kenya's grid challenges and climate conditions.</p>
+              </div>
+              <div class="pillar">
+                <h4>🔧 Certified Team</h3>
+                  <p>EPRA-licensed engineers trained to international standards.</p>
+              </div>
+              <div class="pillar">
+                <h4>📱 Smart Tech</h3>
+                  <p>IoT-enabled monitoring and M-Pesa native payments.</p>
+              </div>
+              <div class="pillar">
+                <h4>♻️ Sustainability</h3>
+                  <p>Panel recycling programme and carbon credit partnerships.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="caption section-label">Get in Touch</div>
+          <h2 class="heading-xl" style="color:var(--white)">Request a Free Quote</h2>
+          <p>Tell us about your energy needs and we'll design a custom solar solution within 24 hours.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3 class="heading-lg" style="color:var(--white)">We're Here to Help</h3>
+            <p>Our solar consultants are available Monday–Saturday, 8am–6pm. Or drop us a message any time.</p>
+            <div class="contact-detail">
+              <div class="cd-icon">📞</div>
+              <div>
+                <div class="cd-label">Phone / WhatsApp</div>
+                <div class="cd-text">+254 717644520</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="cd-icon">✉️</div>
+              <div>
+                <div class="cd-label">Email</div>
+                <div class="cd-text">kyalotech1@mail.com</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="cd-icon">📍</div>
+              <div>
+                <div class="cd-label">Head Office</div>
+                <div class="cd-text">Westlands, Nairobi — Vision Plaza, 3rd Floor</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="cd-icon">🕐</div>
+              <div>
+                <div class="cd-label">Hours</div>
+                <div class="cd-text">Mon–Sat: 8:00am – 6:00pm</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="quote-form">
+              <div id="form-content">
+                <h3 class="form-title">Request a Quote</h3>
+                <p class="form-subtitle">We respond within 24 hours with a custom proposal</p>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="q-name">Full Name</label>
+                    <input type="text" id="q-name" placeholder="Jane Wanjiru">
+                  </div>
+                  <div class="form-group">
+                    <label for="q-phone">Phone Number</label>
+                    <input type="tel" id="q-phone" placeholder="0712 345 678">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="q-location">Location</label>
+                    <input type="text" id="q-location" placeholder="Nairobi, Kiambu…">
+                  </div>
+                  <div class="form-group">
+                    <label for="q-type">Customer Type</label>
+                    <select id="q-type">
+                      <option>Homeowner</option>
+                      <option>Business</option>
+                      <option>School / NGO</option>
+                      <option>Rural / Off-grid</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="q-bill">Monthly Power Bill (KES)</label>
+                    <select id="q-bill">
+                      <option>Under 3,000</option>
+                      <option>3,000 – 8,000</option>
+                      <option>8,000 – 20,000</option>
+                      <option>Over 20,000</option>
+                      <option>I'm off-grid</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="q-notes">Tell us about your energy needs</label>
+                    <textarea id="q-notes"
+                      placeholder="e.g. I want to power my 3-bedroom house with fridge, TV, and 10 lights…"></textarea>
+                  </div>
+                  <button class="btn btn-gold" style="width:100%;justify-content:center;font-size:1rem"
+                    onclick="submitQuote()">Submit Quote Request →</button>
+                </div>
+                <div class="form-success" id="form-success">
+                  <div class="form-success-icon">✅</div>
+                  <h3>Quote Request Received!</h3>
+                  <p>Thank you! Our team will review your requirements and contact you within 24 hours with a custom
+                    solar
+                    proposal.</p>
+                  <button class="btn btn-navy btn-sm" style="margin-top:1.2rem" onclick="resetForm()">Submit
+                    Another</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+  </main>
   <!-- ── FOOTER ── -->
   <footer>
     <div class="container">
@@ -3447,7 +3457,8 @@
       <div id="mpesa-step-2" style="display:none">
         <div class="modal-icon">⏳</div>
         <h3>STK Push Sent</h3>
-        <p>Check your phone <strong>+254 <span id="display-phone"></span></strong> and enter your M-Pesa PIN to complete
+        <p>Check your phone <strong>+254 <span id="display-phone"></span></strong> and enter your M-Pesa PIN to
+          complete
           payment.</p>
         <div style="margin-bottom:1.2rem">
           <div class="step-item">
@@ -3943,7 +3954,8 @@
           <div id="pm-warranty"></div>
         </div>
         <div class="pm-panel" id="pm-panel-3">
-          <div style="margin-bottom:0.8rem;font-size:0.88rem;color:var(--text-mid)">Adjust the term to see your monthly
+          <div style="margin-bottom:0.8rem;font-size:0.88rem;color:var(--text-mid)">Adjust the term to see your
+            monthly
             M-Pesa instalment.</div>
           <div class="fm-slider-group">
             <label>Deposit <span id="dep-pct-label">20%</span></label>
