@@ -66,6 +66,11 @@ async function migrate() {
       );
     `);
 
+    // ── ADD image_url TO products (if migrating existing table) ────────────────
+    await client.query(`
+  ALTER TABLE products ADD COLUMN IF NOT EXISTS image_url TEXT;
+`);
+
     // ── TABLE 2: installation_packages ────────────────────────────────────────
     await client.query(`
       CREATE TABLE IF NOT EXISTS installation_packages (
@@ -79,6 +84,11 @@ async function migrate() {
         created_at           TIMESTAMPTZ DEFAULT NOW()
       );
     `);
+
+    // ── ADD image_url TO installation_packages ──────────────────────────────────
+    await client.query(`
+  ALTER TABLE installation_packages ADD COLUMN IF NOT EXISTS image_url TEXT;
+`);
 
     // ── TABLE 3: package_items (junction) ─────────────────────────────────────
     await client.query(`
@@ -177,7 +187,7 @@ async function migrate() {
           FOR EACH ROW EXECUTE FUNCTION update_updated_at();
       `);
     }
-// ── TABLE 7: admin_users ──────────────────────────────────────────────────
+    // ── TABLE 7: admin_users ──────────────────────────────────────────────────
     await client.query(`
       CREATE TABLE IF NOT EXISTS admin_users (
         id            SERIAL PRIMARY KEY,
